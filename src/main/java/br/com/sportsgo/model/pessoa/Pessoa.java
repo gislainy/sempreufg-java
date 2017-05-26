@@ -1,5 +1,7 @@
 package br.com.sportsgo.model.pessoa;
 
+import br.com.sportsgo.model.usuario.Usuario;
+
 public class Pessoa {
 
 	private String nome;
@@ -8,6 +10,7 @@ public class Pessoa {
 	private String email;
 	private String tipopessoa;
 	private int codigo;
+	private Usuario usuario;
 	
 	public String getNome() {
 		return nome;
@@ -46,6 +49,12 @@ public class Pessoa {
 	}
 	public void setCpfcnpj(String cpfcnpj) {
 		this.cpfcnpj = cpfcnpj;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

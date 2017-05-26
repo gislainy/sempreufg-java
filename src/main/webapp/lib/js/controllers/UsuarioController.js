@@ -1,19 +1,19 @@
 (function () {
     angular.module('sportsgo').controller('UsuarioController', UsuarioController);
 
-    function UsuarioController($scope, $location, usuarioService, requisicoesService) {
+    function UsuarioController($scope, $location, usuarioService, requisicoesService, clearMaskService) {
 
         function init() {
-            $scope.usuario = usuarioService.get('usuario');
+            $scope.pessoa = usuarioService.get('pessoa');
         }
 
         init();
 
         $scope.selecionarPessoa = function () {
-            if ($scope.usuario.pessoa.tipopessoa === 'fisica') {
+            if ($scope.pessoa.tipopessoa === 'fisica') {
                 $scope.cpfBool = true;
                 $scope.cnpjBool = false;
-            } else if ($scope.usuario.pessoa.tipopessoa === 'juridica') {
+            } else if ($scope.pessoa.tipopessoa === 'juridica') {
                 $scope.cpfBool = false;
                 $scope.cnpjBool = true;
             } else {
@@ -23,17 +23,18 @@
         };
 
         $scope.carregarViewCredenciais = function() {
-            usuarioService.set('usuario', $scope.usuario);
+            usuarioService.set('pessoa', $scope.pessoa);
             $location.path('/sportsgo/novo_usuario/credenciais');
         };
 
         $scope.carregarViewDados = function() {
             $location.path('/sportsgo/novo_usuario/dados');
-            $scope.usuario = usuarioService.get('usuario');
+            $scope.pessoa = usuarioService.get('pessoa');
         };
 
         $scope.cadastrarUsuario = function() {
-            requisicoesService.novoUsuario($scope.usuario)
+            limparMascaras();
+            requisicoesService.novoUsuario($scope.pessoa)
             .then(function(response) {
                 if(response.data) {
                     console.log('Usuário cadastrado com sucesso');
@@ -43,6 +44,15 @@
             }, function(error){
                 console.log(error);
             });
+        };
+
+        function limparMascaras() {
+            $scope.pessoa.telefone = clearMaskService.clearMaskTelefone($scope.pessoa.telefone);
+            if($scope.pessoa.cpfcnpj.length == 14) {
+                $scope.pessoa.cpfcnpj = clearMaskService.clearMaskCpf($scope.pessoa.cpfcnpj);
+            } else {
+                $scope.pessoa.cpfcnpj = clearMaskService.clearMaskCnpj($scope.pessoa.cpfcnpj);
+            }
         }
 
        

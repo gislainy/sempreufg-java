@@ -43,6 +43,7 @@
 	<script type="text/javascript" src="lib/js/diversos/app.js"></script>
 	<script type="text/javascript" src="lib/js/diversos/owlcarousel/owl-carousel.js"></script>
 	<script type="text/javascript" src="lib/js/diversos/style-switcher.js"></script>
+	<script type="text/javascript" src="lib/js/diversos/mask-validation/mask-validation.js"></script>
 
 	<!-- ANGULAR -->
 	<script src="lib/js/angular/angular.js"></script>
@@ -58,11 +59,17 @@
 	<!-- CONTROLLERS -->
 	<script src="lib/js/controllers/IndexController.js"></script>
 	<script src="lib/js/controllers/UsuarioController.js"></script>
+	<script src="lib/js/controllers/LoginController.js"></script>
+
+	<!-- DIRECTIVES -->
+
+	<script src="lib/js/directives/limitTo-directive.js"></script>
 
 	<!-- SERVICES -->
 	<script src="lib/js/services/usuario-service.js"></script>
 	<script src="lib/js/services/requisicoes-service.js"></script>
 	<script src="lib/js/services/auth-interceptor.js"></script>
+	<script src="lib/js/services/clear_mask-service.js"></script>
 
 </head>
 
@@ -96,10 +103,10 @@
 						<li class="topbar-devider"></li>
 						<li>
 							<i class="icon-user"></i>
-							<a ng-if="!usuarioLogado.usuario.length" href="#/home/login">Logar</a>
+							<a href="#/sportsgo/login">Logar</a>
 						</li>
-						<li>{{usuarioLogado.usuario}}</li>
-						<li><i ng-if="usuarioLogado.usuario.length" ng-click="logout()" class="icon-close"></i></li>
+						<li></li>
+						<li><i class="icon-close"></i></li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
@@ -127,7 +134,7 @@
 								<!-- FutebolPAG -->
 								<li>
 									<a href="" ng-repeat="">
-										 
+
 									</a>
 								</li>
 							</ul>
@@ -146,36 +153,36 @@
 
 										<li>
 											<a href="" ng-repeat="">
-												 
+
 											</a>
 										</li>
 
-										
+
 
 									</ul>
-									</li>
+								</li>
 
-									<li>
-										<a href="">Todos</a>
-									</li>
-									<li ng-if="">
-										<a href="">Cadastro</a>
-									</li>
-								
+								<li>
+									<a href="">Todos</a>
+								</li>
+								<li ng-if="">
+									<a href="">Cadastro</a>
+								</li>
+
 							</ul>
-							</li>
+						</li>
 
-							<li class="pull-right">
-								<i class="search fa fa-search search-btn"></i>
-								<div class="search-open">
-									<div class="input-group animated fadeInDown">
-										<input type="text" class="form-control" placeholder="Search">
-										<span class="input-group-btn">
+						<li class="pull-right">
+							<i class="search fa fa-search search-btn"></i>
+							<div class="search-open">
+								<div class="input-group animated fadeInDown">
+									<input type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
 										<button class="btn-u" type="button">Go</button>
 									</span>
-									</div>
 								</div>
-							</li>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>

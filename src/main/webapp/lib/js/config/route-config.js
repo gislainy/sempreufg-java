@@ -6,7 +6,7 @@ function configurar($routeProvider) {
     $routeProvider
         .when('/sportsgo/login', {
             templateUrl: 'lib/views/login.html',
-            controller: 'IndexController'
+            controller: 'LoginController'
         })
         .when('/sportsgo', {
             templateUrl: 'lib/views/principal.html',
