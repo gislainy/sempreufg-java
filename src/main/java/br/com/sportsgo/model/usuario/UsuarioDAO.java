@@ -2,52 +2,51 @@ package br.com.sportsgo.model.usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+
+import org.springframework.ui.Model;
 
 import br.com.sportsgo.model.ConnectionFactory;
 import br.com.sportsgo.service.interceptor.TokenResponse;
 
 public class UsuarioDAO {
 	
-	public int novoUsuario(Usuario usuario) throws SQLException {
+	Model retorno;
+
+	public Model novoUsuario(Usuario usuario) throws SQLException {
 		Connection conn = new ConnectionFactory().obterConexao();
 		int resultado = 0;
 
-		String sql = "insert into spusuario(usuario,senha,tipousuario) values(?,?,?)";
+		String sql = "insert into spusuario(nome,sobrenome,cpfcnpj,login,senha,pessoajuridica,pessoafisica,datacadastro) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, usuario.getUsuario());
-		pstmt.setString(2, TokenResponse.gerarToken(usuario.getSenha()));
-		pstmt.setString(3,"administrador");
+		pstmt.setString(1, usuario.getNome());
+		pstmt.setString(2, usuario.getSobrenome());
+		pstmt.setString(3, usuario.getCpfCnpj());
+		pstmt.setString(4, usuario.getLogin());
+		pstmt.setString(5, TokenResponse.gerarToken(usuario.getSenha()));
+		pstmt.setBoolean(6, usuario.isPessoaJuridica());
+		pstmt.setBoolean(7, usuario.isPessoaFisica());
+		
+		java.util.Date dataUtil = new java.util.Date();
+		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+		pstmt.setDate(6, dataSql);
+	
 		try {
 			resultado = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new SQLException("Falha no cadastrado do usu·rio");
+			throw new SQLException("Falha no cadastrado do usu√°rio");
 		}
 		
 		conn.close();
 		pstmt.close();
 
-		return resultado;
-	}
-	
-	public int buscarCodigoUsuario(String usuario) throws SQLException {
-		Connection conn = new ConnectionFactory().obterConexao();
-
-		String sql = "select codigo from spusuario where usuario = ?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, usuario);
-		ResultSet rs = null;
-		try {
-			rs = pstmt.executeQuery();
-		} catch (SQLException e) {
-			throw new SQLException("Falha no cadastrado do usu·rio");
+		if(resultado == 1) {
+			retorno.addAttribute("retorno", true);
+		} else {
+			retorno.addAttribute("retorno", false);
 		}
-		
-		while(rs.next()) {
-			return rs.getInt("codigo");
-		}
-		return 0;
+		return retorno;
 	}
 	
 }

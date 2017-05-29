@@ -1,3 +1,9 @@
+package br.com.sportsgo.model;
+
 public class Telefone{
-	//Realizar Implementação de acordo com banco de dados publicado pelo Fernando Ferreira
+
+	private String codpais;
+	private String dddnumero;
+	private String tipo;
+	
 }

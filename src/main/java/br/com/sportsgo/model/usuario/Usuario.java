@@ -1,42 +1,21 @@
 package br.com.sportsgo.model.usuario;
+import br.com.sportsgo.model.pessoa.Pessoa;
 
-public class Usuario {
-
-	private String usuario;
+public class Usuario extends Pessoa{
+	private String login;
 	private String senha;
-	private String tipousuario;
-	private int codigo;
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
 
 	public String getSenha() {
 		return senha;
 	}
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public String getTipousuario() {
-		return tipousuario;
+	public String getLogin() {
+		return login;
 	}
-
-	public void setTipousuario(String tipousuario) {
-		this.tipousuario = tipousuario;
+	public void setLogin(String login) {
+		this.login = login;
 	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-	
 }

@@ -4,37 +4,43 @@
     function UsuarioController($scope, $location, usuarioService, requisicoesService, clearMaskService) {
 
         function init() {
-            $scope.pessoa = usuarioService.get('pessoa');
+            $scope.usuario = usuarioService.get('usuario');
         }
 
         init();
 
         $scope.selecionarPessoa = function () {
-            if ($scope.pessoa.tipopessoa === 'fisica') {
+            if ($scope.tipopessoa === 'fisica') {
                 $scope.cpfBool = true;
                 $scope.cnpjBool = false;
-            } else if ($scope.pessoa.tipopessoa === 'juridica') {
+                $scope.usuarioFisica = true;
+                $scope.usuarioJuririda = false;
+            } else if ($scope.tipopessoa === 'juridica') {
                 $scope.cpfBool = false;
                 $scope.cnpjBool = true;
+                $scope.usuarioJuririda = true;
+                $scope.usuarioFisica = false;
             } else {
                 $scope.cpfBool = false;
                 $scope.cnpjBool = false;
+                $scope.usuarioJuririda = false;
+                $scope.usuarioFisica = false;
             }
         };
 
         $scope.carregarViewCredenciais = function() {
-            usuarioService.set('pessoa', $scope.pessoa);
+            usuarioService.set('usuario', $scope.usuario);
             $location.path('/sportsgo/novo_usuario/credenciais');
         };
 
         $scope.carregarViewDados = function() {
             $location.path('/sportsgo/novo_usuario/dados');
-            $scope.pessoa = usuarioService.get('pessoa');
+            $scope.usuario = usuarioService.get('usuario');
         };
 
         $scope.cadastrarUsuario = function() {
             limparMascaras();
-            requisicoesService.novoUsuario($scope.pessoa)
+            requisicoesService.novoUsuario($scope.usuario)
             .then(function(response) {
                 if(response.data) {
                     console.log('Usuário cadastrado com sucesso');
@@ -47,11 +53,11 @@
         };
 
         function limparMascaras() {
-            $scope.pessoa.telefone = clearMaskService.clearMaskTelefone($scope.pessoa.telefone);
-            if($scope.pessoa.cpfcnpj.length == 14) {
-                $scope.pessoa.cpfcnpj = clearMaskService.clearMaskCpf($scope.pessoa.cpfcnpj);
+            //$scope.usuario.telefone = clearMaskService.clearMaskTelefone($scope.usuario.telefone);
+            if($scope.usuario.cpfcnpj.length == 14) {
+                $scope.usuario.cpfcnpj = clearMaskService.clearMaskCpf($scope.usuario.cpfcnpj);
             } else {
-                $scope.pessoa.cpfcnpj = clearMaskService.clearMaskCnpj($scope.pessoa.cpfcnpj);
+                $scope.usuario.cpfcnpj = clearMaskService.clearMaskCnpj($scope.usuario.cpfcnpj);
             }
         }
 

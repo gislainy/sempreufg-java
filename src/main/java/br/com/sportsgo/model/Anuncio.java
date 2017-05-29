@@ -1,3 +1,5 @@
+package br.com.sportsgo.model;
+
 
 public class Anuncio {
 	private long codigo;

@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="nome">Pessoa</label>
-            <select class="form-control" ng-change="selecionarPessoa()" ng-model="pessoa.tipopessoa">
+            <select class="form-control" ng-change="selecionarPessoa()" ng-model="tipopessoa">
                     <option value=""></option>
                     <option value="fisica">Física</option>
                     <option value="juridica">Jurídica</option>
@@ -18,23 +18,27 @@
         </div>
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input class="form-control" type="text" name="nome" id="nome" ng-model="pessoa.nome">
+            <input class="form-control" type="text" name="nome" id="nome" ng-model="usuario.nome">
+        </div>
+        <div class="form-group">
+            <label for="sobrenome">Sobrenome</label>
+            <input class="form-control" type="text" name="sobrenome" id="sobrenome" ng-model="usuario.sobrenome">
         </div>
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input class="form-control" type="text" name="telefone" id="telefone" ng-model="pessoa.telefone">
+            <input class="form-control" type="text" name="telefone" id="telefone">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="text" name="email" id="email" ng-model="pessoa.email">
+            <input class="form-control" type="text" name="email" id="email" ng-model="usuario.email">
         </div>
         <div class="form-group" ng-show="cpfBool">
             <label for="cpf">CPF</label>
-            <input class="form-control" type="text" onkeypress="MascaraCPF(cpf)" name="cpf" id="cpf" ng-model="pessoa.cpfcnpj" limit-to="14">
+            <input class="form-control" type="text" onkeypress="MascaraCPF(cpf)" name="cpf" id="cpf" ng-model="usuario.cpfcnpj" limit-to="14">
         </div>
         <div class="form-group" ng-show="cnpjBool">
             <label for="cnpj">CNPJ</label>
-            <input class="form-control" type="text" onkeypress="MascaraCNPJ(cnpj)" name="cnpj" id="cnpj" ng-model="pessoa.cpfcnpj" limit-to="18">
+            <input class="form-control" type="text" onkeypress="MascaraCNPJ(cnpj)" name="cnpj" id="cnpj" ng-model="usuario.cpfcnpj" limit-to="18">
         </div>
         <div class="form-group">
             <input type="button" value="Próximo passo" class="btn btn-primary btn-block btn-outline" ng-click="carregarViewCredenciais()">
