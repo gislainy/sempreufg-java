@@ -1,5 +1,21 @@
 package br.com.sportsgo.model;
+//*Implementado Camel Case, verificar MER.
 
 public class RedeSocial{
-	//Realizar Implementaï¿½ï¿½o de acordo com banco de dados publicado pelo Fernando Ferreira
+	private String nomeDaRede;
+	private String profile;
+	
+	//Metódos Getters and Setters
+	public String getNomeDaRede() {
+		return nomeDaRede;
+	}
+	public void setNomeDaRede(String nomeDaRede) {
+		this.nomeDaRede = nomeDaRede;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 }

@@ -1,3 +1,5 @@
+//Fonte: Validacao CPF/CNPJ: DEVMEDIA
+
 package br.com.sportsgo.model.pessoa;
 
 import java.util.InputMismatchException;
@@ -5,6 +7,7 @@ import java.util.InputMismatchException;
 import br.com.sportsgo.model.Endereco;
 import br.com.sportsgo.model.RedeSocial;
 import br.com.sportsgo.model.Telefone;
+//*Atributos CamelCase verificar banco/Diagrama ER.
 
 public class Pessoa{
 	
@@ -18,36 +21,10 @@ public class Pessoa{
     private boolean pessoaFisica;
     private boolean pessoaJuridica;
     
-    
-    public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
-	public boolean isPessoaFisica() {
-		return pessoaFisica;
-	}
-
-	public void setPessoaFisica(boolean pessoaFisica) {
-		this.pessoaFisica = pessoaFisica;
-	}
-
-	public boolean isPessoaJuridica() {
-		return pessoaJuridica;
-	}
-
-	public void setPessoaJuridica(boolean pessoaJuridica) {
-		this.pessoaJuridica = pessoaJuridica;
-	}
-
-    //OBS Alterar Metodos para ValidarCpfCnpj usando pessoaFisica/pessoaJuridica (?)
-   
+    //Metodos validacao CPF/CNPJ (separadamente). Sugestao: Implementar JavaScript [?]
+    //OBS Alterar Metodos para ValidarCpfCnpj usando pessoaFisica/pessoaJuridica [?]
     public boolean ValidarCnpj(String cnpj){
-    	cnpj = cnpj.replaceAll("\\.", "").replaceAll("-","").replaceAll("/", ""); //Remove pontos e o tra�o, caso existam
-
+    	cnpj = cnpj.replaceAll("\\.", "").replaceAll("-","").replaceAll("/", ""); //Remove pontos e o traco, caso estes existam
     	// considera-se erro CNPJ's formados por uma sequencia de numeros iguais
     	    if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111") ||
     	        cnpj.equals("22222222222222") || cnpj.equals("33333333333333") ||
@@ -60,7 +37,7 @@ public class Pessoa{
     	    char dig13, dig14;
     	    int sm, i, r, num, peso;
 
-    	// "try" - protege o c�digo para eventuais erros de conversao de tipo (int)
+    	// "try" - protege o codigo para eventuais erros de conversao de tipo (int)
     	    try {
     	// Calculo do 1o. Digito Verificador
     	      sm = 0;
@@ -68,7 +45,7 @@ public class Pessoa{
     	      for (i=11; i>=0; i--) {
     	// converte o i-�simo caractere do CNPJ em um n�mero:
     	// por exemplo, transforma o caractere '0' no inteiro 0
-    	// (48 eh a posi��o de '0' na tabela ASCII)
+    	// (48 eh a posicao de '0' na tabela ASCII)
     	        num = (int)(cnpj.charAt(i) - 48);
     	        sm = sm + (num * peso);
     	        peso = peso + 1;
@@ -97,7 +74,7 @@ public class Pessoa{
     	         dig14 = '0';
     	      else dig14 = (char)((11-r) + 48);
 
-    	// Verifica se os d�gitos calculados conferem com os d�gitos informados.
+    	// Verifica se os digitos calculados conferem com os digitos informados.
     	      if ((dig13 == cnpj.charAt(12)) && (dig14 == cnpj.charAt(13)))
     	         return(true);
     	      else return(false);
@@ -107,7 +84,7 @@ public class Pessoa{
     }
     
     public static boolean ValidarCpf(String cpf) {
-        cpf = cpf.replaceAll("\\.", "").replaceAll("-",""); //Remove pontos e o tra�o, caso existam
+        cpf = cpf.replaceAll("\\.", "").replaceAll("-",""); //Remove pontos e os tracos, caso existam
    // Considera-se erro CPF's formados por uma sequencia de numeros iguais
     	        if (cpf.equals("00000000000") || cpf.equals("11111111111")
     	                || cpf.equals("22222222222") || cpf.equals("33333333333")
@@ -167,6 +144,31 @@ public class Pessoa{
     	            return (false);
     	        }
     }
+    
+	//Metodos Getters and Setters
+    public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public boolean isPessoaFisica() {
+		return pessoaFisica;
+	}
+
+	public void setPessoaFisica(boolean pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
+	}
+
+	public boolean isPessoaJuridica() {
+		return pessoaJuridica;
+	}
+
+	public void setPessoaJuridica(boolean pessoaJuridica) {
+		this.pessoaJuridica = pessoaJuridica;
+	}
 
 	public String getNome() {
 		return nome;
