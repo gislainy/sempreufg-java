@@ -1,10 +1,11 @@
 package br.com.sportsgo.model.usuario;
+
+import java.util.ArrayList;
 import br.com.sportsgo.model.Endereco;
 import br.com.sportsgo.model.RedeSocial;
 import br.com.sportsgo.model.Telefone;
 import br.com.sportsgo.model.pessoa.Pessoa;
 //*Atributos CamelCase verificar banco/Diagrama ER.
-//*Get Arrays [N]? --> Getters comentados.
 
 public class Usuario extends Pessoa{
 	private String login;
@@ -14,83 +15,10 @@ public class Usuario extends Pessoa{
 	private String email;
 	private String cpnjCpf;
 	private Boolean pessoaJuridica;
-	private String notificacoesEmail[];
-	private Endereco endereco[];
-	private Telefone telefone[];
-	private RedeSocial redeSocial[];
-	
-	//Getters and Setters methods
-	public String[] getNotificacoesEmail() {
-		return notificacoesEmail;
-	}
-	public void setNotificacoesEmail(String[] notificacoesEmail) {
-		this.notificacoesEmail = notificacoesEmail;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public String getCpnjCpf() {
-		return cpnjCpf;
-	}
-	public void setCpnjCpf(String cpnjCpf) {
-		this.cpnjCpf = cpnjCpf;
-	}
-	
-	public Integer getDataCadastro() {
-		return dataCadastro;
-	}
-	public void setDataCadastro(Integer dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	private Integer dataCadastro;
-	
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public Boolean getPessoaJuridica() {
-		return pessoaJuridica;
-	}
-	public void setPessoaJuridica(Boolean pessoaJuridica) {
-		this.pessoaJuridica = pessoaJuridica;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	/*public Telefone[] getTelefone() {
-		return telefone;
-	}*/
-	public void setTelefone(Telefone[] telefone) {
-		this.telefone = telefone;
-	}
-	
-	/*public RedeSocial[] getRedeSocial() {
-		return redeSocial;
-	}*/
-	public void setRedeSocial(RedeSocial[] redeSocial) {
-		this.redeSocial = redeSocial;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	private ArrayList<String> notificacoesEmail = new ArrayList<String> ();
+	private ArrayList<Endereco> endereco = new ArrayList<Endereco> ();
+	private ArrayList<Telefone> telefone = new ArrayList<Telefone> ();
+	private ArrayList<RedeSocial> redeSocial = new ArrayList<RedeSocial> ();
 	
 	public String getLogin() {
 		return login;
@@ -98,11 +26,66 @@ public class Usuario extends Pessoa{
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
-	/*public Endereco[] getEndereco() {
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCpnjCpf() {
+		return cpnjCpf;
+	}
+	public void setCpnjCpf(String cpnjCpf) {
+		this.cpnjCpf = cpnjCpf;
+	}
+	public Boolean getPessoaJuridica() {
+		return pessoaJuridica;
+	}
+	public void setPessoaJuridica(Boolean pessoaJuridica) {
+		this.pessoaJuridica = pessoaJuridica;
+	}
+	public ArrayList<String> getNotificacoesEmail() {
+		return notificacoesEmail;
+	}
+	public void setNotificacoesEmail(ArrayList<String> notificacoesEmail) {
+		this.notificacoesEmail = notificacoesEmail;
+	}
+	public ArrayList<Endereco> getEndereco() {
 		return endereco;
-	}*/
-	public void setEndereco(Endereco[] endereco) {
+	}
+	public void setEndereco(ArrayList<Endereco> endereco) {
 		this.endereco = endereco;
 	}
+	public ArrayList<Telefone> getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(ArrayList<Telefone> telefone) {
+		this.telefone = telefone;
+	}
+	public ArrayList<RedeSocial> getRedeSocial() {
+		return redeSocial;
+	}
+	public void setRedeSocial(ArrayList<RedeSocial> redeSocial) {
+		this.redeSocial = redeSocial;
+	}
+	
+	
 }

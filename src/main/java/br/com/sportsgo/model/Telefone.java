@@ -1,13 +1,12 @@
 package br.com.sportsgo.model;
-//*Atributos CamelCase verificar banco/Diagrama ER.
+//Atributos CamelCase verificar banco/Diagrama ER.
 
 public class Telefone{
-
 	private String codPais;
 	private String dddNumero;
 	private String tipo;
 	
-	//Metódos Getters e Setters
+	//Metodos Getters e Setters
 	public String getCodPais() {
 		return codPais;
 	}

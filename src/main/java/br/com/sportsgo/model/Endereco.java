@@ -4,15 +4,15 @@ package br.com.sportsgo.model;
 public class Endereco{
 	private String codEndereco;
 	private String Logradouro;
-	private int numero;
 	private String complemento;
 	private String bairro;
 	private String cidade;
 	private String estado;
 	private String pais;
 	private String cep;
+	private int numero;
 	
-	//Metódos Getters and Setters
+	//Metodos Getters and Setters
 	public String getCodEndereco() {
 		return codEndereco;
 	}
@@ -24,12 +24,6 @@ public class Endereco{
 	}
 	public void setLogradouro(String logradouro) {
 		Logradouro = logradouro;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
 	}
 	public String getComplemento() {
 		return complemento;
@@ -55,16 +49,22 @@ public class Endereco{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public String getPais() {
+		return pais;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
 	public String getCep() {
 		return cep;
 	}
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public String getPais() {
-		return pais;
+	public int getNumero() {
+		return numero;
 	}
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 }

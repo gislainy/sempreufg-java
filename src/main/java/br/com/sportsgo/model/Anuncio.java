@@ -1,18 +1,19 @@
 package br.com.sportsgo.model;
 
+import java.util.ArrayList;
 import br.com.sportsgo.model.usuario.Usuario;
-//*Implementado Camel Case, verificar MER.
+//Implementado Camel Case, verificar MER.
 
 public class Anuncio {
 	private Usuario usuario;
 	private long codAnuncio;
 	private String descricao;
-	private String local[];
+	private ArrayList<String> local = new ArrayList<String> ();
 	private long nViews;
 	private Integer dataInclusao;
 	private Integer dataAlteracao;
-	private String observacaoAlteracao;
-	private Integer dataDoEvento[];
+	private ArrayList<String> observacaoAlteracao = new ArrayList<String> ();
+	private ArrayList<String> dataDoEvento = new ArrayList<String> ();
 	private Integer dataTermino;
 	private Integer validade;
 	private double enderecoDosArquivos;
@@ -36,7 +37,7 @@ public class Anuncio {
 	private Boolean adquiridoPremium;
 	private String valorPremium;
 	
-	//Metódos Getters and Setters
+	//Metodos Getters and Setters
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -55,10 +56,10 @@ public class Anuncio {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String[] getLocal() {
+	public ArrayList<String> getLocal() {
 		return local;
 	}
-	public void setLocal(String[] local) {
+	public void setLocal(ArrayList<String> local) {
 		this.local = local;
 	}
 	public long getnViews() {
@@ -79,18 +80,21 @@ public class Anuncio {
 	public void setDataAlteracao(Integer dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
 	}
-	public String getObservacaoAlteracao() {
+
+	public ArrayList<String> getObservacaoAlteracao() {
 		return observacaoAlteracao;
 	}
-	public void setObservacaoAlteracao(String observacaoAlteracao) {
+	public void setObservacaoAlteracao(ArrayList<String> observacaoAlteracao) {
 		this.observacaoAlteracao = observacaoAlteracao;
 	}
-	public Integer[] getDataDoEvento() {
+	public ArrayList<String> getDataDoEvento() {
 		return dataDoEvento;
 	}
-	public void setDataDoEvento(Integer[] dataDoEvento) {
+	public void setDataDoEvento(ArrayList<String> dataDoEvento) {
 		this.dataDoEvento = dataDoEvento;
 	}
+	
+	
 	public Integer getDataTermino() {
 		return dataTermino;
 	}

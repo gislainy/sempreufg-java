@@ -5,7 +5,7 @@ public class RedeSocial{
 	private String nomeDaRede;
 	private String profile;
 	
-	//Metódos Getters and Setters
+	//Metodos Getters and Setters
 	public String getNomeDaRede() {
 		return nomeDaRede;
 	}

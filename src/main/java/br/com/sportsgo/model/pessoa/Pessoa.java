@@ -1,7 +1,6 @@
-//Fonte: Validacao CPF/CNPJ: DEVMEDIA
-
 package br.com.sportsgo.model.pessoa;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import br.com.sportsgo.model.Endereco;
@@ -9,20 +8,24 @@ import br.com.sportsgo.model.RedeSocial;
 import br.com.sportsgo.model.Telefone;
 //*Atributos CamelCase verificar banco/Diagrama ER.
 
+//OBSERVACAO!! Essa classe nao esta representada no diagrama do Banco de dados, contudo esta representada no diagrama UML (Google Drive).
+
 public class Pessoa{
 	
     private String nome;
     private String sobrenome;
     private Endereco endereco;
-    private Telefone telefone;
-    private RedeSocial redeSocial;
+	private ArrayList<Telefone> telefone = new ArrayList<Telefone> ();
+	private ArrayList<RedeSocial> redeSocial = new ArrayList<RedeSocial> ();
     private String cpfCnpj;
     private String email;
     private boolean pessoaFisica;
     private boolean pessoaJuridica;
     
-    //Metodos validacao CPF/CNPJ (separadamente). Sugestao: Implementar JavaScript [?]
+    //Fonte: Validacao CPF/CNPJ: DEVMEDIA
+    //Metodos validacao CPF/CNPJ (separadamente). Sugestao: Implementar JavaScript - Client Side[?]
     //OBS Alterar Metodos para ValidarCpfCnpj usando pessoaFisica/pessoaJuridica [?]
+    
     public boolean ValidarCnpj(String cnpj){
     	cnpj = cnpj.replaceAll("\\.", "").replaceAll("-","").replaceAll("/", ""); //Remove pontos e o traco, caso estes existam
     	// considera-se erro CNPJ's formados por uma sequencia de numeros iguais
@@ -187,19 +190,19 @@ public class Pessoa{
 		this.endereco = endereco;
 	}
 
-	public Telefone getTelefone() {
+	public ArrayList<Telefone> getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Telefone telefone) {
+	public void setTelefone(ArrayList<Telefone> telefone) {
 		this.telefone = telefone;
 	}
 
-	public RedeSocial getRedeSocial() {
+	public ArrayList<RedeSocial> getRedeSocial() {
 		return redeSocial;
 	}
 
-	public void setRedeSocial(RedeSocial redeSocial) {
+	public void setRedeSocial(ArrayList<RedeSocial> redeSocial) {
 		this.redeSocial = redeSocial;
 	}
 
