@@ -25,7 +25,7 @@ public class UsuarioDAO {
 		pstmt.setString(4, usuario.getLogin());
 		pstmt.setString(5, TokenResponse.gerarToken(usuario.getSenha()));
 		pstmt.setBoolean(6, usuario.isPessoaJuridica());
-		pstmt.setBoolean(7, usuario.isPessoaFisica());
+		//pstmt.setBoolean(7, usuario.isPessoaFisica());
 		
 		java.util.Date dataUtil = new java.util.Date();
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
