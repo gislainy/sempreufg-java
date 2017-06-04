@@ -1,5 +1,4 @@
 package br.com.sportsgo.model;
-//Atributos CamelCase verificar banco/Diagrama ER.
 
 public class Telefone{
 	private String codPais;

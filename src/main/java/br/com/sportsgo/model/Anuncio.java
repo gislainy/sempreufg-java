@@ -2,14 +2,13 @@ package br.com.sportsgo.model;
 
 import java.util.ArrayList;
 import br.com.sportsgo.model.usuario.Usuario;
-//Implementado Camel Case, verificar MER.
+//*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 public class Anuncio {
 	private Usuario usuario;
 	private long codAnuncio;
 	private String descricao;
 	private ArrayList<String> local = new ArrayList<String> ();
-	private long nViews;
 	private Integer dataInclusao;
 	private Integer dataAlteracao;
 	private ArrayList<String> observacaoAlteracao = new ArrayList<String> ();
@@ -20,7 +19,7 @@ public class Anuncio {
 	private String modalidade;
 	private Boolean existePendencias;
 	private double valorDoAnuncio;
-	private long numeroDeViews;
+	private long nrViews;
 	private boolean anuncioFree;
 	private boolean anuncioPremium;
 	private String precoEvento;
@@ -62,12 +61,6 @@ public class Anuncio {
 	public void setLocal(ArrayList<String> local) {
 		this.local = local;
 	}
-	public long getnViews() {
-		return nViews;
-	}
-	public void setnViews(long nViews) {
-		this.nViews = nViews;
-	}
 	public Integer getDataInclusao() {
 		return dataInclusao;
 	}
@@ -93,7 +86,6 @@ public class Anuncio {
 	public void setDataDoEvento(ArrayList<String> dataDoEvento) {
 		this.dataDoEvento = dataDoEvento;
 	}
-	
 	
 	public Integer getDataTermino() {
 		return dataTermino;
@@ -131,11 +123,11 @@ public class Anuncio {
 	public void setValorDoAnuncio(double valorDoAnuncio) {
 		this.valorDoAnuncio = valorDoAnuncio;
 	}
-	public long getNumeroDeViews() {
-		return numeroDeViews;
+	public long getNrViews() {
+		return nrViews;
 	}
-	public void setNumeroDeViews(long numeroDeViews) {
-		this.numeroDeViews = numeroDeViews;
+	public void setNrViews(long nrViews) {
+		this.nrViews = nrViews;
 	}
 	public boolean isAnuncioFree() {
 		return anuncioFree;

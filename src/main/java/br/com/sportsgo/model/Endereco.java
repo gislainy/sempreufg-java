@@ -1,8 +1,9 @@
 package br.com.sportsgo.model;
-//*Implementado Camel Case, verificar MER.
+
+//*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 public class Endereco{
-	private String codEndereco;
+	private int codEndereco;
 	private String Logradouro;
 	private String complemento;
 	private String bairro;
@@ -10,13 +11,13 @@ public class Endereco{
 	private String estado;
 	private String pais;
 	private String cep;
-	private int numero;
+	private String numero;
 	
 	//Metodos Getters and Setters
-	public String getCodEndereco() {
+	public int getCodEndereco() {
 		return codEndereco;
 	}
-	public void setCodEndereco(String codEndereco) {
+	public void setCodEndereco(int codEndereco) {
 		this.codEndereco = codEndereco;
 	}
 	public String getLogradouro() {
@@ -61,10 +62,10 @@ public class Endereco{
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 }
