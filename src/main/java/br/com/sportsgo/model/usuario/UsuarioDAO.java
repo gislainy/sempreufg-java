@@ -3,11 +3,10 @@ package br.com.sportsgo.model.usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 
 import org.springframework.ui.Model;
 
-import br.com.sportsgo.model.ConnectionFactory;
+import br.com.sportsgo.model.dao.ConnectionFactory;
 import br.com.sportsgo.service.interceptor.TokenResponse;
 
 public class UsuarioDAO {

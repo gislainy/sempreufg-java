@@ -8,7 +8,7 @@ public class ConnectionFactory {
 
 	private final static String URL = "jdbc:postgresql://localhost:5432/sportsgo";
 	private final static String USUARIO = "postgres";
-	private final static String SENHA = "aula321";
+	private final static String SENHA = "1234";
 
 	public Connection obterConexao() throws SQLException {
 		try {
