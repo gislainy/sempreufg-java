@@ -4,15 +4,15 @@
   xmlns="http://xmlns.jcp.org/xml/ns/persistence"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
   version="2.1">
-    <persistence-unit name="restaurantePU" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="SportsGoPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
               
               <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
               <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
               <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sportsgo" />
-              <property name="javax.persistence.jdbc.user" value="postgres" />
-              <property name="javax.persistence.jdbc.password" value="postgres" />
+              <property name="javax.persistence.jdbc.user" value="usuario" />
+              <property name="javax.persistence.jdbc.password" value="construcaosw" />
                
 				<!-- Use the C3P0 connection pool. -->  
 				<property name="c3p0.min_size" value="3" />  

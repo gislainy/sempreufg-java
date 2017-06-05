@@ -7,11 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 
 public abstract class GenericDao<T, I extends Serializable> {
 
+	@PersistenceContext
 	protected EntityManager entityManager;
 
 	protected Class<T> persistedClass;
@@ -33,6 +36,7 @@ public abstract class GenericDao<T, I extends Serializable> {
 		this.persistedClass = persistedClass;
 	}
 
+	@Transactional
 	public T salvar(T entity) {
 		EntityTransaction t = entityManager.getTransaction();
 		t.begin();
@@ -41,7 +45,7 @@ public abstract class GenericDao<T, I extends Serializable> {
 		t.commit();
 		return entity;
 	}
-
+	@Transactional
 	public T atualizar(T entity) {
 		EntityTransaction t = entityManager.getTransaction();
 		t.begin();
@@ -50,7 +54,7 @@ public abstract class GenericDao<T, I extends Serializable> {
 		t.commit();
 		return entity;
 	}
-
+	@Transactional
 	public void remover(I id) {
 		T entity = consultarPorId(id);
 		EntityTransaction tx = entityManager.getTransaction();
