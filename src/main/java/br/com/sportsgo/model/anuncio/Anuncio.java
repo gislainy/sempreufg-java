@@ -1,6 +1,5 @@
 package br.com.sportsgo.model.anuncio;
 
-import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.sportsgo.model.usuario.Usuario;
-//*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 @Entity
 @Table(name="anuncio", 
@@ -42,37 +39,24 @@ public class Anuncio {
 	private Boolean anuncioEhProfissional;
 	
 	@Column(name="statusAnuncio")
-	private EnumStatusAnuncio status;
-	
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioAlteracao> ultimasAlteracoes;
-	
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioDataEvento> datasDoEvento;
-	
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioArquivos> arquivos;
-	
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioLocal> local;
-	
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioPendencia> pendencias;
+	private EnumStatusAnuncio status;	
 
-	@OneToMany(mappedBy="anuncio",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private ArrayList<AnuncioPremium> dadosAnuncioPremium;
-	
-/*	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idUsuario")
-	private Usuario usuario;*/
+	private Usuario usuario;
 	
 	//Metodos Getters and Setters
-/*	public Usuario getUsuario() {
+	@Enumerated(EnumType.ORDINAL)
+	public EnumStatusAnuncio getStatus() {
+		return status;
+	}
+	
+	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}*/
+	}
 	public long getCodAnuncio() {
 		return codAnuncio;
 	}
@@ -91,7 +75,6 @@ public class Anuncio {
 	public void setDataInclusao(Integer dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
-	
 	public Integer getDataTermino() {
 		return dataTermino;
 	}
@@ -116,55 +99,14 @@ public class Anuncio {
 	public void setPrecoEvento(double precoEvento) {
 		this.precoEvento = precoEvento;
 	}
-	public ArrayList<AnuncioAlteracao> getUltimasAlteracoes() {
-		return ultimasAlteracoes;
-	}
-	public void setUltimasAlteracoes(ArrayList<AnuncioAlteracao> ultimasAlteracoes) {
-		this.ultimasAlteracoes = ultimasAlteracoes;
-	}
-	public ArrayList<AnuncioDataEvento> getDatasDoEvento() {
-		return datasDoEvento;
-	}
-	public void setDatasDoEvento(ArrayList<AnuncioDataEvento> datasDoEvento) {
-		this.datasDoEvento = datasDoEvento;
-	}
-	
-	@Enumerated(EnumType.ORDINAL)
-	public EnumStatusAnuncio getStatus() {
-		return status;
-	}
 	public void setStatus(EnumStatusAnuncio status) {
 		this.status = status;
-	}
-	public ArrayList<AnuncioLocal> getLocal() {
-		return local;
-	}
-	public void setLocal(ArrayList<AnuncioLocal> local) {
-		this.local = local;
-	}
-	public ArrayList<AnuncioArquivos> getArquivos() {
-		return arquivos;
-	}
-	public void setArquivos(ArrayList<AnuncioArquivos> arquivos) {
-		this.arquivos = arquivos;
 	}
 	public Boolean getAnuncioEhProfissional() {
 		return anuncioEhProfissional;
 	}
 	public void setAnuncioEhProfissional(Boolean anuncioEhProfissional) {
 		this.anuncioEhProfissional = anuncioEhProfissional;
-	}
-	public ArrayList<AnuncioPendencia> getPendencias() {
-		return pendencias;
-	}
-	public void setPendencias(ArrayList<AnuncioPendencia> pendencias) {
-		this.pendencias = pendencias;
-	}
-	public ArrayList<AnuncioPremium> getDadosAnuncioPremium() {
-		return dadosAnuncioPremium;
-	}
-	public void setDadosAnuncioPremium(ArrayList<AnuncioPremium> dadosAnuncioPremium) {
-		this.dadosAnuncioPremium = dadosAnuncioPremium;
 	}
 	
 	

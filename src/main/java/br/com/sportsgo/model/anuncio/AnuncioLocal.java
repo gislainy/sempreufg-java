@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class AnuncioLocal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private Long id_anuncio;
+	private Long idLocalAnuncio;
 	@Column(length=120)
 	private String local;
 	
@@ -29,12 +29,13 @@ public class AnuncioLocal {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	public Long getId_anuncio() {
-		return id_anuncio;
+	public Long getIdLocalAnuncio() {
+		return idLocalAnuncio;
 	}
-	public void setId_anuncio(Long id_anuncio) {
-		this.id_anuncio = id_anuncio;
+	public void setIdLocalAnuncio(Long idLocalAnuncio) {
+		this.idLocalAnuncio = idLocalAnuncio;
 	}
+
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}

@@ -27,6 +27,12 @@ public class AnuncioAlteracao {
 	@Column
 	private Integer data;
 	
+	public Anuncio getAnuncio() {
+		return anuncio;
+	}
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
+	}
 	public long getId() {
 		return idAlteracao;
 	}
@@ -50,11 +56,5 @@ public class AnuncioAlteracao {
 	}
 	public void setIdAlteracao(long idAlteracao) {
 		this.idAlteracao = idAlteracao;
-	}
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
 	}
 }
