@@ -7,41 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.Endereco;
-import br.com.sportsgo.model.dao.interfaces.IEnderecoDAO;
+import br.com.sportsgo.model.anuncio.AnuncioPremium;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioPremiumDAO;
 
 @Repository
-public class EnderecoDAO implements IEnderecoDAO {
-    
-	private final GenericDAO<Endereco,Long> dao;
+public class AnuncioPremiumDAO implements IAnuncioPremiumDAO {
 	
-	@Autowired
-    public EnderecoDAO(final SessionFactory factory) {
-        dao  = new GenericDAO<Endereco,Long>(factory, Endereco.class);
+	private final GenericDAO<AnuncioPremium,Long> dao;
+    
+    @Autowired
+    public AnuncioPremiumDAO(final SessionFactory factory) {
+        dao  = new GenericDAO<AnuncioPremium,Long>(factory, AnuncioPremium.class);
     }
 	
     @Transactional
-	public void adiciona(Endereco t) {
+	public void adiciona(AnuncioPremium t) {
 		dao.adiciona(t);
 	}
 
     @Transactional
-	public void remove(Endereco t) {
+	public void remove(AnuncioPremium t) {
 		dao.remove(t);	
 	}
 
     @Transactional
-	public Endereco busca(Long id) {
+	public AnuncioPremium busca(Long id) {
 		return dao.busca(id);
 	}
 
     @Transactional
-	public List<Endereco> lista() {
+	public List<AnuncioPremium> lista() {
 		return dao.lista();
 	}
 
     @Transactional
-	public void atualiza(Endereco t) {
+	public void atualiza(AnuncioPremium t) {
 		dao.atualiza(t);
 	}
 

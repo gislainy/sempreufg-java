@@ -7,47 +7,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.anuncio.Anuncio;
-import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
+import br.com.sportsgo.model.anuncio.AnuncioDataEvento;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioDataEventoDAO;
 
 @Repository
-public class AnuncioDAO implements IAnuncioDAO{
-
-    private final GenericDAO<Anuncio,Long> dao;
+public class AnuncioDataEventoDAO implements IAnuncioDataEventoDAO {
+	
+	private final GenericDAO<AnuncioDataEvento,Long> dao;
     
     @Autowired
-    public AnuncioDAO(final SessionFactory factory) {
-        dao  = new GenericDAO<Anuncio,Long>(factory, Anuncio.class);
+    public AnuncioDataEventoDAO(final SessionFactory factory) {
+        dao  = new GenericDAO<AnuncioDataEvento,Long>(factory, AnuncioDataEvento.class);
     }
 	
     @Transactional
-	public void adiciona(Anuncio t) {
+	public void adiciona(AnuncioDataEvento t) {
 		dao.adiciona(t);
 	}
 
     @Transactional
-	public void remove(Anuncio t) {
+	public void remove(AnuncioDataEvento t) {
 		dao.remove(t);	
 	}
 
     @Transactional
-	public Anuncio busca(Long id) {
+	public AnuncioDataEvento busca(Long id) {
 		return dao.busca(id);
 	}
 
     @Transactional
-	public List<Anuncio> lista() {
+	public List<AnuncioDataEvento> lista() {
 		return dao.lista();
 	}
 
     @Transactional
-	public void atualiza(Anuncio t) {
+	public void atualiza(AnuncioDataEvento t) {
 		dao.atualiza(t);
 	}
 
     @Transactional
 	public void remove(Long id) {
 		dao.remove(id);
-	}
-
+	}	
 }

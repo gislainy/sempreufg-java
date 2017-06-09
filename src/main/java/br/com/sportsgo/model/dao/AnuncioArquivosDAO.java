@@ -7,41 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.Telefone;
-import br.com.sportsgo.model.dao.interfaces.ITelefoneDAO;
+import br.com.sportsgo.model.anuncio.AnuncioArquivos;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivosDAO;
 
 @Repository
-public class TelefoneDAO implements ITelefoneDAO {
-
-	private final GenericDAO<Telefone,Long> dao;
+public class AnuncioArquivosDAO implements IAnuncioArquivosDAO {
 	
-	@Autowired
-    public TelefoneDAO(final SessionFactory factory) {
-        dao  = new GenericDAO<Telefone,Long>(factory, Telefone.class);
+	private final GenericDAO<AnuncioArquivos,Long> dao;
+    
+    @Autowired
+    public AnuncioArquivosDAO(final SessionFactory factory) {
+        dao  = new GenericDAO<AnuncioArquivos,Long>(factory, AnuncioArquivos.class);
     }
 	
     @Transactional
-	public void adiciona(Telefone t) {
+	public void adiciona(AnuncioArquivos t) {
 		dao.adiciona(t);
 	}
 
     @Transactional
-	public void remove(Telefone t) {
+	public void remove(AnuncioArquivos t) {
 		dao.remove(t);	
 	}
 
     @Transactional
-	public Telefone busca(Long id) {
+	public AnuncioArquivos busca(Long id) {
 		return dao.busca(id);
 	}
 
     @Transactional
-	public List<Telefone> lista() {
+	public List<AnuncioArquivos> lista() {
 		return dao.lista();
 	}
 
     @Transactional
-	public void atualiza(Telefone t) {
+	public void atualiza(AnuncioArquivos t) {
 		dao.atualiza(t);
 	}
 
@@ -49,4 +49,5 @@ public class TelefoneDAO implements ITelefoneDAO {
 	public void remove(Long id) {
 		dao.remove(id);
 	}
+	
 }

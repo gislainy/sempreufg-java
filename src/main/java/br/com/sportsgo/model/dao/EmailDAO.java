@@ -7,46 +7,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.Endereco;
-import br.com.sportsgo.model.dao.interfaces.IEnderecoDAO;
+import br.com.sportsgo.model.Email;
+import br.com.sportsgo.model.dao.interfaces.IEmailDAO;
 
 @Repository
-public class EnderecoDAO implements IEnderecoDAO {
-    
-	private final GenericDAO<Endereco,Long> dao;
+public class EmailDAO implements IEmailDAO{
 	
-	@Autowired
-    public EnderecoDAO(final SessionFactory factory) {
-        dao  = new GenericDAO<Endereco,Long>(factory, Endereco.class);
+	private final GenericDAO<Email,Long> dao;
+    
+    @Autowired
+    public EmailDAO(final SessionFactory factory) {
+        dao  = new GenericDAO<Email,Long>(factory, Email.class);
     }
 	
     @Transactional
-	public void adiciona(Endereco t) {
+	public void adiciona(Email t) {
 		dao.adiciona(t);
 	}
 
     @Transactional
-	public void remove(Endereco t) {
+	public void remove(Email t) {
 		dao.remove(t);	
 	}
 
     @Transactional
-	public Endereco busca(Long id) {
+	public Email busca(Long id) {
 		return dao.busca(id);
 	}
 
     @Transactional
-	public List<Endereco> lista() {
+	public List<Email> lista() {
 		return dao.lista();
 	}
 
     @Transactional
-	public void atualiza(Endereco t) {
+	public void atualiza(Email t) {
 		dao.atualiza(t);
 	}
 
     @Transactional
 	public void remove(Long id) {
 		dao.remove(id);
-	}	
+	}
 }

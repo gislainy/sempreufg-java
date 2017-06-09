@@ -3,7 +3,7 @@ package br.com.sportsgo.model;
 //*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 public class Endereco{
-	private int codEndereco;
+	private Long codEndereco;
 	private String Logradouro;
 	private String complemento;
 	private String bairro;
@@ -14,12 +14,7 @@ public class Endereco{
 	private String numero;
 	
 	//Metodos Getters and Setters
-	public int getCodEndereco() {
-		return codEndereco;
-	}
-	public void setCodEndereco(int codEndereco) {
-		this.codEndereco = codEndereco;
-	}
+
 	public String getLogradouro() {
 		return Logradouro;
 	}
@@ -67,5 +62,11 @@ public class Endereco{
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+	public Long getCodEndereco() {
+		return codEndereco;
+	}
+	public void setCodEndereco(Long codEndereco) {
+		this.codEndereco = codEndereco;
 	}
 }

@@ -2,6 +2,7 @@ package br.com.sportsgo.model;
 
 
 public class RedeSocial{
+	private Long idRedeSocial;
 	private String nomeRede;
 	private String profile;
 	
@@ -17,5 +18,11 @@ public class RedeSocial{
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+	public Long getIdRedeSocial() {
+		return idRedeSocial;
+	}
+	public void setIdRedeSocial(Long idRedeSocial) {
+		this.idRedeSocial = idRedeSocial;
 	}
 }

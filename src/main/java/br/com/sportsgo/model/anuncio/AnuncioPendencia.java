@@ -16,7 +16,7 @@ public class AnuncioPendencia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long idPendencia;
+	private Long idPendencia;
 	@Column
 	private Integer dataInclusao;
 	@Column
@@ -30,10 +30,10 @@ public class AnuncioPendencia {
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
 	
-	public long getIdPendencia() {
+	public Long getIdPendencia() {
 		return idPendencia;
 	}
-	public void setIdPendencia(long idPendencia) {
+	public void setIdPendencia(Long idPendencia) {
 		this.idPendencia = idPendencia;
 	}
 	public Integer getDataInclusao() {

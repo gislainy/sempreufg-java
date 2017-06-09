@@ -1,6 +1,7 @@
 package br.com.sportsgo.model;
 
 public class Telefone{
+	private Long idTelefone;
 	private String codPais;
 	private String dddNumero;
 	private String tipo;
