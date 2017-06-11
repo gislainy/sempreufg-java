@@ -28,8 +28,8 @@ public class ApplicationContextConfig {
     	BasicDataSource dataSource = new BasicDataSource();
     	dataSource.setDriverClassName("org.postgresql.Driver");
     	dataSource.setUrl("jdbc:postgresql://localhost:5432/sportsgo");
-    	dataSource.setUsername("postgres");
-    	dataSource.setPassword("1234");
+    	dataSource.setUsername("usuario");
+    	dataSource.setPassword("construcaosw");
     	return dataSource;
     }
     
@@ -57,7 +57,6 @@ public class ApplicationContextConfig {
 			
 			try {
 				Class cls = Class.forName(name);
-				System.out.println(cls.getName());
 				classes.add(cls);
 			} catch (Exception E) {
 				// TODO: handle exception - couldn't load class in question
@@ -73,7 +72,6 @@ public class ApplicationContextConfig {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());	
 		sessionBuilder.addAnnotatedClasses(getClassesAnotadas());
-		System.out.println(sessionBuilder.getEntityResolver());
 		return sessionBuilder.buildSessionFactory();
 	}
     

@@ -15,6 +15,26 @@ CREATE DATABASE sportsgo
     OWNER = postgres
     ENCODING = 'UTF8'
     CONNECTION LIMIT = 1000;
+    
+-- criar usuario usuario
+CREATE USER usuario WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	INHERIT
+	NOREPLICATION
+	CONNECTION LIMIT 1000
+	PASSWORD 'construcaosw';
+
+-- conceder ao user usuario conexao ao BD sportsgo
+GRANT CONNECT ON DATABASE sportsgo TO usuario;
+
+-- concerder privilegios sobre o schema public ao user usuario
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO usuario;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO usuario;
+GRANT UPDATE ON ALL TABLES IN SCHEMA public TO usuario;
+GRANT DELETE ON ALL TABLES IN SCHEMA public TO usuario;
 
 -- conecta ao banco de dados
 -- \c sportsgo postgres
@@ -42,7 +62,7 @@ ALTER TABLE public.usuario
 -- cria  a tabela Endereco
 CREATE TABLE public.endereco
 (
-    codendereco serial gint not null,
+    codendereco serial not null,
     logradouro varchar(100) not null,
     numero varchar(12) not null,
     complemento varchar(60),
@@ -276,25 +296,6 @@ WITH (
 ALTER TABLE public.anuncio_local
     OWNER to postgres;
 
--- criar usuario usuario
-CREATE USER usuario WITH
-	LOGIN
-	NOSUPERUSER
-	NOCREATEDB
-	NOCREATEROLE
-	INHERIT
-	NOREPLICATION
-	CONNECTION LIMIT 1000
-	PASSWORD 'construcaosw';
-
--- conceder ao user usuario conexao ao BD sportsgo
-GRANT CONNECT ON DATABASE sportsgo TO usuario;
-
--- concerder privilegios sobre o schema public ao user usuario
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO usuario;
-GRANT INSERT ON ALL TABLES IN SCHEMA public TO usuario;
-GRANT UPDATE ON ALL TABLES IN SCHEMA public TO usuario;
-GRANT DELETE ON ALL TABLES IN SCHEMA public TO usuario;
 
 
 
