@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IDao <T, PK extends Serializable>{
-    public void adiciona(final T t);
+    public PK adiciona(final T t);
     public void remove(final T t);
     public void remove(final PK id);
     public T busca(final PK id);

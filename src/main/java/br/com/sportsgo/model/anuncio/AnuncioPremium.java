@@ -1,33 +1,27 @@
 package br.com.sportsgo.model.anuncio;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity @Table(name="auncio_premium",schema="public")
+@Entity
 public class AnuncioPremium {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long idAnuncioPremium;
-	@Column
 	private Integer dataInicio;
-	@Column
 	private Integer dataTermino;
-	@Column
 	private Double valor;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
 	
+	@Id
+	@GeneratedValue
 	public Long getIdAnuncioPremium() {
 		return idAnuncioPremium;
 	}
@@ -52,8 +46,9 @@ public class AnuncioPremium {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public Anuncio getAnuncio() {
-		return anuncio;
+	@JoinColumn(name="codAnuncio")	
+	public Long getAnuncio() {
+		return anuncio.getCodAnuncio();
 	}
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;

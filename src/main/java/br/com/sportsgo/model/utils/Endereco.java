@@ -1,7 +1,19 @@
-package br.com.sportsgo.model;
+package br.com.sportsgo.model.utils;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import br.com.sportsgo.model.usuario.Usuario;
 
 //*Atributos CamelCase: Verificar BD/Diagrama ER.
 
+@Entity
 public class Endereco{
 	private Long codEndereco;
 	private String Logradouro;
@@ -13,8 +25,28 @@ public class Endereco{
 	private String cep;
 	private String numero;
 	
+	
 	//Metodos Getters and Setters
-
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario")
+	private Usuario usuario;
+	
+	
+	@Id
+	@GeneratedValue
+	public Long getCodEndereco() {
+		return codEndereco;
+	}
+	public void setCodEndereco(Long codEndereco) {
+		this.codEndereco = codEndereco;
+	}
+	@Column(name="idUsuario")
+	public Long getUsuario() {
+		return usuario.getIdUsuario();
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public String getLogradouro() {
 		return Logradouro;
 	}
@@ -62,11 +94,5 @@ public class Endereco{
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	public Long getCodEndereco() {
-		return codEndereco;
-	}
-	public void setCodEndereco(Long codEndereco) {
-		this.codEndereco = codEndereco;
 	}
 }

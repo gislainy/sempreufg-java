@@ -21,8 +21,8 @@ public class AnuncioLocalDAO implements IAnuncioLocalDAO{
     }
 	
     @Transactional
-	public void adiciona(AnuncioLocal t) {
-		dao.adiciona(t);
+	public Long adiciona(AnuncioLocal t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

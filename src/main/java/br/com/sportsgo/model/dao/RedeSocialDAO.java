@@ -6,9 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import br.com.sportsgo.model.RedeSocial;
 import br.com.sportsgo.model.dao.interfaces.IRedeSocialDAO;
+import br.com.sportsgo.model.utils.RedeSocial;
 
 @Repository
 public class RedeSocialDAO implements IRedeSocialDAO {
@@ -21,8 +20,8 @@ public class RedeSocialDAO implements IRedeSocialDAO {
     }
 	
     @Transactional
-	public void adiciona(RedeSocial t) {
-		dao.adiciona(t);
+	public Long adiciona(RedeSocial t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

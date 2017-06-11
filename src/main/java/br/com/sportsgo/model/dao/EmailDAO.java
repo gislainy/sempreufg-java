@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.Email;
 import br.com.sportsgo.model.dao.interfaces.IEmailDAO;
+import br.com.sportsgo.model.utils.Email;
 
 @Repository
 public class EmailDAO implements IEmailDAO{
@@ -21,8 +21,8 @@ public class EmailDAO implements IEmailDAO{
     }
 	
     @Transactional
-	public void adiciona(Email t) {
-		dao.adiciona(t);
+	public Long adiciona(Email t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

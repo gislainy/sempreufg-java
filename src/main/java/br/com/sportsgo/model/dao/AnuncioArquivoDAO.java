@@ -7,41 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.anuncio.AnuncioArquivos;
-import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivosDAO;
+import br.com.sportsgo.model.anuncio.AnuncioArquivo;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivoDAO;
 
 @Repository
-public class AnuncioArquivosDAO implements IAnuncioArquivosDAO {
+public class AnuncioArquivoDAO implements IAnuncioArquivoDAO {
 	
-	private final GenericDAO<AnuncioArquivos,Long> dao;
+	private final GenericDAO<AnuncioArquivo,Long> dao;
     
     @Autowired
-    public AnuncioArquivosDAO(final SessionFactory factory) {
-        dao  = new GenericDAO<AnuncioArquivos,Long>(factory, AnuncioArquivos.class);
+    public AnuncioArquivoDAO(final SessionFactory factory) {
+        dao  = new GenericDAO<AnuncioArquivo,Long>(factory, AnuncioArquivo.class);
     }
 	
     @Transactional
-	public void adiciona(AnuncioArquivos t) {
-		dao.adiciona(t);
+	public Long adiciona(AnuncioArquivo t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional
-	public void remove(AnuncioArquivos t) {
+	public void remove(AnuncioArquivo t) {
 		dao.remove(t);	
 	}
 
     @Transactional
-	public AnuncioArquivos busca(Long id) {
+	public AnuncioArquivo busca(Long id) {
 		return dao.busca(id);
 	}
 
     @Transactional
-	public List<AnuncioArquivos> lista() {
+	public List<AnuncioArquivo> lista() {
 		return dao.lista();
 	}
 
     @Transactional
-	public void atualiza(AnuncioArquivos t) {
+	public void atualiza(AnuncioArquivo t) {
 		dao.atualiza(t);
 	}
 

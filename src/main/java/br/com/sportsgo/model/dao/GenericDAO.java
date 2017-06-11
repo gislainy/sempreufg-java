@@ -18,8 +18,9 @@ public class GenericDAO<T, PK extends Serializable> implements IDao<T, PK>{
         this.classe = classe;
     }
  
-    public void adiciona(final T t) {
-        getSession().save(t);
+	@SuppressWarnings("unchecked")
+	public PK adiciona(final T t) {
+       return (PK) getSession().save(t);	
     }
  
     private Session getSession() {

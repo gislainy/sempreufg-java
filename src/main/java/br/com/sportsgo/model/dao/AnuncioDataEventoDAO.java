@@ -21,8 +21,8 @@ public class AnuncioDataEventoDAO implements IAnuncioDataEventoDAO {
     }
 	
     @Transactional
-	public void adiciona(AnuncioDataEvento t) {
-		dao.adiciona(t);
+	public Long adiciona(AnuncioDataEvento t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

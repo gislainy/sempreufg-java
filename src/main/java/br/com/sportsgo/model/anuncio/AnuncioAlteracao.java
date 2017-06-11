@@ -5,39 +5,37 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="anuncio_alteracao",schema="public")
 public class AnuncioAlteracao {
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private long idAlteracao;
+
+	private Long idAlteracao;
+	private String observacao;
+	private Integer data;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
 	
-	@Column
-	private String observacao;
-	@Column
-	private Integer data;
-	
-	public Anuncio getAnuncio() {
-		return anuncio;
+	@Id
+	@GeneratedValue
+	@Column(name="idAlteracao")
+	public Long getIdAlteracao() {
+		return idAlteracao;
+	}
+	public void setIdAlteracao(Long idAlteracao) {
+		this.idAlteracao = idAlteracao;
+	}
+
+	@Column(name="codAnuncio")
+	public Long getAnuncio() {
+		return anuncio.getCodAnuncio();
 	}
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
-	}
-	public long getId() {
-		return idAlteracao;
-	}
-	public void setId(long id) {
-		this.idAlteracao = id;
 	}
 	public String getObservacao() {
 		return observacao;
@@ -50,11 +48,5 @@ public class AnuncioAlteracao {
 	}
 	public void setData(Integer data) {
 		this.data = data;
-	}
-	public long getIdAlteracao() {
-		return idAlteracao;
-	}
-	public void setIdAlteracao(long idAlteracao) {
-		this.idAlteracao = idAlteracao;
 	}
 }

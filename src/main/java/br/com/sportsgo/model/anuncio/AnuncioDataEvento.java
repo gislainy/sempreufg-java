@@ -5,30 +5,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="anuncio_dtevento",schema="public")
 public class AnuncioDataEvento {
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private Integer idDtEvento;
+
+	private Long idDtEvento;
+	private Integer dataEvento;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
-	
-	@Column
-	private Integer dataEvento;
-	
-	public Integer getIdDtEvento() {
+
+	@Id
+	@GeneratedValue
+	public Long getIdDtEvento() {
 		return idDtEvento;
 	}
-	public void setIdDtEvento(Integer idDtEvento) {
+	public void setIdDtEvento(Long idDtEvento) {
 		this.idDtEvento = idDtEvento;
 	}
 	public Integer getDataEvento() {
@@ -37,8 +33,9 @@ public class AnuncioDataEvento {
 	public void setDataEvento(Integer dataEvento) {
 		this.dataEvento = dataEvento;
 	}
-	public Anuncio getAnuncio() {
-		return anuncio;
+	@Column(name="codAnuncio")
+	public Long getAnuncio() {
+		return anuncio.getCodAnuncio();
 	}
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;

@@ -19,26 +19,17 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("br.com.sportsgo")
+@ComponentScan(basePackages="br.com.sportsgo")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-/*    @Bean(name = "viewResolver")
-    public InternalResourceViewResolver getViewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
-     */
     
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
     	BasicDataSource dataSource = new BasicDataSource();
     	dataSource.setDriverClassName("org.postgresql.Driver");
     	dataSource.setUrl("jdbc:postgresql://localhost:5432/sportsgo");
-    	dataSource.setUsername("usuario");
-    	dataSource.setPassword("construcaosw");
-    	
+    	dataSource.setUsername("postgres");
+    	dataSource.setPassword("1234");
     	return dataSource;
     }
     
@@ -50,42 +41,48 @@ public class ApplicationContextConfig {
     	properties.put("hibernate.hbm2ddl.auto","update");
     	return properties;
     }
-
-    @SuppressWarnings("rawtypes")
-	private Class[] getClassesAnotadas(){
-    	  ArrayList<Class> classes = new ArrayList<Class>();
-
-    	  // the following will detect all classes that are annotated as @Entity
-    	  ClassPathScanningCandidateComponentProvider scanner =
-    	    new ClassPathScanningCandidateComponentProvider(false);
-    	  scanner.addIncludeFilter(new AnnotationTypeFilter(javax.persistence.Entity.class));
-
-    	  // only register classes within "com.fooPackage" package
-    	  for (BeanDefinition bd : scanner.findCandidateComponents("br.com.sportsgo.model")) {
-    	    String name = bd.getBeanClassName();
-    	    try {
-    	      classes.add(Class.forName(name));
-    	    } catch (Exception E) {
-    	      // TODO: handle exception - couldn't load class in question
-    	    }
-    	  } // for
-
-    	  return classes.toArray(new Class[classes.size()]);
-    }
     
-    @Autowired
-    @Bean(name = "sessionFactory")
-    public SessionFactory getSessionFactory(DataSource dataSource) {
-    	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-    	sessionBuilder.addProperties(getHibernateProperties());
-    	sessionBuilder.addAnnotatedClasses(getClassesAnotadas());
-    	return sessionBuilder.buildSessionFactory();
-    }
+   
+	@SuppressWarnings("rawtypes")
+	private Class[] getClassesAnotadas() {
+		ArrayList<Class> classes = new ArrayList<Class>();
+
+		// the following will detect all classes that are annotated as @Entity
+		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
+		scanner.addIncludeFilter(new AnnotationTypeFilter(javax.persistence.Entity.class));
+
+		// only register classes within "com.fooPackage" package
+		for (BeanDefinition bd : scanner.findCandidateComponents("br.com.sportsgo")) {
+			String name = bd.getBeanClassName();
+			
+			try {
+				Class cls = Class.forName(name);
+				System.out.println(cls.getName());
+				classes.add(cls);
+			} catch (Exception E) {
+				// TODO: handle exception - couldn't load class in question
+			}
+		} // for
+
+		return classes.toArray(new Class[classes.size()]);
+	}
+
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		sessionBuilder.addProperties(getHibernateProperties());	
+		sessionBuilder.addAnnotatedClasses(getClassesAnotadas());
+		System.out.println(sessionBuilder.getEntityResolver());
+		return sessionBuilder.buildSessionFactory();
+	}
     
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-		return transactionManager;
+		return new HibernateTransactionManager(sessionFactory);
 	}
 }
+
+
+

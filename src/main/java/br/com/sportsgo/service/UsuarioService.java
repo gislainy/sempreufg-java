@@ -1,8 +1,10 @@
 package br.com.sportsgo.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +21,29 @@ import br.com.sportsgo.model.usuario.Usuario;
 public class UsuarioService {
 	
 	@Autowired
-	IUsuarioDAO usuarioDao;
+	private IUsuarioDAO usuarioDao;
 
 	@ResponseBody
-	@RequestMapping(value = "/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST,
+					consumes=MediaType.APPLICATION_JSON_VALUE)
 	public Usuario novoUsuario(@RequestBody Usuario usuario) throws SQLException {
-		usuarioDao.adiciona(usuario);
-		return usuarioDao.busca(usuario.getId());
+		System.out.println(usuario);
+		usuario.setIdUsuario(usuarioDao.adiciona(usuario));
+		return usuario;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/blankUsuario", method = RequestMethod.GET,
+					produces = MediaType.APPLICATION_JSON_VALUE)
+	public Usuario  usuarioEmBranco() throws SQLException {
+		return new Usuario();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/listaUsuarios", method = RequestMethod.GET)
+	public ArrayList<Usuario> listaUsuarios() throws SQLException {
+		ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) usuarioDao.lista();
+		return listaUsuarios;
 	}
 	
 }

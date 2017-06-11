@@ -1,18 +1,18 @@
 package br.com.sportsgo.model.anuncio;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity @Table(name="anuncio_arquivo",schema="public")
-public class AnuncioArquivos {
+@Entity
+public class AnuncioArquivo {
 
-	private long idArquivo;	
+	private Long idArquivo;	
 	private String enderecoArquivo;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
@@ -21,14 +21,20 @@ public class AnuncioArquivos {
 	
 	@Id
 	@GeneratedValue
-	public long getIdArquivo() {
+	public Long getIdArquivo() {
 		return idArquivo;
 	}
 
-	public void setIdArquivo(long idArquivo) {
+	public void setIdArquivo(Long idArquivo) {
 		this.idArquivo = idArquivo;
 	}
-
+	@Column(name="codAnuncio")
+	public Long getAnuncio() {
+		return anuncio.getCodAnuncio();
+	}
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
+	}
 	public String getEnderecoArquivo() {
 		return enderecoArquivo;
 	}
@@ -36,14 +42,4 @@ public class AnuncioArquivos {
 	public void setEnderecoArquivo(String enderecoArquivo) {
 		this.enderecoArquivo = enderecoArquivo;
 	}
-
-	public Anuncio getAnuncio() {
-		return anuncio;
-	}
-
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
-	}	
-	
-	
 }

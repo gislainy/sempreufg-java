@@ -20,8 +20,8 @@ public class AnuncioPendenciaDAO implements IAnuncioPendenciaDAO{
     }
 	
     @Transactional
-	public void adiciona(AnuncioPendencia t) {
-		dao.adiciona(t);
+	public Long adiciona(AnuncioPendencia t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

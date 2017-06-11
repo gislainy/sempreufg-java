@@ -1,113 +1,192 @@
 package br.com.sportsgo.model.anuncio;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import br.com.sportsgo.model.usuario.Usuario;
 
+
 @Entity
-@Table(name="anuncio", 
-	   schema="public")
 public class Anuncio {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long codAnuncio;
-	@Column
+
+	private Long codAnuncio;
 	private String descricao;
-	@Column
 	private Integer dataInclusao;
-	@Column
 	private double precoEvento;
-	@Column
 	private String modalidade;
-	@Column
 	private long nrViews;
-	@Column
 	private Integer dataTermino;
-	@Column
 	private Boolean anuncioEhProfissional;
 	
-	@Column(name="statusAnuncio")
-	private EnumStatusAnuncio status;	
-
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idUsuario")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Usuario usuario;
 	
-	//Metodos Getters and Setters
-	@Enumerated(EnumType.ORDINAL)
-	public EnumStatusAnuncio getStatus() {
-		return status;
+	@Column(name = "statusAnuncio")
+	private EnumStatusAnuncio status;
+
+	private List<AnuncioAlteracao> alteracoes;
+	private List<AnuncioArquivo> arquivos;
+	private List<AnuncioDataEvento> datas;
+	private List<AnuncioLocal> locais;
+	private List<AnuncioPendencia> pendencias;
+	private List<AnuncioPremium> dadosPremium;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getCodAnuncio() {
+		return codAnuncio;
 	}
-	
-	public Usuario getUsuario() {
-		return usuario;
+
+	public void setCodAnuncio(Long codAnuncio) {
+		this.codAnuncio = codAnuncio;
 	}
+
+	@Column(name = "idUsuario")
+	public Long getUsuario() {
+		return usuario.getIdUsuario();
+	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public long getCodAnuncio() {
-		return codAnuncio;
-	}
-	public void setCodAnuncio(long codAnuncio) {
-		this.codAnuncio = codAnuncio;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Integer getDataInclusao() {
 		return dataInclusao;
 	}
+
 	public void setDataInclusao(Integer dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
-	public Integer getDataTermino() {
-		return dataTermino;
-	}
-	public void setDataTermino(Integer dataTermino) {
-		this.dataTermino = dataTermino;
-	}
-	public String getModalidade() {
-		return modalidade;
-	}
-	public void setModalidade(String modalidade) {
-		this.modalidade = modalidade;
-	}
-	public long getNrViews() {
-		return nrViews;
-	}
-	public void setNrViews(long nrViews) {
-		this.nrViews = nrViews;
-	}
+
 	public double getPrecoEvento() {
 		return precoEvento;
 	}
+
 	public void setPrecoEvento(double precoEvento) {
 		this.precoEvento = precoEvento;
 	}
-	public void setStatus(EnumStatusAnuncio status) {
-		this.status = status;
+
+	public String getModalidade() {
+		return modalidade;
 	}
+
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
+	}
+
+	public long getNrViews() {
+		return nrViews;
+	}
+
+	public void setNrViews(long nrViews) {
+		this.nrViews = nrViews;
+	}
+
+	public Integer getDataTermino() {
+		return dataTermino;
+	}
+
+	public void setDataTermino(Integer dataTermino) {
+		this.dataTermino = dataTermino;
+	}
+
 	public Boolean getAnuncioEhProfissional() {
 		return anuncioEhProfissional;
 	}
+
 	public void setAnuncioEhProfissional(Boolean anuncioEhProfissional) {
 		this.anuncioEhProfissional = anuncioEhProfissional;
 	}
+
+	public EnumStatusAnuncio getStatus() {
+		return status;
+	}
+
+	public void setStatus(EnumStatusAnuncio status) {
+		this.status = status;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlteracao")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioAlteracao> getAlteracoes() {
+		return alteracoes;
+	}
+
+	public void setAlteracoes(List<AnuncioAlteracao> alteracoes) {
+		this.alteracoes = alteracoes;
+	}
 	
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idArquivo")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioArquivo> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<AnuncioArquivo> arquivos) {
+		this.arquivos = arquivos;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDtEvento")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioDataEvento> getDatas() {
+		return datas;
+	}
+
+	public void setDatas(List<AnuncioDataEvento> datas) {
+		this.datas = datas;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalAnuncio")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioLocal> getLocais() {
+		return locais;
+	}
+
+	public void setLocais(List<AnuncioLocal> locais) {
+		this.locais = locais;
+	}
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPendencia")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioPendencia> getPendencias() {
+		return pendencias;
+	}
+
+	public void setPendencias(List<AnuncioPendencia> pendencias) {
+		this.pendencias = pendencias;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnuncioPremium")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<AnuncioPremium> getDadosPremium() {
+		return dadosPremium;
+	}
+
+	public void setDadosPremium(List<AnuncioPremium> dadosPremium) {
+		this.dadosPremium = dadosPremium;
+	}
+
 }

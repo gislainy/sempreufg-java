@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.sportsgo.model.anuncio.AnuncioAlteracao;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioAlteracaoDAO;
 
+
 @Repository
 public class AnuncioAlteracaoDAO implements IAnuncioAlteracaoDAO{
 	 	
@@ -21,8 +22,8 @@ public class AnuncioAlteracaoDAO implements IAnuncioAlteracaoDAO{
 	    }
 		
 	    @Transactional
-		public void adiciona(AnuncioAlteracao t) {
-			dao.adiciona(t);
+		public Long adiciona(AnuncioAlteracao t) {
+			return dao.adiciona(t);
 		}
 
 	    @Transactional

@@ -5,64 +5,72 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity	@Table(name="anuncio_pendencia",schema="public")
+@Entity
 public class AnuncioPendencia {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long idPendencia;
-	@Column
 	private Integer dataInclusao;
-	@Column
 	private Integer dataSolucao;
-	@Column(length=60)
+	@Column(length = 60)
 	private String descricao;
-	@Column(length=60)
+	@Column(length = 60)
 	private String solucao;
-	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="codAnuncio")
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
-	
+
+	@Id
+	@GeneratedValue
 	public Long getIdPendencia() {
 		return idPendencia;
 	}
+
 	public void setIdPendencia(Long idPendencia) {
 		this.idPendencia = idPendencia;
 	}
+
 	public Integer getDataInclusao() {
 		return dataInclusao;
 	}
+
 	public void setDataInclusao(Integer dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
+
 	public Integer getDataSolucao() {
 		return dataSolucao;
 	}
+
 	public void setDataSolucao(Integer dataSolucao) {
 		this.dataSolucao = dataSolucao;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public String getSolucao() {
 		return solucao;
 	}
+
 	public void setSolucao(String solucao) {
 		this.solucao = solucao;
 	}
-	public Anuncio getAnuncio() {
-		return anuncio;
+
+	@Column(name = "codAnuncio")
+	public Long getAnuncio() {
+		return anuncio.getCodAnuncio();
 	}
+
 	public void setAnuncio(Anuncio anuncio) {
 		this.anuncio = anuncio;
 	}

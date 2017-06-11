@@ -21,8 +21,8 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 	
     @Transactional
-	public void adiciona(Usuario t) {
-		dao.adiciona(t);
+	public Long adiciona(Usuario t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

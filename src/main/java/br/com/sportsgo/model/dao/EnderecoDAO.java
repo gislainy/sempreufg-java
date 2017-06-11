@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sportsgo.model.Endereco;
 import br.com.sportsgo.model.dao.interfaces.IEnderecoDAO;
+import br.com.sportsgo.model.utils.Endereco;
 
 @Repository
 public class EnderecoDAO implements IEnderecoDAO {
@@ -21,8 +21,8 @@ public class EnderecoDAO implements IEnderecoDAO {
     }
 	
     @Transactional
-	public void adiciona(Endereco t) {
-		dao.adiciona(t);
+	public Long adiciona(Endereco t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

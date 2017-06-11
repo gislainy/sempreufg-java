@@ -21,8 +21,8 @@ public class AnuncioPremiumDAO implements IAnuncioPremiumDAO {
     }
 	
     @Transactional
-	public void adiciona(AnuncioPremium t) {
-		dao.adiciona(t);
+	public Long adiciona(AnuncioPremium t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional

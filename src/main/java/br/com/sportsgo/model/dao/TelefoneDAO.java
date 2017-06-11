@@ -6,9 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import br.com.sportsgo.model.Telefone;
 import br.com.sportsgo.model.dao.interfaces.ITelefoneDAO;
+import br.com.sportsgo.model.utils.Telefone;
 
 @Repository
 public class TelefoneDAO implements ITelefoneDAO {
@@ -21,8 +20,8 @@ public class TelefoneDAO implements ITelefoneDAO {
     }
 	
     @Transactional
-	public void adiciona(Telefone t) {
-		dao.adiciona(t);
+	public Long adiciona(Telefone t) {
+		return dao.adiciona(t);
 	}
 
     @Transactional
