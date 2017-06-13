@@ -11,39 +11,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
+import br.com.sportsgo.model.anuncio.Anuncio;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
 import br.com.sportsgo.model.usuario.Usuario;
 
 
 
 @Service
-@RequestMapping("/usuario")
-public class UsuarioService {
+@RequestMapping("/anuncio")
+public class AnuncioService {
 	
 	@Autowired
-	private IUsuarioDAO usuarioDao;
+	private IAnuncioDAO anuncioDao;
 
 	@ResponseBody
 	@RequestMapping(value = "/novo", method = RequestMethod.POST,
 					consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Usuario novoUsuario(@RequestBody Usuario usuario) throws SQLException {
-		System.out.println(usuarioDao.adiciona(usuario));
-		//usuario.setIdUsuario(usuarioDao.adiciona(usuario));
-		return usuario;
+	public Anuncio novoUsuario(@RequestBody Anuncio anuncio) throws SQLException {
+		anuncio.setCodAnuncio(anuncioDao.adiciona(anuncio));
+		return anuncio;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/blankUsuario", method = RequestMethod.GET,
+	@RequestMapping(value = "/blankAnuncio", method = RequestMethod.GET,
 					produces = MediaType.APPLICATION_JSON_VALUE)
-	public Usuario  usuarioEmBranco() throws SQLException {
-		return new Usuario();
+	public Anuncio  anuncioEmBranco() {
+		Anuncio anuncio = new Anuncio();
+		anuncio.setUsuario(new Usuario());
+		return anuncio;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/listaUsuarios", method = RequestMethod.GET)
-	public ArrayList<Usuario> listaUsuarios() throws SQLException {
-		ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) usuarioDao.lista();
-		return listaUsuarios;
+	@RequestMapping(value = "/listaAnuncios", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listaAnuncios() throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.lista();
+		return listaAnuncios;
 	}
 	
 }
