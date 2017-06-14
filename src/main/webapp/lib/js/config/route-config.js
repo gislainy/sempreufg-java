@@ -12,12 +12,8 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/principal.html',
             controller: 'IndexController'
         })
-        .when('/sportsgo/novo_usuario/dados', {
-            templateUrl: 'lib/views/usuario/dados.html',
-            controller: 'UsuarioController'
-        })
-        .when('/sportsgo/novo_usuario/credenciais', {
-            templateUrl: 'lib/views/usuario/credenciais.html',
+        .when('/sportsgo/usuario/novo', {
+            templateUrl: 'lib/views/usuario/pre-cadastro.html',
             controller: 'UsuarioController'
         })
         ;

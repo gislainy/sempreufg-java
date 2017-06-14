@@ -7,9 +7,10 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Pessoa{
 
-	private String cpfCnpj;
+	private String cpfcnpj;
 	private String nome;
     private boolean pessoaJuridica = false; 
+    private boolean pessoaFisica = false; 
     private String sobrenome;
 
 	public String getNome() {
@@ -18,14 +19,6 @@ public class Pessoa{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getCpfCnpj() {
-		return cpfCnpj;
-	}
-
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
 	}
 
 	public boolean isPessoaJuridica() {
@@ -42,5 +35,21 @@ public class Pessoa{
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
+	}
+
+	public String getCpfcnpj() {
+		return cpfcnpj;
+	}
+
+	public void setCpfcnpj(String cpfcnpj) {
+		this.cpfcnpj = cpfcnpj;
+	}
+
+	public boolean isPessoaFisica() {
+		return pessoaFisica;
+	}
+
+	public void setPessoaFisica(boolean pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
 	}
 }

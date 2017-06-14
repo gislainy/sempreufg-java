@@ -1,67 +1,59 @@
 (function () {
     angular.module('sportsgo').controller('UsuarioController', UsuarioController);
 
-    function UsuarioController($scope, $location, usuarioService, requisicoesService, clearMaskService) {
+    function UsuarioController($scope, $location, clearMaskService, requisicoesService, growl) {
 
-        function init() {
-            $scope.usuario = usuarioService.get('usuario');
-        }
-
-        init();
-
-        $scope.selecionarPessoa = function () {
-            if ($scope.tipopessoa === 'fisica') {
-                $scope.cpfBool = true;
-                $scope.cnpjBool = false;
-                $scope.usuarioFisica = true;
-                $scope.usuarioJuririda = false;
-            } else if ($scope.tipopessoa === 'juridica') {
-                $scope.cpfBool = false;
-                $scope.cnpjBool = true;
-                $scope.usuarioJuririda = true;
-                $scope.usuarioFisica = false;
+        $scope.cadastrarUsuario = function () {
+            if ($scope.usuario.senha === $scope.confirmarSenha) {
+                if (validarCpfCnpj()) {
+                    requisicoesService.novoUsuario($scope.usuario)
+                        .then(function (response) {
+                            growl.error('Usuário: '+response.data.usuario + 'foi cadastrado com sucesso');
+                            $location.path('/sportsgo/login');
+                        }, function (error) {
+                            console.log(error);
+                        });
+                } else {
+                    if($scope.cpfBool) {
+                        growl.error('CPF inválido!');
+                    } else {
+                        growl.error('CNPJ inválido');
+                    }
+                }
             } else {
-                $scope.cpfBool = false;
-                $scope.cnpjBool = false;
-                $scope.usuarioJuririda = false;
-                $scope.usuarioFisica = false;
+                growl.error('Senhas diferentes!');
             }
         };
 
-        $scope.carregarViewCredenciais = function() {
-            usuarioService.set('usuario', $scope.usuario);
-            $location.path('/sportsgo/novo_usuario/credenciais');
+        function validarCpfCnpj() {
+            if ($scope.cpfBool) {
+                return ValidarCPF($scope.usuario.cpfcnpj);
+            } else if ($scope.cnpjBool) {
+                return ValidarCNPJ($scope.usuario.cpfcnpj);
+            }
+        }
+
+        $scope.cpfActive = function () {
+            $scope.cpfBool = true;
+            $scope.cnpjBool = false;
+            $scope.usuario.cpfcnpj = null;
         };
 
-        $scope.carregarViewDados = function() {
-            $location.path('/sportsgo/novo_usuario/dados');
-            $scope.usuario = usuarioService.get('usuario');
-        };
-
-        $scope.cadastrarUsuario = function() {
-            limparMascaras();
-            requisicoesService.novoUsuario($scope.usuario)
-            .then(function(response) {
-                if(response.data) {
-                    console.log('Usuário cadastrado com sucesso');
-                } else {
-                    console.log('Falha ao cadastrar o usuário');
-                }
-            }, function(error){
-                console.log(error);
-            });
+        $scope.cnpjActive = function () {
+            $scope.cpfBool = false;
+            $scope.cnpjBool = true;
+            $scope.usuario.cpfcnpj = null;
         };
 
         function limparMascaras() {
-            //$scope.usuario.telefone = clearMaskService.clearMaskTelefone($scope.usuario.telefone);
-            if($scope.usuario.cpfcnpj.length == 14) {
+            if ($scope.usuario.cpfcnpj.length == 14) {
                 $scope.usuario.cpfcnpj = clearMaskService.clearMaskCpf($scope.usuario.cpfcnpj);
             } else {
                 $scope.usuario.cpfcnpj = clearMaskService.clearMaskCnpj($scope.usuario.cpfcnpj);
             }
         }
 
-       
+
 
     }
 })();

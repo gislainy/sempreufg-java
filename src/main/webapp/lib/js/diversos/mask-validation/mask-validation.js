@@ -88,7 +88,7 @@ function ValidarData(data) {
 
 //valida o CPF digitado
 function ValidarCPF(Objcpf) {
-        var cpf = Objcpf.value;
+        var cpf = Objcpf;
         exp = /\.|\-/g
         cpf = cpf.toString().replace(exp, "");
         var digitoDigitado = eval(cpf.charAt(9) + cpf.charAt(10));
@@ -104,8 +104,12 @@ function ValidarCPF(Objcpf) {
         soma2 = (((soma2 + (2 * soma1)) * 10) % 11);
 
         var digitoGerado = (soma1 * 10) + soma2;
-        if (digitoGerado != digitoDigitado)
-                alert('CPF Invalido!');
+        if (digitoGerado != digitoDigitado) {
+                return false;
+        } else {
+                 return true;
+        }
+
 }
 
 //valida numero inteiro com mascara
@@ -119,7 +123,7 @@ function mascaraInteiro() {
 
 //valida o CNPJ digitado
 function ValidarCNPJ(ObjCnpj) {
-        var cnpj = ObjCnpj.value;
+        var cnpj = ObjCnpj;
         var valida = new Array(6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
         var dig1 = new Number;
         var dig2 = new Number;
@@ -135,8 +139,11 @@ function ValidarCNPJ(ObjCnpj) {
         dig1 = (((dig1 % 11) < 2) ? 0 : (11 - (dig1 % 11)));
         dig2 = (((dig2 % 11) < 2) ? 0 : (11 - (dig2 % 11)));
 
-        if (((dig1 * 10) + dig2) != digito)
-                alert('CNPJ Invalido!');
+        if (((dig1 * 10) + dig2) != digito) {
+                return false;
+        } else {
+                return true;
+        }
 
 }
 
