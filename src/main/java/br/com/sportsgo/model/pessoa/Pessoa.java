@@ -10,7 +10,6 @@ public class Pessoa{
 	private String cpfcnpj;
 	private String nome;
     private boolean pessoaJuridica = false; 
-    private boolean pessoaFisica = false; 
     private String sobrenome;
 
 	public String getNome() {
@@ -45,11 +44,4 @@ public class Pessoa{
 		this.cpfcnpj = cpfcnpj;
 	}
 
-	public boolean isPessoaFisica() {
-		return pessoaFisica;
-	}
-
-	public void setPessoaFisica(boolean pessoaFisica) {
-		this.pessoaFisica = pessoaFisica;
-	}
 }

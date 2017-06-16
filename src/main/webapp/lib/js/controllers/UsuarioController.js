@@ -6,6 +6,7 @@
         $scope.cadastrarUsuario = function () {
             if ($scope.usuario.senha === $scope.confirmarSenha) {
                 if (validarCpfCnpj()) {
+                    inserirEmailArray($scope.usuario.emails);
                     requisicoesService.novoUsuario($scope.usuario)
                         .then(function (response) {
                             growl.error('Usuário: '+response.data.usuario + 'foi cadastrado com sucesso');
@@ -24,6 +25,12 @@
                 growl.error('Senhas diferentes!');
             }
         };
+
+        function inserirEmailArray(email) {
+            var arrayEmail = [];
+            arrayEmail.push(email);
+            $scope.usuario.emails = arrayEmail;
+        }
 
         function validarCpfCnpj() {
             if ($scope.cpfBool) {

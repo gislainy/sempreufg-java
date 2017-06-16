@@ -25,14 +25,11 @@ public class Usuario extends Pessoa{
 	private Long idUsuario;
 	private String login;
 	private String senha;
-	private String email;
     public List<Email>  emails;
 	private List<Endereco> enderecos;
 	private List<RedeSocial> redeSocias;
 	private List<Telefone> telefones;
-	
-	//Metodos Getters e Setters
-
+		
 	@Id
 	@GeneratedValue
 	@Column(name="idUsuario")
@@ -95,16 +92,5 @@ public class Usuario extends Pessoa{
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 }

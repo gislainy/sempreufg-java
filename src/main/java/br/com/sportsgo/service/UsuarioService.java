@@ -33,8 +33,8 @@ public class UsuarioService {
 	public Usuario novoUsuario(@RequestBody Usuario usuario) throws SQLException, EmailException, MalformedURLException {
 		usuario.setSenha(TokenResponse.gerarToken(usuario.getSenha()));
 		usuarioDao.adiciona(usuario);
-		EmailUsuario email = new EmailUsuario(usuario.getEmail(), usuario.getNome());
-		email.enviarEmail(usuario.getLogin(),usuario.getSenha());
+		//EmailUsuario email = new EmailUsuario(usuario.getEmails().get(0).getEnderecoEmail(), usuario.getNome());
+		//email.enviarEmail(usuario.getLogin(),usuario.getSenha());
 		return usuario;
 	}
 	
