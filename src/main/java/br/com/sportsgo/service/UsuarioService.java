@@ -8,16 +8,16 @@ import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
-import br.com.sportsgo.model.usuario.EmailUsuario;
 import br.com.sportsgo.model.usuario.Usuario;
 import br.com.sportsgo.service.interceptor.TokenResponse;
-
 
 
 @Service
@@ -51,5 +51,14 @@ public class UsuarioService {
 		ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) usuarioDao.lista();
 		return listaUsuarios;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/buscaUsuario/{id}", method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public Usuario buscaUsuario(@PathVariable(value = "id") Long id) throws SQLException {
+		Usuario usuario = (Usuario) usuarioDao.busca(id);
+		return usuario;
+	}
+	
+	
 	
 }
