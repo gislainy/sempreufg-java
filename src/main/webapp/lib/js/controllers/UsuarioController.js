@@ -5,22 +5,14 @@
 
         $scope.cadastrarUsuario = function () {
             if ($scope.usuario.senha === $scope.confirmarSenha) {
-                if (validarCpfCnpj()) {
-                    inserirEmailArray($scope.usuario.emails);
-                    requisicoesService.novoUsuario($scope.usuario)
-                        .then(function (response) {
-                            growl.error('Usuário: '+response.data.usuario + 'foi cadastrado com sucesso');
-                            $location.path('/sportsgo/login');
-                        }, function (error) {
-                            console.log(error);
-                        });
-                } else {
-                    if($scope.cpfBool) {
-                        growl.error('CPF inválido!');
-                    } else {
-                        growl.error('CNPJ inválido');
-                    }
-                }
+                inserirEmailArray($scope.usuario.emails);
+                requisicoesService.novoUsuario($scope.usuario)
+                    .then(function (response) {
+                        growl.error('Usuário: ' + response.data.usuario + 'foi cadastrado com sucesso');
+                        $location.path('/sportsgo/login');
+                    }, function (error) {
+                        console.log(error);
+                    });
             } else {
                 growl.error('Senhas diferentes!');
             }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
-import br.com.sportsgo.model.usuario.EmailUsuario;
+import br.com.sportsgo.model.usuario.EmailUsuarioHtml;
 import br.com.sportsgo.model.usuario.Usuario;
 import br.com.sportsgo.service.interceptor.TokenResponse;
 
@@ -37,7 +37,7 @@ public class UsuarioService {
 
 		usuarioDao.adiciona(usuario);
 
-		EmailUsuario email = new EmailUsuario(usuario.getEmails().get(0).getEnderecoEmail(), usuario.getNome());
+		EmailUsuarioHtml email = new EmailUsuarioHtml(usuario.getEmails().get(0).getEnderecoEmail(), usuario.getNome());
 		email.enviarEmail(usuario.getLogin(), usuario.getSenha());
 		return usuario;
 	}

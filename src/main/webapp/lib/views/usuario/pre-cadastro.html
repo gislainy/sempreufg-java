@@ -11,11 +11,6 @@
                     <h3>Dados pessoais</h3>
                     <hr>
                 </div>
-                <label for="">Tipo pessoa</label>
-                <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-focus="cpfActive()">Física</label>
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-focus="cnpjActive()">Jurídica</label>
-                </div>
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input class="form-control" type="text" name="nome" id="nome" ng-model="usuario.nome">
@@ -27,14 +22,6 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input class="form-control" type="text" name="email" id="email" ng-model="usuario.emails.enderecoEmail" required>
-                </div>
-                <div class="form-group" ng-show="cpfBool">
-                    <label for="cpf">CPF</label>
-                    <input class="form-control" type="text" onkeypress="MascaraCPF(cpf)" name="cpf" id="cpf" ng-model="usuario.cpfcnpj" limit-to="14">
-                </div>
-                <div class="form-group" ng-show="cnpjBool">
-                    <label for="cnpj">CNPJ</label>
-                    <input class="form-control" type="text" onkeypress="MascaraCNPJ(cnpj)" name="cnpj" id="cnpj" ng-model="usuario.cpfcnpj" limit-to="18">
                 </div>
             </div>
             <div class="col-md-6">

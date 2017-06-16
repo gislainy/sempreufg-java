@@ -6,7 +6,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-public class EmailUsuario {
+public class EmailUsuarioSimple {
 
 	SimpleEmail email;
 	private String emailDestinatario;
@@ -31,7 +31,7 @@ public class EmailUsuario {
 		this.destinatario = destinatario;
 	}
 	
-	public EmailUsuario(String email, String destinatario) throws EmailException {
+	public EmailUsuarioSimple(String email, String destinatario) throws EmailException {
 		this.emailDestinatario = email;
 		this.destinatario = destinatario;
 		this.email = new SimpleEmail();
