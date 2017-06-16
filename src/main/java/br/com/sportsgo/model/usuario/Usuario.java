@@ -18,42 +18,45 @@ import br.com.sportsgo.model.utils.Endereco;
 import br.com.sportsgo.model.utils.RedeSocial;
 import br.com.sportsgo.model.utils.Telefone;
 
-
 @Entity
-public class Usuario extends Pessoa{
+public class Usuario extends Pessoa {
 
 	private Long idUsuario;
 	private String login;
 	private String senha;
-    public List<Email>  emails;
+	public List<Email> emails;
 	private List<Endereco> enderecos;
 	private List<RedeSocial> redeSocias;
 	private List<Telefone> telefones;
-		
+
 	@Id
 	@GeneratedValue
-	@Column(name="idUsuario")
+	@Column(name = "idUsuario")
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
+
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}	
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmail")
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Email> getEmails() {
 		return emails;
