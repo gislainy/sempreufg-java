@@ -24,7 +24,7 @@ public class Usuario extends Pessoa {
 	private Long idUsuario;
 	private String login;
 	private String senha;
-	public List<Email> emails;
+	private List<Email> emails;
 	private List<Endereco> enderecos;
 	private List<RedeSocial> redeSocias;
 	private List<Telefone> telefones;
@@ -64,6 +64,9 @@ public class Usuario extends Pessoa {
 
 	public void setEmails(List<Email> emails) {
 		this.emails = emails;
+		for (Email email : this.emails) {
+			email.setUsuario(this.getIdUsuario());
+		}
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "codEndereco")
@@ -94,6 +97,6 @@ public class Usuario extends Pessoa {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
-	}
 
+	}
 }

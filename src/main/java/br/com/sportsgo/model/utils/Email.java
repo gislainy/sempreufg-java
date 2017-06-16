@@ -15,6 +15,10 @@ public class Email {
 	private Long idEmail;
 	private String enderecoEmail;
 	private boolean receberNotificoes;
+
+	public Email() {
+		this.usuario = new Usuario();
+	}
 	
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
@@ -44,8 +48,14 @@ public class Email {
 	public Long getUsuario() {
 		return usuario.getIdUsuario();
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(Long usuario) {
+		this.usuario.setIdUsuario(usuario);
+	}
+	
+	@Override
+	public boolean equals(Object object){
+		Email email = (Email) object;
+		return this.enderecoEmail.equalsIgnoreCase(email.getEnderecoEmail());	
 	}
 
 }

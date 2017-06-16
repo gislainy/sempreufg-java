@@ -31,14 +31,11 @@ public class UsuarioService {
 	public Usuario novoUsuario(@RequestBody Usuario usuario)
 			throws SQLException, EmailException, MalformedURLException {
 		usuario.setSenha(TokenResponse.gerarToken(usuario.getSenha()));
-		usuario.getEmails().stream().forEach(e -> {
-			e.setUsuario(usuario);
-		});
-
-		usuarioDao.adiciona(usuario);
-
+		if (valideCadastroDeUsuario(usuario)){
+			usuarioDao.adiciona(usuario);
 		EmailUsuarioHtml email = new EmailUsuarioHtml(usuario.getEmails().get(0).getEnderecoEmail(), usuario.getNome());
-		email.enviarEmail(usuario.getLogin(), usuario.getSenha());
+			email.enviarEmail(usuario.getLogin(), usuario.getSenha());
+		}
 		return usuario;
 	}
 
@@ -60,6 +57,41 @@ public class UsuarioService {
 	public Usuario buscaUsuario(@PathVariable(value = "id") Long id) throws SQLException {
 		Usuario usuario = (Usuario) usuarioDao.busca(id);
 		return usuario;
+	}
+	
+	private Boolean valideCadastroDeUsuario(Usuario usuario) throws MalformedURLException, SQLException, EmailException {
+		Boolean emailExiste = false;
+		Boolean cpfCnpjExiste = false;
+		Boolean usuarioExiste = false;
+		EmailService servicoEmail = new EmailService();
+
+		emailExiste = servicoEmail.valideEmailsDoUsuario(usuario);
+		cpfCnpjExiste = this.cpfCnpjJaCadastrado(usuario);
+		usuarioExiste = this.loginJaCadastrado(usuario);
+		
+		return emailExiste || cpfCnpjExiste || usuarioExiste;
+	}	
+	
+	private Boolean cpfCnpjJaCadastrado(Usuario usuario){
+		Boolean cpfCnpjExiste = false;
+		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
+		for(Usuario usuarioLista: listaUsarios){
+			cpfCnpjExiste = usuarioLista.getCpfcnpj().equals(usuario.getCpfcnpj());
+			if (cpfCnpjExiste) break;
+		}
+		
+		return cpfCnpjExiste;	
+	}
+	
+	private Boolean loginJaCadastrado(Usuario usuario){
+		Boolean loginExiste = false;
+		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
+		for(Usuario usuarioLista: listaUsarios){
+			loginExiste = usuarioLista.getLogin().equals(usuario.getLogin());
+			if (loginExiste) break;
+		}
+		
+		return loginExiste;	
 	}
 
 }
