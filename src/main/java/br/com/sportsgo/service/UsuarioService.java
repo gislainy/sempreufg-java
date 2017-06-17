@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
-import br.com.sportsgo.model.usuario.EmailUsuarioHtml;
+import br.com.sportsgo.model.usuario.SendHTMLEmail;
 import br.com.sportsgo.model.usuario.Usuario;
-import br.com.sportsgo.service.interceptor.TokenResponse;
 
 @Service
 @RequestMapping("/usuario")
@@ -28,14 +26,13 @@ public class UsuarioService {
 
 	@ResponseBody
 	@RequestMapping(value = "/novo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Usuario novoUsuario(@RequestBody Usuario usuario)
-			throws SQLException, EmailException, MalformedURLException {
-		usuario.setSenha(TokenResponse.gerarToken(usuario.getSenha()));
-		if (valideCadastroDeUsuario(usuario)){
+	public Usuario novoUsuario(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
+		usuario.setSenha(usuario.getSenha());
+		//if (valideCadastroDeUsuario(usuario)) {
 			usuarioDao.adiciona(usuario);
-		EmailUsuarioHtml email = new EmailUsuarioHtml(usuario.getEmails().get(0).getEnderecoEmail(), usuario.getNome());
+			SendHTMLEmail email = new SendHTMLEmail(usuario.getEmails().get(0).getEnderecoEmail());
 			email.enviarEmail(usuario.getLogin(), usuario.getSenha());
-		}
+		//}
 		return usuario;
 	}
 
@@ -58,8 +55,8 @@ public class UsuarioService {
 		Usuario usuario = (Usuario) usuarioDao.busca(id);
 		return usuario;
 	}
-	
-	private Boolean valideCadastroDeUsuario(Usuario usuario) throws MalformedURLException, SQLException, EmailException {
+
+	private Boolean valideCadastroDeUsuario(Usuario usuario) throws MalformedURLException, SQLException {
 		Boolean emailExiste = false;
 		Boolean cpfCnpjExiste = false;
 		Boolean usuarioExiste = false;
@@ -68,30 +65,32 @@ public class UsuarioService {
 		emailExiste = servicoEmail.valideEmailsDoUsuario(usuario);
 		cpfCnpjExiste = this.cpfCnpjJaCadastrado(usuario);
 		usuarioExiste = this.loginJaCadastrado(usuario);
-		
+
 		return emailExiste || cpfCnpjExiste || usuarioExiste;
-	}	
-	
-	private Boolean cpfCnpjJaCadastrado(Usuario usuario){
+	}
+
+	private Boolean cpfCnpjJaCadastrado(Usuario usuario) {
 		Boolean cpfCnpjExiste = false;
 		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
-		for(Usuario usuarioLista: listaUsarios){
+		for (Usuario usuarioLista : listaUsarios) {
 			cpfCnpjExiste = usuarioLista.getCpfcnpj().equals(usuario.getCpfcnpj());
-			if (cpfCnpjExiste) break;
+			if (cpfCnpjExiste)
+				break;
 		}
-		
-		return cpfCnpjExiste;	
+
+		return cpfCnpjExiste;
 	}
-	
-	private Boolean loginJaCadastrado(Usuario usuario){
+
+	private Boolean loginJaCadastrado(Usuario usuario) {
 		Boolean loginExiste = false;
 		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
-		for(Usuario usuarioLista: listaUsarios){
+		for (Usuario usuarioLista : listaUsarios) {
 			loginExiste = usuarioLista.getLogin().equals(usuario.getLogin());
-			if (loginExiste) break;
+			if (loginExiste)
+				break;
 		}
-		
-		return loginExiste;	
+
+		return loginExiste;
 	}
 
 }

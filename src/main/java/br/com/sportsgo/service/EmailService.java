@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -26,14 +25,14 @@ public class EmailService {
 
 	@ResponseBody
 	@RequestMapping(value = "/emailExiste", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean valideEmail(@RequestBody Email email) throws SQLException, EmailException, MalformedURLException {
+	public Boolean valideEmail(@RequestBody Email email) throws SQLException, MalformedURLException {
 		ArrayList<Email> listaDeEmail = (ArrayList<Email>) emailDao.lista();
 		return listaDeEmail.contains(email);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/valideEmailsDoUsuario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean valideEmailsDoUsuario(@RequestBody Usuario usuario) throws SQLException, EmailException, MalformedURLException {
+	public Boolean valideEmailsDoUsuario(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
 		Boolean EmailExiste =  false;
 		for(Email email : usuario.getEmails()){
 			EmailExiste = this.valideEmail(email);

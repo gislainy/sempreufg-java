@@ -155,13 +155,12 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-email</artifactId>
-			<version>1.2</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>smtp</artifactId>
+			<version>1.4.5</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
