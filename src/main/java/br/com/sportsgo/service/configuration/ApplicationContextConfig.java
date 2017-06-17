@@ -3,6 +3,7 @@ package br.com.sportsgo.service.configuration;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -17,6 +18,7 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @ComponentScan(basePackages="br.com.sportsgo")
@@ -79,6 +81,17 @@ public class ApplicationContextConfig {
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		return new HibernateTransactionManager(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="multipartResolver")
+	public CommonsMultipartResolver getMultipartResolver(){
+		long tamanhoMaximoUpload;
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		//alteramos o tamanho do upload de cada arquivo para 256MB(20 * 1024 * 1024)
+		tamanhoMaximoUpload =  (long) (256.0 * 1024.0 * 1024.0);
+		multipartResolver.setMaxUploadSize(tamanhoMaximoUpload);
+		return multipartResolver;
 	}
 }
 

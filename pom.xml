@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.sportsgo</groupId>
 	<artifactId>sportsgo</artifactId>
@@ -16,7 +15,14 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- Para o Eclipse não reclamar que o "web.xml" está faltado. -->
 		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<!-- Para mostrar os caracteres especiais corretamente. -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Determina a versão do spring -->
 		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
+		<!-- Para auxiliar no upload e download de imagens -->
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<!-- Para auxiliar no upload e download de imagens -->
+		<commons-dbcp.version>1.2.2</commons-dbcp.version>
 	</properties>
 
 	<dependencies>
@@ -59,7 +65,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -80,7 +86,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-			
+
 		<!-- Apache Database Connection Pool -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -90,11 +96,11 @@
 
 		<!-- Hibernate -->
 		<dependency>
-		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.0-api</artifactId>
-		    <version>1.0.1.Final</version>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -111,14 +117,14 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.5.1</version>
 		</dependency>
-		
+
 		<!-- Para converter jason com multiplos objetos -->
-	    <dependency>
-	        <groupId>org.codehaus.jackson</groupId>
-	        <artifactId>jackson-mapper-asl</artifactId>
-	        <version>1.8.5</version>
-	    </dependency>
- 
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.5</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
@@ -143,25 +149,38 @@
 			<artifactId>xml-apis</artifactId>
 			<version>1.4.01</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+
+		<!-- Inicio - Para tratar upload e download de imagens -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
+		<!-- Fim - Para tratar upload e download de imagens -->
+
 	</dependencies>
 
 	<build>
