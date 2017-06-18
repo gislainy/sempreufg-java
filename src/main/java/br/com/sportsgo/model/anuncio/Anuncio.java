@@ -30,6 +30,10 @@ public class Anuncio {
 	private Integer dataTermino;
 	private Boolean anuncioEhProfissional;
 	
+	public Anuncio(){
+		this.usuario = new Usuario();
+	}
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUsuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -60,6 +64,10 @@ public class Anuncio {
 		return usuario.getIdUsuario();
 	}
 
+	public void setUsuario(Long idUsuario) {
+		this.usuario.setIdUsuario(idUsuario);
+	}
+	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}

@@ -15,6 +15,14 @@ public class AnuncioArquivo {
 	private Long idArquivo;	
 	private String enderecoArquivo;
 	
+	public AnuncioArquivo(){
+	}
+	
+	public AnuncioArquivo(Anuncio anuncio, String enderecoArquivo){
+		this.anuncio = anuncio;
+		this.enderecoArquivo = enderecoArquivo;
+	}
+	
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
@@ -32,8 +40,8 @@ public class AnuncioArquivo {
 	public Long getAnuncio() {
 		return anuncio.getCodAnuncio();
 	}
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
+	public void setAnuncio(Long codAnuncio) {
+		this.anuncio.setCodAnuncio(codAnuncio);
 	}
 	public String getEnderecoArquivo() {
 		return enderecoArquivo;
