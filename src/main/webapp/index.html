@@ -60,10 +60,11 @@
 	<script src="lib/js/controllers/IndexController.js"></script>
 	<script src="lib/js/controllers/UsuarioController.js"></script>
 	<script src="lib/js/controllers/LoginController.js"></script>
-
+	<script src="lib/js/controllers/AnuncioCadastroController.js"></script>
 	<!-- DIRECTIVES -->
 
 	<script src="lib/js/directives/limitTo-directive.js"></script>
+	<script src="lib/js/directives/ifLoading-directive.js"></script>
 
 	<!-- SERVICES -->
 	<script src="lib/js/services/usuario-service.js"></script>
@@ -81,7 +82,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="#home">
-					<img src="lib/img/logo.png" alt="Logo">
+					<img class="img-responsive" src="lib/img/logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -101,12 +102,14 @@
 						<li class="topbar-devider"></li>
 						<li><a href="page_faq.html">Ajuda</a></li>
 						<li class="topbar-devider"></li>
-						<li>
-							<i class="icon-user"></i>
+						<li ng-if="!logado">
 							<a href="#/sportsgo/login">Logar</a>
 						</li>
-						<li></li>
-						<li><i class="icon-close"></i></li>
+						<li ng-if="logado">
+							<i class="icon-user"></i>
+							<a ng-bind="usuario"></a>
+						</li>
+						<li ng-if="logado"><i class="icon-close"></i></li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
@@ -133,9 +136,7 @@
 
 								<!-- FutebolPAG -->
 								<li>
-									<a href="" ng-repeat="">
-
-									</a>
+									<a href=""></a>
 								</li>
 							</ul>
 						</li>
@@ -161,12 +162,11 @@
 
 									</ul>
 								</li>
-
+								<li ng-if="logado">
+									<a href="#/sportsgo/esportes/novo">Cadastrar</a>
+								</li>
 								<li>
 									<a href="">Todos</a>
-								</li>
-								<li ng-if="">
-									<a href="">Cadastro</a>
 								</li>
 
 							</ul>
@@ -187,7 +187,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<ng-view>
 		</ng-view>
 

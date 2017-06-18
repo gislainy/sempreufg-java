@@ -1,25 +1,65 @@
 (function () {
     angular.module('sportsgo').controller('UsuarioController', UsuarioController);
 
-    function UsuarioController($scope, $location, clearMaskService, requisicoesService, growl) {
+    function UsuarioController($scope, $location, clearMaskService, $timeout, requisicoesService, growl) {
 
         $scope.cadastrarUsuario = function () {
             if ($scope.usuario.senha === $scope.confirmarSenha) {
                 inserirEmailArray($scope.usuario.emails);
-                requisicoesService.novoUsuario($scope.usuario)
-                    .then(function (response) {
-                        growl.error('Usuário: ' + response.data.usuario + 'foi cadastrado com sucesso');
-                        $location.path('/sportsgo/login');
-                    }, function (error) {
-                        console.log(error);
-                    });
+                validarCadastroUsuario();
             } else {
                 growl.error('Senhas diferentes!');
             }
         };
 
+        function redirectLogin() {
+            $timeout(function () {
+                $location.path('#/sportsgo/login');
+            }, 5000);
+        }
+
+        function validarCadastroUsuario() {
+            requisicoesService.validarCadastroUsuario($scope.usuario)
+                .then(function (response) {
+                    if(response.data.retorno) {
+                        growl.error('Usuário já cadastrado com os seguintes dados: '+ response.data.erros.toString());
+                        $scope.usuario.emails = $scope.emailAntigo;
+                    } else {
+                        novoUsuario();
+                        delete $scope.usuario;
+                    }
+                }, function (error) {
+                    console.log('Falha na requisição '+ error);
+                });
+        }
+
+
+        function novoUsuario() {
+            requisicoesService.novoUsuario($scope.usuario)
+                .then(function (response) {
+                    if (response.data !== null && response.data !== '') {
+                        growl.success('Usuário: ' + response.data.login + 'foi cadastrado com sucesso');
+                        $scope.usuario = null;
+                        enviarEmailUsuario(response.data);
+                        redirectLogin();
+                    }
+                }, function (error) {
+                    console.log('Falha na requisição ' + error);
+                });
+        }
+
+        function enviarEmailUsuario(usuario) {
+            requisicoesService.enviarEmailUsuario(usuario)
+                .then(function (response) {
+                    console.log('Email enviado com sucesso');
+                }, function (error) {
+                    console.log('Falha ao enviar email');
+                });
+        }
+
         function inserirEmailArray(email) {
             var arrayEmail = [];
+            $scope.emailAntigo = email;
             arrayEmail.push(email);
             $scope.usuario.emails = arrayEmail;
         }
@@ -51,7 +91,6 @@
                 $scope.usuario.cpfcnpj = clearMaskService.clearMaskCnpj($scope.usuario.cpfcnpj);
             }
         }
-
 
 
     }

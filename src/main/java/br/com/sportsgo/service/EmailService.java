@@ -25,14 +25,14 @@ public class EmailService {
 
 	@ResponseBody
 	@RequestMapping(value = "/emailExiste", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean valideEmail(@RequestBody Email email) throws SQLException, MalformedURLException {
+	public Boolean valideEmail(Email email) throws SQLException, MalformedURLException {
 		ArrayList<Email> listaDeEmail = (ArrayList<Email>) emailDao.lista();
 		return listaDeEmail.contains(email);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/valideEmailsDoUsuario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean valideEmailsDoUsuario(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
+	public Boolean valideEmailsDoUsuario(Usuario usuario) throws SQLException, MalformedURLException {
 		Boolean EmailExiste =  false;
 		for(Email email : usuario.getEmails()){
 			EmailExiste = this.valideEmail(email);

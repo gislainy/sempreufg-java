@@ -4,15 +4,19 @@
             <h2>Login</h2>
             <hr>
         </div>
+        <p class="text-center text-muted" if-loading>
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </p>
         <div class="well">
-            <form name="loginForm" ng-submit="efetuarLogin()">
+            <div growl></div>
+            <form name="loginForm" ng-submit="autenticar()">
                 <div class="form-group">
-                    <label for="usuario">Usuário</label>
+                    <label for="login">Usuário</label>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </span>
-                        <input class="form-control" type="text" name="usuario" id="usuario" ng-model="usuario.usuario">
+                        <input class="form-control" type="text" name="login" id="login" ng-model="usuario.login">
                     </div>
                 </div>
                 <div class="form-group">

@@ -16,6 +16,10 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/usuario/pre-cadastro.html',
             controller: 'UsuarioController'
         })
+        .when('/sportsgo/esportes/novo', {
+            templateUrl: 'lib/views/esportes/cadastro.html',
+            controller: 'AnuncioCadastroController'
+        })
         ;
 
     $routeProvider.otherwise({ redirectTo: '/sportsgo' });
