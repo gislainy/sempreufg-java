@@ -1,6 +1,5 @@
 package br.com.sportsgo.model.usuario;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.activation.DataHandler;

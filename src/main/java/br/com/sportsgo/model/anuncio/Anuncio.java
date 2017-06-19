@@ -34,7 +34,7 @@ public class Anuncio {
 		this.usuario = new Usuario();
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idUsuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Usuario usuario;
@@ -63,7 +63,7 @@ public class Anuncio {
 	public Long getUsuario() {
 		return usuario.getIdUsuario();
 	}
-
+	
 	public void setUsuario(Long idUsuario) {
 		this.usuario.setIdUsuario(idUsuario);
 	}
@@ -136,7 +136,7 @@ public class Anuncio {
 		this.status = status;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlteracao")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idAlteracao")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioAlteracao> getAlteracoes() {
 		return alteracoes;
@@ -144,10 +144,13 @@ public class Anuncio {
 
 	public void setAlteracoes(List<AnuncioAlteracao> alteracoes) {
 		this.alteracoes = alteracoes;
+		for (AnuncioAlteracao alteracao : this.alteracoes) {
+			alteracao.setAnuncio(this);
+		}
 	}
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idArquivo")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idArquivo")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioArquivo> getArquivos() {
 		return arquivos;
@@ -155,9 +158,12 @@ public class Anuncio {
 
 	public void setArquivos(List<AnuncioArquivo> arquivos) {
 		this.arquivos = arquivos;
+		for (AnuncioArquivo arquivo : this.arquivos) {
+			arquivo.setAnuncio(this.getCodAnuncio());
+		}
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDtEvento")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idDtEvento")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioDataEvento> getDatas() {
 		return datas;
@@ -165,9 +171,12 @@ public class Anuncio {
 
 	public void setDatas(List<AnuncioDataEvento> datas) {
 		this.datas = datas;
+		for (AnuncioDataEvento data : this.datas) {
+			data.setAnuncio(this);
+		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalAnuncio")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idLocalAnuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioLocal> getLocais() {
 		return locais;
@@ -175,9 +184,12 @@ public class Anuncio {
 
 	public void setLocais(List<AnuncioLocal> locais) {
 		this.locais = locais;
+		for (AnuncioLocal local : this.locais) {
+			local.setAnuncio(this);
+		}
 	}
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPendencia")
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idPendencia")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPendencia> getPendencias() {
 		return pendencias;
@@ -185,9 +197,12 @@ public class Anuncio {
 
 	public void setPendencias(List<AnuncioPendencia> pendencias) {
 		this.pendencias = pendencias;
+		for (AnuncioPendencia pendencia : this.pendencias) {
+			pendencia.setAnuncio(this);
+		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnuncioPremium")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idAnuncioPremium")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPremium> getDadosPremium() {
 		return dadosPremium;
@@ -195,6 +210,9 @@ public class Anuncio {
 
 	public void setDadosPremium(List<AnuncioPremium> dadosPremium) {
 		this.dadosPremium = dadosPremium;
+		for (AnuncioPremium premium : this.dadosPremium) {
+			premium.setAnuncio(this);
+		}
 	}
 
 }

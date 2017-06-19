@@ -56,7 +56,7 @@ public class Usuario extends Pessoa {
 		this.senha = senha;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "usuario", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Email> getEmails() {
 		return emails;
@@ -69,7 +69,7 @@ public class Usuario extends Pessoa {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "codEndereco")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "codEndereco")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Endereco> getEnderecos() {
 		return enderecos;
@@ -79,7 +79,7 @@ public class Usuario extends Pessoa {
 		this.enderecos = enderecos;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idRedeSocial")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idRedeSocial")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<RedeSocial> getRedeSocias() {
 		return redeSocias;
@@ -89,7 +89,7 @@ public class Usuario extends Pessoa {
 		this.redeSocias = redeSocias;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idTelefone")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idTelefone")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Telefone> getTelefones() {
 		return telefones;

@@ -16,7 +16,7 @@ public class AnuncioLocal {
 	@Column(length = 120)
 	private String local;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 

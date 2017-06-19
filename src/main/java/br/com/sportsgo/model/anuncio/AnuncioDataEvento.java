@@ -15,7 +15,7 @@ public class AnuncioDataEvento {
 	private Long idDtEvento;
 	private Integer dataEvento;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
 

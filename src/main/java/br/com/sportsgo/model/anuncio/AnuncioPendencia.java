@@ -20,7 +20,7 @@ public class AnuncioPendencia {
 	@Column(length = 60)
 	private String solucao;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 

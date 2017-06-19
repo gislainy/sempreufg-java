@@ -27,7 +27,7 @@ public class Endereco{
 	
 	
 	//Metodos Getters and Setters
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	

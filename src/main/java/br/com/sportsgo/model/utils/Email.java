@@ -1,7 +1,9 @@
 package br.com.sportsgo.model.utils;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,7 +26,7 @@ public class Email {
 		this.usuario = new Usuario();
 	}
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	

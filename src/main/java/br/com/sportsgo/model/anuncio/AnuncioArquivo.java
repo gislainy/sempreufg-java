@@ -23,7 +23,7 @@ public class AnuncioArquivo {
 		this.enderecoArquivo = enderecoArquivo;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="codAnuncio")
 	private Anuncio anuncio;
 	

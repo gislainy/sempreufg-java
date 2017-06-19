@@ -17,7 +17,7 @@ public class RedeSocial{
 	private String nomeRede;
 	private String profile;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	
