@@ -86,18 +86,15 @@ public class UsuarioService {
 	private ModelMap validarCadastroDeUsuario(Usuario usuario) throws MalformedURLException, SQLException {
 		Boolean emailExiste = false;
 		Boolean usuarioExiste = false;
-		Boolean cpfCnpjExiste = false;
 		ModelMap retorno = new ModelMap();
 		ArrayList<String> erros = new ArrayList<String>();
 
 		emailExiste = valideEmailsDoUsuario(usuario);
 		usuarioExiste = loginJaCadastrado(usuario);
-		cpfCnpjExiste = cpfCnpjJaCadastrado(usuario);
 		
 		retorno.addAttribute("retorno", emailExiste || usuarioExiste);
 		if(emailExiste) erros.add("Email");
 		if(usuarioExiste) erros.add("Usuário");
-		if(cpfCnpjExiste) erros.add("Cpf/Cnpj");
 		retorno.addAttribute("erros", erros);
 		
 		return retorno;

@@ -3,16 +3,18 @@ package br.com.sportsgo.service;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,15 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.sportsgo.model.anuncio.Anuncio;
 import br.com.sportsgo.model.anuncio.AnuncioArquivo;
-import br.com.sportsgo.model.dao.UsuarioDAO;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
-import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
-import br.com.sportsgo.model.usuario.Usuario;
 
 
 
@@ -43,11 +41,15 @@ public class AnuncioService {
 	ServletContext context;
 
 	@ResponseBody
-	@RequestMapping(value = "/novo", method = RequestMethod.POST,
-					produces = MediaType.APPLICATION_JSON_VALUE)
-	public Anuncio novoUsuario(@RequestParam("file") MultipartFile[] files,
-							   @RequestBody Anuncio anuncio) throws SQLException {
-	
+	@RequestMapping(value = "/novo", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public Anuncio novoUsuario(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) throws SQLException, IOException {
+		
+		ModelMap model = new ModelMap();
+		model.putAll(request.getParameterMap());
+		String anuncioJSON = ((String[]) model.get("anuncio"))[0];
+		ObjectMapper mapper = new ObjectMapper();
+		Anuncio anuncio = new Anuncio();
+		anuncio = mapper.readValue(anuncioJSON, Anuncio.class);
 		if (!anuncio.getDescricao().isEmpty()){
 			anuncio.setCodAnuncio(anuncioDao.adiciona(anuncio));
 			if (anuncio.getCodAnuncio()>0){
@@ -55,8 +57,8 @@ public class AnuncioService {
 			}
 		}else{
 			throw new RuntimeException("A descrição deve ser preenchida");
-		}
-		return anuncio;
+		} 
+		return null;
 	}
 	
 	@ResponseBody

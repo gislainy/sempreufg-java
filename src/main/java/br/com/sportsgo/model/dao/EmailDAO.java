@@ -57,7 +57,7 @@ public class EmailDAO implements IEmailDAO{
 	public List<Email> consultaEmail(String email) {
     	//http://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
     	Criteria criteria = dao.getCriteria();
-    	criteria.add(Restrictions.eq("enderecoemail",email));
+    	criteria.add(Restrictions.eq("enderecoEmail",email));
     	return  criteria.list();
 	}
 }

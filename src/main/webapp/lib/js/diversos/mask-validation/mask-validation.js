@@ -51,10 +51,10 @@ function MascaraMoeda(moeda) {
         if (mascaraInteiro(moeda) == false) {
                 event.returnValue = false;
         }
-        if (moeda.value.toString().length > 8) {
-                moeda.value = moeda.value.toString().substring(0, 7);
+        if (moeda.value.toString().length > 9) {
+                moeda.value = moeda.value.toString().substring(0, 8);
         }
-        return formataCampo(moeda, 'R$000,00', event);
+        return formataCampo(moeda, 'R$0000,00', event);
 }
 
 //adiciona mascara ao CPF

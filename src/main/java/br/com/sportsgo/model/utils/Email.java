@@ -1,5 +1,6 @@
 package br.com.sportsgo.model.utils;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +14,10 @@ import br.com.sportsgo.model.usuario.Usuario;
 @Entity
 public class Email {
 	private Long idEmail;
+	
+	@Column(name = "enderecoemail")
 	private String enderecoEmail;
+	
 	private boolean receberNotificoes;
 
 	public Email() {

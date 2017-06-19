@@ -27,7 +27,7 @@
                     } else {
                         novoUsuario();
                         delete $scope.usuario;
-                    }
+                    }s
                 }, function (error) {
                     console.log('Falha na requisição '+ error);
                 });
@@ -38,7 +38,7 @@
             requisicoesService.novoUsuario($scope.usuario)
                 .then(function (response) {
                     if (response.data !== null && response.data !== '') {
-                        growl.success('Usuário: ' + response.data.login + 'foi cadastrado com sucesso');
+                        growl.success('Usuário: ' + response.data.login + ' foi cadastrado com sucesso');
                         $scope.usuario = null;
                         enviarEmailUsuario(response.data);
                         redirectLogin();

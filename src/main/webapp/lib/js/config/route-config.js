@@ -17,8 +17,8 @@ function configurar($routeProvider) {
             controller: 'UsuarioController'
         })
         .when('/sportsgo/esportes/novo', {
-            templateUrl: 'lib/views/esportes/cadastro.html',
-            controller: 'AnuncioCadastroController'
+            templateUrl: 'lib/views/anuncios/cadastro.html',
+            controller: 'AnuncioController'
         })
         ;
 

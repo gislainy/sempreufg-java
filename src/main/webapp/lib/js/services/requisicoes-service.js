@@ -19,11 +19,16 @@
             return $http.post(urlConfig.baseUrl + '/usuario/validar-cadastro', usuario);
         };
 
+        var _cadastrarAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/novo', anuncio);
+        };
+
         return {
             novoUsuario: _novoUsuario,
             autenticarUsuario: _autenticarUsuario,
             enviarEmailUsuario: _enviarEmailUsuario,
-            validarCadastroUsuario: _validarCadastroUsuario
+            validarCadastroUsuario: _validarCadastroUsuario,
+            cadastrarAnuncio: _cadastrarAnuncio
         };
 
     }
