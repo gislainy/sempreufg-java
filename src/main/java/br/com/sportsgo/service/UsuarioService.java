@@ -86,22 +86,26 @@ public class UsuarioService {
 	private ModelMap validarCadastroDeUsuario(Usuario usuario) throws MalformedURLException, SQLException {
 		Boolean emailExiste = false;
 		Boolean usuarioExiste = false;
+		Boolean cpfCnpjExiste = false;
 		ModelMap retorno = new ModelMap();
 		ArrayList<String> erros = new ArrayList<String>();
 
 		emailExiste = valideEmailsDoUsuario(usuario);
-		usuarioExiste = this.loginJaCadastrado(usuario);
+		usuarioExiste = loginJaCadastrado(usuario);
+		cpfCnpjExiste = cpfCnpjJaCadastrado(usuario);
+		
 		retorno.addAttribute("retorno", emailExiste || usuarioExiste);
 		if(emailExiste) erros.add("Email");
 		if(usuarioExiste) erros.add("Usuário");
+		if(cpfCnpjExiste) erros.add("Cpf/Cnpj");
 		retorno.addAttribute("erros", erros);
 		
 		return retorno;
 	}
 	
 	public Boolean valideEmail(Email email) throws SQLException, MalformedURLException {
-		ArrayList<Email> listaDeEmail = (ArrayList<Email>) emailDao.lista();
-		return listaDeEmail.contains(email);
+		Boolean emailJaCadastrado = !emailDao.consultaEmail(email.getEnderecoEmail()).isEmpty();
+		return emailJaCadastrado;
 	}
 	
 	public Boolean valideEmailsDoUsuario(Usuario usuario) throws SQLException, MalformedURLException {
@@ -115,36 +119,22 @@ public class UsuarioService {
 	}
 
 	private Boolean cpfCnpjJaCadastrado(Usuario usuario) {
-		Boolean cpfCnpjExiste = false;
-		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
-		for (Usuario usuarioLista : listaUsarios) {
-			cpfCnpjExiste = usuarioLista.getCpfcnpj().equals(usuario.getCpfcnpj());
-			if (cpfCnpjExiste)
-				break;
-		}
-
+		Boolean cpfCnpjExiste = !usuarioDao.consultaPorCpfCnpj(usuario.getCpfcnpj()).isEmpty();
 		return cpfCnpjExiste;
 	}
 
-	private Boolean loginJaCadastrado(Usuario usuario) {
-		Boolean loginExiste = false;
-		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
-		for (Usuario usuarioLista : listaUsarios) {
-			loginExiste = usuarioLista.getLogin().equals(usuario.getLogin());
-			if (loginExiste)
-				break;
-		}
-
+	private Boolean loginJaCadastrado(@RequestBody Usuario usuario) {
+		Boolean loginExiste = !usuarioDao.consultaLogin(usuario.getLogin()).isEmpty();
 		return loginExiste;
 	}
 	
 	private ModelMap autenticarUsuario(Usuario usuario) {
 		Boolean usuarioExiste = false;
-		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.lista();
-		ModelMap retorno = new ModelMap();
-		for (Usuario usuarioLista : listaUsarios) {
-			usuarioExiste = usuarioLista.getLogin().equals(usuario.getLogin()) && usuarioLista.getSenha().equals(usuario.getSenha());
-			if (usuarioExiste) {
+		ArrayList<Usuario> listaUsarios = (ArrayList<Usuario>) usuarioDao.consultaPorDadosDeLogin(usuario.getLogin(), usuario.getSenha());
+		usuarioExiste = !listaUsarios.isEmpty();
+		if (usuarioExiste){
+			ModelMap retorno = new ModelMap();
+			for (Usuario usuarioLista : listaUsarios) {
 				retorno.addAttribute("id", usuarioLista.getIdUsuario());
 				retorno.addAttribute("usuario", usuarioLista.getLogin());
 				retorno.addAttribute("token", TokenResponse.gerarToken(usuarioLista.getSenha()));
@@ -153,5 +143,4 @@ public class UsuarioService {
 		}
 		return null;
 	}
-
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,6 +47,23 @@ public class AnuncioDAO implements IAnuncioDAO{
 	public void atualiza(Anuncio t) {
 		dao.atualiza(t);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> consultaPorModalidade(String modalidade) {
+		//http://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
+		Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("modalidade",modalidade));
+    	return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> consultaPorUsuario(Long idUsuario) {
+    	Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("idUsuario",idUsuario));
+    	return criteria.list();
+	}
+
+
 
 
 }

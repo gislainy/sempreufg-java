@@ -3,6 +3,7 @@ package br.com.sportsgo.model.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -26,6 +27,10 @@ public class GenericDAO<T, PK extends Serializable> implements IDao<T, PK>{
     private Session getSession() {
         return this.factory.getCurrentSession();
     }
+    
+    public Criteria getCriteria(){
+    	return getSession().createCriteria(classe);
+    }
  
     public void remove(final T t) {
         getSession().delete(t);
@@ -38,7 +43,7 @@ public class GenericDAO<T, PK extends Serializable> implements IDao<T, PK>{
  
     @SuppressWarnings("unchecked")
     public List<T> lista() {
-        return getSession().createCriteria(classe).list();
+        return getCriteria().list();
     }
  
     public void atualiza(final T t) {
