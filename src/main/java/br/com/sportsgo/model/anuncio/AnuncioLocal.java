@@ -19,6 +19,10 @@ public class AnuncioLocal {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
+	
+	public AnuncioLocal() {
+		anuncio = new Anuncio();
+	}
 
 	@Id
 	@GeneratedValue
@@ -43,8 +47,8 @@ public class AnuncioLocal {
 		return anuncio.getCodAnuncio();
 	}
 
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
+	public void setAnuncio(Long codAnuncio) {
+		this.anuncio.setCodAnuncio(codAnuncio);
 	}
 
 }

@@ -35,6 +35,7 @@ public class Anuncio {
 	
 	public Anuncio(){
 		this.usuario = new Usuario();
+		this.status = EnumStatusAnuncio.NOVO;
 	}
 	
 	@ManyToOne
@@ -149,7 +150,7 @@ public class Anuncio {
 	public void setAlteracoes(List<AnuncioAlteracao> alteracoes) {
 		this.alteracoes = alteracoes;
 		for (AnuncioAlteracao alteracao : this.alteracoes) {
-			alteracao.setAnuncio(this);
+			alteracao.setAnuncio(this.getCodAnuncio());
 		}
 	}
 	
@@ -176,7 +177,7 @@ public class Anuncio {
 	public void setDatas(List<AnuncioDataEvento> datas) {
 		this.datas = datas;
 		for (AnuncioDataEvento data : this.datas) {
-			data.setAnuncio(this);
+			data.setAnuncio(this.getCodAnuncio());
 		}
 	}
 
@@ -189,7 +190,7 @@ public class Anuncio {
 	public void setLocais(List<AnuncioLocal> locais) {
 		this.locais = locais;
 		for (AnuncioLocal local : this.locais) {
-			local.setAnuncio(this);
+			local.setAnuncio(this.getCodAnuncio());
 		}
 	}
 
@@ -202,7 +203,7 @@ public class Anuncio {
 	public void setPendencias(List<AnuncioPendencia> pendencias) {
 		this.pendencias = pendencias;
 		for (AnuncioPendencia pendencia : this.pendencias) {
-			pendencia.setAnuncio(this);
+			pendencia.setAnuncio(this.getCodAnuncio());
 		}
 	}
 
@@ -215,20 +216,14 @@ public class Anuncio {
 	public void setDadosPremium(List<AnuncioPremium> dadosPremium) {
 		this.dadosPremium = dadosPremium;
 		for (AnuncioPremium premium : this.dadosPremium) {
-			premium.setAnuncio(this);
+			premium.setAnuncio(this.getCodAnuncio());
 		}
 	}
 
-	/**
-	 * @return the titulo
-	 */
 	public String getTitulo() {
 		return titulo;
 	}
 
-	/**
-	 * @param titulo the titulo to set
-	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}

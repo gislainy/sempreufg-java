@@ -15,37 +15,47 @@ public class AnuncioAlteracao {
 	private Long idAlteracao;
 	private String observacao;
 	private Integer data;
-	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
-	@JoinColumn(name="codAnuncio")
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
-	
+
+	public AnuncioAlteracao() {
+		anuncio = new Anuncio();
+	}
+
 	@Id
 	@GeneratedValue
-	@Column(name="idAlteracao")
+	@Column(name = "idAlteracao")
 	public Long getIdAlteracao() {
 		return idAlteracao;
 	}
+
 	public void setIdAlteracao(Long idAlteracao) {
 		this.idAlteracao = idAlteracao;
 	}
 
-	@Column(name="codAnuncio")
+	@Column(name = "codAnuncio")
 	public Long getAnuncio() {
 		return anuncio.getCodAnuncio();
 	}
-	public void setAnuncio(Anuncio anuncio) {
-		this.anuncio = anuncio;
+
+	public void setAnuncio(Long codAnuncio) {
+		this.anuncio.setCodAnuncio(codAnuncio);
 	}
+
 	public String getObservacao() {
 		return observacao;
 	}
+
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
 	public Integer getData() {
 		return data;
 	}
+
 	public void setData(Integer data) {
 		this.data = data;
 	}

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.sportsgo.model.anuncio.Anuncio;
 import br.com.sportsgo.model.anuncio.AnuncioArquivo;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivoDAO;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
 
 
@@ -38,6 +39,9 @@ public class AnuncioService {
 	private IAnuncioDAO anuncioDao;
 	
 	@Autowired
+	private IAnuncioArquivoDAO arquivoDao;
+	
+	@Autowired
 	ServletContext context;
 
 	@ResponseBody
@@ -47,6 +51,9 @@ public class AnuncioService {
 		ModelMap model = new ModelMap();
 		model.putAll(request.getParameterMap());
 		String anuncioJSON = ((String[]) model.get("anuncio"))[0];
+		
+		System.out.println(anuncioJSON);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		Anuncio anuncio = new Anuncio();
 		anuncio = mapper.readValue(anuncioJSON, Anuncio.class);
@@ -81,12 +88,13 @@ public class AnuncioService {
 	public String uploadFilesArquivos(@RequestParam("file") MultipartFile[] files, 
 									  @RequestBody Anuncio anuncio) {
 		ArrayList<MultipartFile> arquivos = new ArrayList<MultipartFile>(Arrays.asList(files));
+		AnuncioArquivo imagemDoAnuncio;
 		String message = "";
 		for (MultipartFile file : arquivos) {
 			String name = file.getOriginalFilename();
 			try {
 				byte[] bytes = file.getBytes();
-
+							
 				// Caso não exista diretório para o anúncio o mesmo será criado
 				String rootPath = context.getRealPath("/uploaded") + File.separator + anuncio.getUsuario();
 				File dir = new File(rootPath + File.separator + anuncio.getCodAnuncio());
@@ -101,13 +109,17 @@ public class AnuncioService {
 				stream.write(bytes);
 				stream.close();
 				
-				anuncio.getArquivos().add(new AnuncioArquivo(anuncio, caminhoDoArquivo.getAbsolutePath()));
+				imagemDoAnuncio = new AnuncioArquivo(anuncio, caminhoDoArquivo.getAbsolutePath());
+				arquivoDao.adiciona(imagemDoAnuncio);
+				anuncio.getArquivos().add(imagemDoAnuncio);
 				
 				message = message + "Seu arquivo '" + name + "' foi carregado com êxito!\n";
-				anuncioDao.atualiza(anuncio);
+				System.out.println(message);
 				
 			} catch (Exception e) {
-				return "Ao carregar o arquivo '" + name + "' ocorreu a seguinte falha => " + e.getMessage();
+				message = "Ao carregar o arquivo '" + name + "' ocorreu a seguinte falha => " + e.getMessage();
+				System.out.println(message);
+				return message ;
 			}
 		}
 		return message;
