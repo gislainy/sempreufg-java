@@ -140,7 +140,7 @@ public class Anuncio {
 		this.status = status;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlteracao")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioAlteracao> getAlteracoes() {
 		return alteracoes;
@@ -154,7 +154,7 @@ public class Anuncio {
 	}
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idArquivo")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioArquivo> getArquivos() {
 		return arquivos;
@@ -167,7 +167,7 @@ public class Anuncio {
 		}
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDtEvento")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioDataEvento> getDatas() {
 		return datas;
@@ -180,7 +180,7 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalAnuncio")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioLocal> getLocais() {
 		return locais;
@@ -193,7 +193,7 @@ public class Anuncio {
 		}
 	}
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPendencia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPendencia> getPendencias() {
 		return pendencias;
@@ -206,7 +206,7 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnuncioPremium")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPremium> getDadosPremium() {
 		return dadosPremium;

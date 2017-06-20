@@ -45,7 +45,10 @@
                 $scope.anuncio.usuario = {};
                 $scope.anuncio.usuario.idUsuario = usuarioService.get('id');
                 inserirItensArray($scope.anuncio);
-                
+                $scope.anuncio.pendencias = [];
+                $scope.anuncio.alteracoes = [];
+                $scope.anuncio.dadosPremium = [];
+                $scope.anuncio.arquivos = [];
             }
 
             function formatarModalidade() {
