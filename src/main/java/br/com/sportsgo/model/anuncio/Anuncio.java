@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.sportsgo.model.usuario.Usuario;
 
 
@@ -29,12 +31,13 @@ public class Anuncio {
 	private long nrViews;
 	private Integer dataTermino;
 	private Boolean anuncioEhProfissional;
+	private String titulo;
 	
 	public Anuncio(){
 		this.usuario = new Usuario();
 	}
 	
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne
 	@JoinColumn(name = "idUsuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Usuario usuario;
@@ -68,6 +71,7 @@ public class Anuncio {
 		this.usuario.setIdUsuario(idUsuario);
 	}
 	
+	@JsonProperty
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -136,7 +140,7 @@ public class Anuncio {
 		this.status = status;
 	}
 
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idAlteracao")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlteracao")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioAlteracao> getAlteracoes() {
 		return alteracoes;
@@ -150,7 +154,7 @@ public class Anuncio {
 	}
 	
 	
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idArquivo")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idArquivo")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioArquivo> getArquivos() {
 		return arquivos;
@@ -163,7 +167,7 @@ public class Anuncio {
 		}
 	}
 	
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idDtEvento")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDtEvento")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioDataEvento> getDatas() {
 		return datas;
@@ -176,7 +180,7 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idLocalAnuncio")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idLocalAnuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioLocal> getLocais() {
 		return locais;
@@ -189,7 +193,7 @@ public class Anuncio {
 		}
 	}
 
-    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idPendencia")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPendencia")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPendencia> getPendencias() {
 		return pendencias;
@@ -202,7 +206,7 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "idAnuncioPremium")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnuncioPremium")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<AnuncioPremium> getDadosPremium() {
 		return dadosPremium;
@@ -213,6 +217,20 @@ public class Anuncio {
 		for (AnuncioPremium premium : this.dadosPremium) {
 			premium.setAnuncio(this);
 		}
+	}
+
+	/**
+	 * @return the titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * @param titulo the titulo to set
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 }
