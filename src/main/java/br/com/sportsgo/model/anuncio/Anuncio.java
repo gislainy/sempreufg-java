@@ -15,11 +15,12 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.sportsgo.model.usuario.Usuario;
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Anuncio {
 
@@ -141,8 +142,8 @@ public class Anuncio {
 		this.status = status;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioAlteracao> getAlteracoes() {
 		return alteracoes;
 	}
@@ -154,9 +155,8 @@ public class Anuncio {
 		}
 	}
 	
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioArquivo> getArquivos() {
 		return arquivos;
 	}
@@ -168,8 +168,8 @@ public class Anuncio {
 		}
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioDataEvento> getDatas() {
 		return datas;
 	}
@@ -181,8 +181,8 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioLocal> getLocais() {
 		return locais;
 	}
@@ -194,8 +194,8 @@ public class Anuncio {
 		}
 	}
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioPendencia> getPendencias() {
 		return pendencias;
 	}
@@ -207,8 +207,8 @@ public class Anuncio {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
 	public List<AnuncioPremium> getDadosPremium() {
 		return dadosPremium;
 	}

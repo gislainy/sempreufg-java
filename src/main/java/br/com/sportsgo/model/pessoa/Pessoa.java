@@ -2,9 +2,12 @@ package br.com.sportsgo.model.pessoa;
 
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 @MappedSuperclass
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pessoa{
 
 	private String cpfcnpj;

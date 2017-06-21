@@ -82,6 +82,13 @@ public class AnuncioService {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/buscar-anuncio/{codAnuncio}", method = RequestMethod.GET)
+	public Anuncio bucarAnuncio(@PathVariable(value = "codAnuncio") Long codAnuncio) throws SQLException {
+		Anuncio anuncio = anuncioDao.busca(codAnuncio);
+		return anuncio;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/listar-anuncios-por-modalidade/{modalidade}", method = RequestMethod.GET)
 	public ArrayList<Anuncio> listaAnunciosPorModalidade(@PathVariable("modalidade") String modalidade) throws SQLException {
 		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultaPorModalidade(modalidade);

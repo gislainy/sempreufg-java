@@ -1,5 +1,6 @@
 package br.com.sportsgo.model.usuario;
 
+import java.beans.Transient;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.sportsgo.model.pessoa.Pessoa;
 import br.com.sportsgo.model.utils.Email;
 import br.com.sportsgo.model.utils.Endereco;
@@ -19,6 +22,7 @@ import br.com.sportsgo.model.utils.RedeSocial;
 import br.com.sportsgo.model.utils.Telefone;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario extends Pessoa {
 
 	private Long idUsuario;
@@ -69,7 +73,7 @@ public class Usuario extends Pessoa {
 		}
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "codEndereco")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Endereco> getEnderecos() {
 		return enderecos;
@@ -79,7 +83,7 @@ public class Usuario extends Pessoa {
 		this.enderecos = enderecos;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idRedeSocial")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<RedeSocial> getRedeSocias() {
 		return redeSocias;
@@ -89,7 +93,7 @@ public class Usuario extends Pessoa {
 		this.redeSocias = redeSocias;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idTelefone")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Telefone> getTelefones() {
 		return telefones;

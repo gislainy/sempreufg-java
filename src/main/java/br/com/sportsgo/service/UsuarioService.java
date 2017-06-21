@@ -65,9 +65,9 @@ public class UsuarioService {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/buscaUsuario/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/buscaUsuario/{id}", method = RequestMethod.GET)
 	public Usuario buscaUsuario(@PathVariable(value = "id") Long id) throws SQLException {
-		Usuario usuario = (Usuario) usuarioDao.busca(id);
+		Usuario usuario = usuarioDao.busca(id);
 		return usuario;
 	}
 	

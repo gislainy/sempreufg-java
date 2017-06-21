@@ -37,7 +37,9 @@ public class AnuncioDAO implements IAnuncioDAO{
 	}
 
 	public Anuncio busca(Long id) {
-		return dao.busca(id);
+		Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("codAnuncio",id));
+    	return (Anuncio) criteria.uniqueResult();
 	}
 
 	public List<Anuncio> lista() {
@@ -62,8 +64,4 @@ public class AnuncioDAO implements IAnuncioDAO{
     	criteria.add(Restrictions.eq("idUsuario",idUsuario));
     	return criteria.list();
 	}
-
-
-
-
 }
