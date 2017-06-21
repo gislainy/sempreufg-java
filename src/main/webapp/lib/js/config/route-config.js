@@ -20,6 +20,42 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/anuncios/cadastro.html',
             controller: 'AnuncioController'
         })
+        .when('/sportsgo/anuncio/futebol', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/atletismo', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/voleibol', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/basquetebol', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/tenis', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/natacao', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/airsoft', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/skate', {
+            templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
+            controller: 'AnuncioModalidadeController'
+        })
+        .when('/sportsgo/anuncio/todos', {
+            templateUrl: 'lib/views/anuncios/anuncios-todos.html',
+            controller: 'AnuncioTodosController'
+        })
         ;
 
     $routeProvider.otherwise({ redirectTo: '/sportsgo' });

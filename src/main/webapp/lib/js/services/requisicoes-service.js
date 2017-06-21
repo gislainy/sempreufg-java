@@ -19,8 +19,16 @@
             return $http.post(urlConfig.baseUrl + '/usuario/validar-cadastro', usuario);
         };
 
-        var _cadastrarAnuncio = function (anuncio) {
-            return $http.post(urlConfig.baseUrl + '/anuncio/novo', anuncio);
+        var _cadastrarAnuncio = function (anuncio, config) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/novo', anuncio, config);
+        };
+
+         var _carregarAnuncios = function () {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios');
+        };
+
+        var _carregarAnunciosPorModalidade = function (modalidade) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-por-modalidade/'+modalidade);
         };
 
         return {
@@ -28,7 +36,9 @@
             autenticarUsuario: _autenticarUsuario,
             enviarEmailUsuario: _enviarEmailUsuario,
             validarCadastroUsuario: _validarCadastroUsuario,
-            cadastrarAnuncio: _cadastrarAnuncio
+            cadastrarAnuncio: _cadastrarAnuncio,
+            carregarAnuncios: _carregarAnuncios,
+            carregarAnunciosPorModalidade: _carregarAnunciosPorModalidade
         };
 
     }

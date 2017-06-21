@@ -4,7 +4,6 @@
         <hr>
     </div>
     <div class="well col-md-12">
-        <div growl></div>
         <form name="cadastroAnuncioForm" ng-submit="cadastrarAnuncio()">
             <div class="col-md-12">
                 <div class="form-group col-md-6">
@@ -46,7 +45,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="imagens">Imagens</label>
-                    <input class="form-control" type="file" name="imagens" id="imagens" file-upload="myFile" multiple>
+                    <input class="form-control" type="file" name="imagens" id="imagens" file-upload="myFile" placeholder="A primeira imagem será a da capa" multiple>
                 </div>
             </div>
             <div class="col-md-12">

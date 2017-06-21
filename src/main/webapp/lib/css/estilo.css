@@ -35,3 +35,13 @@
 .btn-danger.btn-outline:hover {
     color: #fff;
 }
+
+.img-height {
+    height: 150.66px;
+    width : 226px;
+}
+
+.img-categoria {
+    width:140px;
+    height:140px;
+}

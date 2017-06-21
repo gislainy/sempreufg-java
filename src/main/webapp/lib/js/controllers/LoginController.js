@@ -4,6 +4,7 @@
     function LoginController($scope, requisicoesService, growl, $location) {
 
         $scope.autenticar = function () {
+            $scope.usuario.login = $scope.usuario.login.toLowerCase();
             requisicoesService.autenticarUsuario($scope.usuario)
                 .then(function (response) {
                     if (response.data === null || response.data === '') {
@@ -14,7 +15,7 @@
                         $location.path('#/sportsgo');
                     }
                 }, function (error) {
-                    growl.error('Falha na requisição: ' + error);
+                    console.log('Falha na requisição: ' + error);
                 });
         };
 

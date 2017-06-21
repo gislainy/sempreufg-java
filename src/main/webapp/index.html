@@ -57,15 +57,21 @@
 	<script src="lib/js/config/url-config.js"></script>
 
 	<!-- CONTROLLERS -->
+	<script src="lib/js/controllers/PrincipalController.js"></script>
 	<script src="lib/js/controllers/IndexController.js"></script>
 	<script src="lib/js/controllers/UsuarioController.js"></script>
 	<script src="lib/js/controllers/LoginController.js"></script>
 	<script src="lib/js/controllers/AnuncioController.js"></script>
+	<script src="lib/js/controllers/AnuncioModalidadeController.js"></script>
+	<script src="lib/js/controllers/AnuncioTodosController.js"></script>
 	<!-- DIRECTIVES -->
 
 	<script src="lib/js/directives/limitTo-directive.js"></script>
 	<script src="lib/js/directives/ifLoading-directive.js"></script>
 	<script src="lib/js/directives/fileUpload-directive.js"></script>
+	<script src="lib/js/directives/owlCarousel-directive.js"></script>
+	<script src="lib/js/directives/owlCarouselItem-directive.js"></script>
+	
 
 	<!-- SERVICES -->
 	<script src="lib/js/services/usuario-service.js"></script>
@@ -73,10 +79,12 @@
 	<script src="lib/js/services/auth-interceptor.js"></script>
 	<script src="lib/js/services/clear_mask-service.js"></script>
 	<script src="lib/js/services/fileUpload-service.js"></script>
+	<script src="lib/js/services/route-service.js"></script>
+	<script src="lib/js/services/logout-service.js"></script>
 
 </head>
 
-<body ng-controller="IndexController">
+<body ng-controller="PrincipalController">
 	<div class="back wrapper">
 		<!--=== Header ===-->
 		<div class="header">
@@ -111,7 +119,7 @@
 							<i class="icon-user"></i>
 							<a ng-bind="usuario"></a>
 						</li>
-						<li ng-if="logado"><i class="icon-close"></i></li>
+						<li ng-if="logado"><i class="icon-close" ng-click="logout()"></i></li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
@@ -152,23 +160,18 @@
 								<li class="dropdown-submenu">
 									<a href="javascript:void(0);">Por Esporte</a>
 									<ul class="dropdown-menu">
-
-
-										<li>
-											<a href="" ng-repeat="">
-
+										<li ng-repeat="modalidade in modalidades">
+											<a href="" ng-click="carregarAnunciosPorCategoria(modalidade)">
+												{{modalidade.categoria}}
 											</a>
 										</li>
-
-
-
 									</ul>
 								</li>
 								<li ng-if="logado">
 									<a href="#/sportsgo/esportes/novo">Cadastrar</a>
 								</li>
 								<li>
-									<a href="">Todos</a>
+									<a href="" ng-click="carregarAnuncios()">Todos</a>
 								</li>
 
 							</ul>
@@ -189,7 +192,17 @@
 				</div>
 			</div>
 		</div>
+
+
+
+		<div class="row col-md-12">
+			<br>
+			<p class="text-center text-muted" if-loading>
+				<span class="fa fa-spinner fa-spin fa-3x"></span>
+			</p>
+		</div>
 		
+		<div growl class="col-md-6 col-md-offset-3 pull-right"></div>
 		<ng-view>
 		</ng-view>
 

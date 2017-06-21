@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Anúncios de {{modalidade}}</h2>
+    <div class="panel-group col-md-3" ng-repeat="anuncio in anuncios">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3><a class="hover-effect" href="#">{{anuncio.titulo}}</a></h3>
+            </div>
+            <div class="panel-body">
+                <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                    <div class="thumbnail-img">
+                        <div class="overflow-hidden">
+                            <img class="img-responsive img-height" src="{{anuncio.fotoCapa}}" alt="">
+                        </div>
+                        <a class="btn-more hover-effect" href="">Saiba mais</a>
+                    </div>
+                    <div class="caption">
+                        <p>{{anuncio.descricao}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

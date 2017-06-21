@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,13 +47,11 @@ public class AnuncioService {
 
 	@ResponseBody
 	@RequestMapping(value = "/novo", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public Anuncio novoUsuario(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) throws SQLException, IOException {
+	public ModelMap novoUsuario(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) throws SQLException, IOException {
 		
 		ModelMap model = new ModelMap();
 		model.putAll(request.getParameterMap());
 		String anuncioJSON = ((String[]) model.get("anuncio"))[0];
-		
-		System.out.println(anuncioJSON);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		Anuncio anuncio = new Anuncio();
@@ -60,7 +59,7 @@ public class AnuncioService {
 		if (!anuncio.getDescricao().isEmpty()){
 			anuncio.setCodAnuncio(anuncioDao.adiciona(anuncio));
 			if (anuncio.getCodAnuncio()>0){
-				this.uploadFilesArquivos(files, anuncio);
+				return this.uploadFilesArquivos(files, anuncio);
 			}
 		}else{
 			throw new RuntimeException("A descrição deve ser preenchida");
@@ -69,27 +68,34 @@ public class AnuncioService {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/blankAnuncio", method = RequestMethod.GET,
+	@RequestMapping(value = "/blank-anuncio", method = RequestMethod.GET,
 					produces = MediaType.APPLICATION_JSON_VALUE)
 	public Anuncio  anuncioEmBranco() {
 		return new Anuncio();
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/listaAnuncios", method = RequestMethod.GET)
+	@RequestMapping(value = "/listar-anuncios", method = RequestMethod.GET)
 	public ArrayList<Anuncio> listaAnuncios() throws SQLException {
 		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.lista();
 		return listaAnuncios;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/anuncioimagem", 
+	@RequestMapping(value = "/listar-anuncios-por-modalidade/{modalidade}", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listaAnunciosPorModalidade(@PathVariable("modalidade") String modalidade) throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultaPorModalidade(modalidade);
+		return listaAnuncios;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/anuncio-imagem", 
 					consumes = MediaType.MULTIPART_FORM_DATA_VALUE, headers = ("content-type=multipart/*"), method = RequestMethod.POST)
-	public String uploadFilesArquivos(@RequestParam("file") MultipartFile[] files, 
+	public ModelMap uploadFilesArquivos(@RequestParam("file") MultipartFile[] files, 
 									  @RequestBody Anuncio anuncio) {
 		ArrayList<MultipartFile> arquivos = new ArrayList<MultipartFile>(Arrays.asList(files));
 		AnuncioArquivo imagemDoAnuncio;
-		String message = "";
+		ModelMap retorno = new ModelMap();
 		for (MultipartFile file : arquivos) {
 			String name = file.getOriginalFilename();
 			try {
@@ -108,21 +114,19 @@ public class AnuncioService {
 						new FileOutputStream(caminhoDoArquivo));
 				stream.write(bytes);
 				stream.close();
-				
-				imagemDoAnuncio = new AnuncioArquivo(anuncio, caminhoDoArquivo.getAbsolutePath());
+				String caminhobd = "uploaded" + File.separator + anuncio.getUsuario() + File.separator + anuncio.getCodAnuncio() + File.separator +  name;
+				imagemDoAnuncio = new AnuncioArquivo(anuncio, caminhobd);
 				arquivoDao.adiciona(imagemDoAnuncio);
 				anuncio.getArquivos().add(imagemDoAnuncio);
 				
-				message = message + "Seu arquivo '" + name + "' foi carregado com êxito!\n";
-				System.out.println(message);
+				retorno.addAttribute("retorno", true);
 				
 			} catch (Exception e) {
-				message = "Ao carregar o arquivo '" + name + "' ocorreu a seguinte falha => " + e.getMessage();
-				System.out.println(message);
-				return message ;
+				retorno.addAttribute("retorno", false);
+				return retorno ;
 			}
 		}
-		return message;
+		return retorno;
 	}
 	
 	

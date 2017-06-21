@@ -1,3 +1,4 @@
+
 <div class="slider-inner">
     <div id="da-slider" class="da-slider">
         <div class="da-slide">
@@ -19,7 +20,7 @@
             <p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
             <div class="da-img"><img src="lib/img/esporte.png" alt="image01" /></div>
         </div>
-        
+
     </div>
 </div>
 
@@ -102,155 +103,54 @@
         <h2>Eventos recentes</h2>
     </div>
 
-    <div class="row margin-bottom-20">
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                <div class="thumbnail-img">
-                    <div class="overflow-hidden">
-                        <img class="img-responsive img-responsive" src="{{evento.foto}}"  alt="">
+
+
+    <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+        <div owl-carousel-item="" ng-repeat="anuncio in ::anuncios" class="item slider-height">
+            <div class="margin-bottom-20">
+                <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                    <div class="thumbnail-img">
+                        <div class="overflow-hidden">
+                            <img class="img-responsive img-height" src="{{::anuncio.fotoCapa}}" alt="">
+                        </div>
+                        <a class="btn-more hover-effect" href="">Saiba mais</a>
                     </div>
-                    <a ng-click="carregarEventoUnico(evento)" class="btn-more hover-effect" href="#/home/evento">Saiba mais</a>
-                </div>
-                <div class="caption">
-                    <h3><a class="hover-effect" href="#">{{evento.titulo}}</a></h3>
-                    <p>{{evento.descricao}}</p>
-                </div>
-            </div>
-        </div>  
-        
-        
-        <!--<div class="col-md-3 col-sm-6">
-            <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                <div class="thumbnail-img">
-                    <div class="overflow-hidden">
-                        <img class="img-responsive img-responsive" src="assets/img/main/img12.jpg" alt="">
+                    <div class="caption">
+                        <h3><a class="hover-effect" href="#">{{::anuncio.titulo}}</a></h3>
+                        <p>{{::anuncio.descricao}}</p>
                     </div>
-                    <a class="btn-more hover-effect" href="#">read more +</a>
-                </div>
-                <div class="caption">
-                    <h3><a class="hover-effect" href="#">Project Two</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                <div class="thumbnail-img">
-                    <div class="overflow-hidden">
-                        <img class="img-responsive img-responsive" src="assets/img/main/img3.jpg" alt="">
-                    </div>
-                    <a class="btn-more hover-effect" href="#">read more +</a>
-                </div>
-                <div class="caption">
-                    <h3><a class="hover-effect" href="#">Project Three</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                <div class="thumbnail-img">
-                    <div class="overflow-hidden">
-                        <img class="img-responsive img-responsive" src="assets/img/main/img17.jpg" alt="">
-                    </div>
-                    <a class="btn-more hover-effect" href="#">read more +</a>
-                </div>
-                <div class="caption">
-                    <h3><a class="hover-effect" href="#">Project Four</a></h3>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
-                </div>
-            </div>
-        </div>-->
-        
-    </div>
-    
+
+    </data-owl-carousel>
 
     <div class="row col-md-12 headline">
         <h2>Modalidades Esportivas</h2>
     </div>
 
     <div class="categoria-background row col-md-12">
-        <div class="col-md-3">
+        <div class="col-md-3" ng-repeat="categoria in categorias.slice(0,4)">
             <div class="service">
-                <a href="#/home/Futebol">
+                <a href="{{categoria.viewUrl}}">
                     <div class="desc">
-                        <h5>Futebol</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/bola.png" />
+                        <h5 class="text-center">{{categoria.categoria}}</h5>
+                        <img class="img-responsive center-block img-categoria" src="{{categoria.imageUrl}}" />
                     </div>
                 </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Voleibol">
-                        <h5>Vôlei</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/volei.png" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Basquetebol">
-                        <h5>Basquetebol</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/basquete.png" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Natação">
-                        <h5>Natação</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/natacao.png" />
-                    </a>
-                </div>
             </div>
         </div>
     </div>
 
     <div class="categoria-background row margin-bottom-30 col-md-12">
-        <div class="col-md-3">
+        <div class="col-md-3" ng-repeat="categoria in categorias.slice(4)">
             <div class="service">
-                <a href="#/home/Tênis">
+                <a href="{{categoria.viewUrl}}">
                     <div class="desc">
-                        <h5>Tênis</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/tenis.png" />
+                        <h5 class="text-center">{{categoria.categoria}}</h5>
+                        <img class="img-responsive center-block img-categoria" src="{{categoria.imageUrl}}" />
                     </div>
                 </a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Atletismo" />
-                    <h5>Atletismo</h5>
-                    <img class="img-responsive img-categoria" src="lib/img/corrida.png" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Skate">
-                        <h5>Skate</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/skate.png" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="service">
-                <div class="desc">
-                    <a href="#/home/Airsoft">
-                        <h5>Airsoft</h5>
-                        <img class="img-responsive img-categoria" src="lib/img/airsoft.png" />
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -288,5 +188,7 @@
             <a href="http://nike.com.br"><img src="lib/img/parceiros/nike.png" alt=""></a>
         </div>
     </div>
+
+
 
 </div>

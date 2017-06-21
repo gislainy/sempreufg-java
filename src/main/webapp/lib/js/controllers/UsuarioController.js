@@ -19,6 +19,7 @@
         }
 
         function validarCadastroUsuario() {
+            $scope.usuario.login = $scope.usuario.login.toLowerCase();
             requisicoesService.validarCadastroUsuario($scope.usuario)
                 .then(function (response) {
                     if(response.data.retorno) {
@@ -27,7 +28,7 @@
                     } else {
                         novoUsuario();
                         delete $scope.usuario;
-                    }s
+                    }
                 }, function (error) {
                     console.log('Falha na requisição '+ error);
                 });

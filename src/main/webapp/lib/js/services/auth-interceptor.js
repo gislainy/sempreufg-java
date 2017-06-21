@@ -15,7 +15,6 @@ function authInterceptor($q, $location, $rootScope, growl, $timeout) {
           $location.path('/sportsgo/login');
         }, 5000);
       }
-      console.log('Usuário não autenticado');
       return $q.reject(response);
     }
 

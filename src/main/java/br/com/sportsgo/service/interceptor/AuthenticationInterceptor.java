@@ -18,7 +18,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 		final String CAMINHO_NOVO_USUARIO = "/services/usuario/novo";
 		final String CAMINHO_VALIDAR_CADASTRO_USUARIO = "/services/usuario/validar-cadastro";
 		final String CAMINHO_ENVIAR_EMAIL_USUARIO = "/services/usuario/enviar-email";
-		final String CAMINHO_LISTAR_ANUNCIOS = "/services/anuncio/listaAnuncios";
+		final String CAMINHO_LISTAR_ANUNCIOS = "/services/anuncio/listar-anuncios";
 		boolean caminhoLogin = request.getRequestURI().equals(CAMINHO_LOGIN);
 		boolean caminhoNovoUsuario = request.getRequestURI().equals(CAMINHO_NOVO_USUARIO);
 		boolean caminhoValidarCadastroUsuario = request.getRequestURI().equals(CAMINHO_VALIDAR_CADASTRO_USUARIO);
