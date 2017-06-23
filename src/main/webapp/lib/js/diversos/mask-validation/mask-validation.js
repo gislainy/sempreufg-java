@@ -44,7 +44,7 @@ function MascaraTelefone(tel) {
         if (mascaraInteiro(tel) == false) {
                 event.returnValue = false;
         }
-        return formataCampo(tel, '(00) 0000-0000', event);
+        return formataCampo(tel, '(00)00000-0000', event);
 }
 
 function MascaraMoeda(moeda) {
@@ -67,9 +67,12 @@ function MascaraCPF(cpf) {
 
 //valida telefone
 function ValidarTelefone(tel) {
-        exp = /\(\d{2}\)\ \d{4}\-\d{4}/
-        if (!exp.test(tel.value))
-                alert('Numero de Telefone Invalido!');
+        exp = /\(\d{2}\)\d{5}\-\d{4}/
+        if (!exp.test(tel)) {
+                return false;
+        } else {
+                return true;
+        }
 }
 
 //valida CEP
@@ -82,8 +85,11 @@ function ValidarCep(cep) {
 //valida data
 function ValidarData(data) {
         exp = /\d{2}\/\d{2}\/\d{4}/
-        if (!exp.test(data.value))
-                alert('Data Invalida!');
+        if (!exp.test(data)) {
+                return false;
+        } else { 
+                return true;
+        }
 }
 
 //valida o CPF digitado

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.com.sportsgo.model.usuario.Usuario;
 
 //*Atributos CamelCase: Verificar BD/Diagrama ER.

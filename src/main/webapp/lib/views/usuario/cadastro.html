@@ -20,27 +20,50 @@
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input class="form-control" type="text" name="telefone" id="telefone" onkeypress="MascaraTelefone(telefone)" ng-model="usuario.telefone">
+                <input class="form-control" type="text" name="telefone" id="telefone" onkeypress="MascaraTelefone(telefone)" ng-model="usuario.telefones"
+                    limit-to="14" required>
             </div>
-            <div class="form-group">
-                <label for="endereco">Endereco</label>
-                <input class="form-control" type="text" name="endereco" id="endereco" ng-model="usuario.endereco">
+            <div class="form-group col-md-4">
+                <label for="logradouro">Logradouro</label>
+                <input class="form-control" type="text" name="logradouro" id="logradouro" ng-model="usuario.enderecos.logradouro" required>
             </div>
-            <label for="">Rede social</label>
-            <div class="form-group">
-                <label class="radio-inline"><input type="radio" name="optradio" ng-focus="setFacebook()">
+            <div class="form-group col-md-4">
+                <label for="numero">Número</label>
+                <input class="form-control" type="text" name="numero" id="numero" ng-model="usuario.enderecos.numero" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="bairro">Bairro</label>
+                <input class="form-control" type="text" name="bairro" id="bairro" ng-model="usuario.enderecos.bairro" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidade">Cidade</label>
+                <input class="form-control" type="text" name="cidade" id="cidade" ng-model="usuario.enderecos.cidade" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="estado">Estado</label>
+                <input class="form-control" type="text" name="estado" id="estado" ng-model="usuario.enderecos.estado" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="pais">País</label>
+                <input class="form-control" type="text" name="pais" id="pais" ng-model="usuario.enderecos.pais" required>
+            </div>
+            <div class="col-md-4">
+                <label class="col-md-12">Rede social</label>
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="rdsocial" ng-focus="setFacebook()">
                         <i class="fa fa-facebook-official fa-2x"></i>
                     </label>
-                <label class="radio-inline"><input type="radio" name="optradio"  ng-focus="setTwitter()">
+                    <label class="radio-inline"><input type="radio" name="rdsocial"  ng-focus="setTwitter()">
                         <i class="fa fa-twitter-square fa-2x"></i>
                     </label>
-                <label class="radio-inline"><input type="radio" name="optradio"  ng-focus="setInstagram()">
+                    <label class="radio-inline"><input type="radio" name="rdsocial"  ng-focus="setInstagram()">
                         <i class="fa fa-instagram fa-2x"></i>
                     </label>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label for="profile">Profile</label>
-                <input class="form-control" type="text" name="profile" id="profile" ng-model="usuario.redeSocial.profile">
+                <input class="form-control" type="text" name="profile" id="profile" ng-model="usuario.redesSociais.profile">
             </div>
 
             <div class="form-group">

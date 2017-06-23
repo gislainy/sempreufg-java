@@ -17,6 +17,7 @@ public class Telefone{
 	private String codPais;
 	private String dddNumero;
 	private String tipo;
+	private String numero;
 	
 	
 	//Metodos Getters e Setters
@@ -59,5 +60,11 @@ public class Telefone{
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 }

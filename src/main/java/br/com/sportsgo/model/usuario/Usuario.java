@@ -29,7 +29,7 @@ public class Usuario extends Pessoa {
 	private String senha;
 	private List<Email> emails;
 	private List<Endereco> enderecos;
-	private List<RedeSocial> redeSocias;
+	private List<RedeSocial> redesSociais;
 	private List<Telefone> telefones;
 
 	@Id
@@ -85,11 +85,11 @@ public class Usuario extends Pessoa {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<RedeSocial> getRedeSocias() {
-		return redeSocias;
+		return redesSociais;
 	}
 
-	public void setRedeSocias(List<RedeSocial> redeSocias) {
-		this.redeSocias = redeSocias;
+	public void setRedeSocias(List<RedeSocial> redesSociais) {
+		this.redesSociais = redesSociais;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
