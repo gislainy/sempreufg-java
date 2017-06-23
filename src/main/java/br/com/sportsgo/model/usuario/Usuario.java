@@ -1,6 +1,5 @@
 package br.com.sportsgo.model.usuario;
 
-import java.beans.Transient;
 import java.util.List;
 
 import javax.persistence.CascadeType;

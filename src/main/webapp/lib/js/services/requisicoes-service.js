@@ -7,8 +7,16 @@
             return $http.post(urlConfig.baseUrl + '/usuario/novo', pessoa);
         };
 
+        var _completarCadastroUsuario = function (usuario) {
+            return $http.post(urlConfig.baseUrl + '/usuario/completar-cadastro', usuario);
+        };
+
         var _autenticarUsuario = function (usuario) {
             return $http.post(urlConfig.baseUrl + '/usuario/autenticar', usuario);
+        };
+
+        var _buscarUsuarioID = function (id) {
+            return $http.get(urlConfig.baseUrl + '/usuario/buscaUsuario/'+id);
         };
 
         var _enviarEmailUsuario = function (usuario) {
@@ -33,12 +41,14 @@
 
         return {
             novoUsuario: _novoUsuario,
+            completarCadastroUsuario: _completarCadastroUsuario,
             autenticarUsuario: _autenticarUsuario,
             enviarEmailUsuario: _enviarEmailUsuario,
             validarCadastroUsuario: _validarCadastroUsuario,
             cadastrarAnuncio: _cadastrarAnuncio,
             carregarAnuncios: _carregarAnuncios,
-            carregarAnunciosPorModalidade: _carregarAnunciosPorModalidade
+            carregarAnunciosPorModalidade: _carregarAnunciosPorModalidade,
+            buscarUsuarioID: _buscarUsuarioID
         };
 
     }

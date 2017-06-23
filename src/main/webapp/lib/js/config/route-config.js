@@ -1,6 +1,6 @@
 angular.module('sportsgo')
-.config(configurar)
-.config(interceptor);
+    .config(configurar)
+    .config(interceptor);
 
 function configurar($routeProvider) {
     $routeProvider
@@ -16,6 +16,11 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/usuario/pre-cadastro.html',
             controller: 'UsuarioController'
         })
+        .when('/sportsgo/usuario/cadastro', {
+            templateUrl: 'lib/views/usuario/cadastro.html',
+            controller: 'UsuarioCadastroController'
+        })
+
         .when('/sportsgo/esportes/novo', {
             templateUrl: 'lib/views/anuncios/cadastro.html',
             controller: 'AnuncioController'

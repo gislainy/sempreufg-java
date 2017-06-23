@@ -1,7 +1,7 @@
 (function () {
     angular.module('sportsgo').controller('PrincipalController', PrincipalController);
 
-    function PrincipalController($scope, usuarioService, growl, $location, requisicoesService, logoutService) {
+    function PrincipalController($scope, usuarioService, growl, $location, requisicoesService, logoutService, routeService) {
 
         $scope.$on('usuarioLogado', function (event, args) {
             growl.success('Bem vindo ' + args.usuario + '!');
@@ -10,7 +10,7 @@
             usuarioService.set('id', args.id);
             $scope.logado = args.logado;
             if (args !== undefined && args !== null && args.logado) {
-                $scope.usuario = args.usuario;
+                $scope.nomeUsuario = args.usuario;
             }
         });
 
@@ -83,14 +83,34 @@
             return mod;
         }
 
-        $scope.logout = function() {
+        $scope.logout = function () {
             var sair = confirm('Deseja mesmo sair?');
-            if(sair) {
+            if (sair) {
                 logoutService.logout();
                 $scope.logado = null;
-                $scope.usuario = null;
+                $scope.nomeUsuario = null;
             }
         };
 
+        $scope.verificarCadastroUsuario = function () {
+            var id = usuarioService.get('id');
+            requisicoesService.buscarUsuarioID(id)
+                .then(function(response) {
+                    var usuario = response.data;
+                    if(usuario !== '' && usuario !== null) {
+                        var cadastroIncompleto = usuario.cpfcnpj === null && usuario.enderecos.length === 0 && usuario.redeSocias.length === 0 && usuario.telefones.length === 0;
+                        if(cadastroIncompleto) {
+                            growl.info('Cadastro de usuário incompleto, será redirecionado para a tela de cadastro');
+                            routeService.mudarRotaTimeout('/sportsgo/usuario/cadastro');
+                        } else {
+                            routeService.mudarRota('sportsgo/esportes/novo');
+                        }
+                 } 
+                }, function(error) {
+                    console.log('Falha na requisição' + error);
+                });
+        };
+
+        
     }
 })();

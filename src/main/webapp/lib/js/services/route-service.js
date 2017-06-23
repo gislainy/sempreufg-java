@@ -3,7 +3,7 @@
 
     function routeService($timeout, $location) {
         this.mudarRota = function(caminho) {
-            
+            return $location.path(caminho);
         };
 
         this.mudarRotaTimeout = function(caminho) {

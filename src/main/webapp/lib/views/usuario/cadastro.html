@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <h2 class="text-red">Completando cadastro de usuário...</h2>
+        <hr>
+    </div>
+    <div class="well row">
+        <form name="cadastroForm" ng-submit="cadastrarUsuario()">
+            <label for="">Tipo pessoa</label>
+            <div class="form-group">
+                <label class="radio-inline"><input type="radio" name="optradio" ng-focus="cpfActive()">Física</label>
+                <label class="radio-inline"><input type="radio" name="optradio" ng-focus="cnpjActive()">Jurídica</label>
+            </div>
+            <div class="form-group" ng-show="cpfBool">
+                <label for="cpf">CPF</label>
+                <input class="form-control" type="text" onkeypress="MascaraCPF(cpf)" name="cpf" id="cpf" ng-model="usuario.cpfcnpj" limit-to="14">
+            </div>
+            <div class="form-group" ng-show="cnpjBool">
+                <label for="cnpj">CNPJ</label>
+                <input class="form-control" type="text" onkeypress="MascaraCNPJ(cnpj)" name="cnpj" id="cnpj" ng-model="usuario.cpfcnpj" limit-to="18">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input class="form-control" type="text" name="telefone" id="telefone" onkeypress="MascaraTelefone(telefone)" ng-model="usuario.telefone">
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereco</label>
+                <input class="form-control" type="text" name="endereco" id="endereco" ng-model="usuario.endereco">
+            </div>
+            <label for="">Rede social</label>
+            <div class="form-group">
+                <label class="radio-inline"><input type="radio" name="optradio" ng-focus="setFacebook()">
+                        <i class="fa fa-facebook-official fa-2x"></i>
+                    </label>
+                <label class="radio-inline"><input type="radio" name="optradio"  ng-focus="setTwitter()">
+                        <i class="fa fa-twitter-square fa-2x"></i>
+                    </label>
+                <label class="radio-inline"><input type="radio" name="optradio"  ng-focus="setInstagram()">
+                        <i class="fa fa-instagram fa-2x"></i>
+                    </label>
+            </div>
+            <div class="form-group">
+                <label for="profile">Profile</label>
+                <input class="form-control" type="text" name="profile" id="profile" ng-model="usuario.redeSocial.profile">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Completar cadastro" class="btn btn-primary btn-block btn-outline">
+            </div>
+        </form>
+    </div>
+</div>

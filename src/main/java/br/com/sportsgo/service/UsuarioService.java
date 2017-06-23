@@ -39,6 +39,15 @@ public class UsuarioService {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/completar-cadastro", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ModelMap completarCadastroUsuario(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
+		ModelMap retorno = new ModelMap();
+		usuarioDao.atualiza(usuario);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/enviar-email", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void enviarEmail(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
 		SendHTMLEmail email = new SendHTMLEmail(usuario.getEmails().get(0).getEnderecoEmail());
