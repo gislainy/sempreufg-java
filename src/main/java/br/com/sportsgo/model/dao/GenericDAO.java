@@ -47,7 +47,7 @@ public class GenericDAO<T, PK extends Serializable> implements IDao<T, PK>{
     }
  
     public void atualiza(final T t) {
-        getSession().merge(t);
+        getSession().update(t);
     }
 
 	public void remove(PK id) {

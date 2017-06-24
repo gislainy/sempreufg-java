@@ -27,9 +27,13 @@ public class Endereco{
 	
 	
 	//Metodos Getters and Setters
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
+	
+	public Endereco(){
+		usuario = new Usuario();
+	}
 	
 	
 	@Id
@@ -44,8 +48,8 @@ public class Endereco{
 	public Long getUsuario() {
 		return usuario.getIdUsuario();
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(Long idUsuario) {
+		this.usuario.setIdUsuario(idUsuario);
 	}
 	public String getLogradouro() {
 		return Logradouro;

@@ -22,9 +22,13 @@ public class Telefone{
 	
 	//Metodos Getters e Setters
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
+	
+	public Telefone() {
+		usuario = new Usuario();
+	}
 	
 	@Id
 	@GeneratedValue
@@ -38,8 +42,8 @@ public class Telefone{
 	public Long getUsuario() {
 		return usuario.getIdUsuario();
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(Long idUsuario) {
+		this.usuario.setIdUsuario(idUsuario);
 	}
 	public String getCodPais() {
 		return codPais;

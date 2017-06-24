@@ -9,11 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.sportsgo.model.usuario.Usuario;
 
 //*Atributos CamelCase: Verificar BD/Diagrama ER.
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Email {
 	private Long idEmail;
 	
@@ -26,7 +29,7 @@ public class Email {
 		this.usuario = new Usuario();
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 	

@@ -68,7 +68,7 @@ public class Usuario extends Pessoa {
 	public void setEmails(List<Email> emails) {
 		this.emails = emails;
 		for (Email email : this.emails) {
-			email.setUsuario(this.getIdUsuario());
+			email.setUsuario(this.idUsuario);
 		}
 	}
 
@@ -80,6 +80,9 @@ public class Usuario extends Pessoa {
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+		for (Endereco endereco : this.enderecos) {
+			endereco.setUsuario(this.idUsuario);
+		}
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -100,6 +103,9 @@ public class Usuario extends Pessoa {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+		for (Telefone telefone : this.telefones) {
+			telefone.setUsuario(this.idUsuario);
+		}
 
 	}
 }
