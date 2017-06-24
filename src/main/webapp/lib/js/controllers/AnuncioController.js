@@ -66,9 +66,9 @@
         }
 
         function formatarDatas() {
-            $scope.anuncio.dataTermino = parseInt($scope.anuncio.dataTermino.replace('/', '').replace('/', ''));
-            $scope.anuncio.datas.dataEvento = parseInt($scope.anuncio.datas.dataEvento.replace('/', '').replace('/', ''));
-            $scope.anuncio.dataInclusao = parseInt($scope.anuncio.dataInclusao.replace('/', '').replace('/', ''));
+            $scope.anuncio.dataTermino = new Date($scope.anuncio.dataTerminio);
+            $scope.anuncio.datas.dataEvento = new Date($scope.anuncio.dataEvento);
+            $scope.anuncio.dataInclusao = new Date($scope.anuncio.dataInclusao);
         }
 
         function inserirItensArray(anuncio) {

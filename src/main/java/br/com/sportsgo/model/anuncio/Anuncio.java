@@ -1,16 +1,21 @@
 package br.com.sportsgo.model.anuncio;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -26,17 +31,22 @@ public class Anuncio {
 
 	private Long codAnuncio;
 	private String descricao;
-	private Integer dataInclusao;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataInclusao;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataTermino;
+	
 	private double precoEvento;
 	private String modalidade;
 	private long nrViews;
-	private Integer dataTermino;
 	private Boolean anuncioEhProfissional;
 	private String titulo;
 	
 	public Anuncio(){
 		this.usuario = new Usuario();
-		this.status = EnumStatusAnuncio.NOVO;
+		this.status = EnumStatusAnuncio.EM_ANALISE;
 	}
 	
 	@ManyToOne
@@ -86,11 +96,11 @@ public class Anuncio {
 		this.descricao = descricao;
 	}
 
-	public Integer getDataInclusao() {
+	public Calendar getDataInclusao() {
 		return dataInclusao;
 	}
 
-	public void setDataInclusao(Integer dataInclusao) {
+	public void setDataInclusao(Calendar dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
 
@@ -118,11 +128,11 @@ public class Anuncio {
 		this.nrViews = nrViews;
 	}
 
-	public Integer getDataTermino() {
+	public Calendar getDataTermino() {
 		return dataTermino;
 	}
 
-	public void setDataTermino(Integer dataTermino) {
+	public void setDataTermino(Calendar dataTermino) {
 		this.dataTermino = dataTermino;
 	}
 
@@ -134,6 +144,7 @@ public class Anuncio {
 		this.anuncioEhProfissional = anuncioEhProfissional;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public EnumStatusAnuncio getStatus() {
 		return status;
 	}

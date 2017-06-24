@@ -1,5 +1,7 @@
 package br.com.sportsgo.model.anuncio;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class AnuncioDataEvento {
 
 	private Long idDtEvento;
-	private Integer dataEvento;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataEvento;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "codAnuncio")
@@ -33,11 +39,11 @@ public class AnuncioDataEvento {
 		this.idDtEvento = idDtEvento;
 	}
 
-	public Integer getDataEvento() {
+	public Calendar getDataEvento() {
 		return dataEvento;
 	}
 
-	public void setDataEvento(Integer dataEvento) {
+	public void setDataEvento(Calendar dataEvento) {
 		this.dataEvento = dataEvento;
 	}
 

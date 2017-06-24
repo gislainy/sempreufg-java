@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.sportsgo.model.anuncio.Anuncio;
 import br.com.sportsgo.model.anuncio.AnuncioArquivo;
+import br.com.sportsgo.model.anuncio.EnumStatusAnuncio;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivoDAO;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
 
@@ -78,6 +79,28 @@ public class AnuncioService {
 	@RequestMapping(value = "/listar-anuncios", method = RequestMethod.GET)
 	public ArrayList<Anuncio> listaAnuncios() throws SQLException {
 		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.lista();
+		return listaAnuncios;
+	}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/listar-anuncios-em-analise", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosEmAnalise() throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.buscarAnunciosPendentes(EnumStatusAnuncio.EM_ANALISE);
+		return listaAnuncios;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/listar-anuncios-publicados", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosPublicados() throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.buscarAnunciosPublicados(EnumStatusAnuncio.PUBLICADO);
+		return listaAnuncios;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/listar-anuncios-bloqueados", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosBloqueados() throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.buscarAnunciosPublicados(EnumStatusAnuncio.BLOQUEADO);
 		return listaAnuncios;
 	}
 	

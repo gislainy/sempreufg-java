@@ -1,10 +1,9 @@
 package br.com.sportsgo.model.anuncio;
 
 public enum EnumStatusAnuncio {
-	NOVO(0, "Novo"),
-	EM_ANALISE(1, "Em Análise"),
-	PUBLICADO (2, "Publicado"),
-	BLOQUEADO (3, "Bloqueado");
+	EM_ANALISE(0, "Em Análise"),
+	PUBLICADO (1, "Publicado"),
+	BLOQUEADO (2, "Bloqueado");
 	
 	private final Integer valor;
 	private final String descricao;

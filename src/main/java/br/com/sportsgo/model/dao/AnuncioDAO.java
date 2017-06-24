@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.sportsgo.model.anuncio.Anuncio;
+import br.com.sportsgo.model.anuncio.EnumStatusAnuncio;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
 
 @Repository
@@ -57,6 +58,30 @@ public class AnuncioDAO implements IAnuncioDAO{
     	criteria.add(Restrictions.eq("modalidade",modalidade));
     	return criteria.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> buscarAnunciosPendentes(EnumStatusAnuncio status) {
+		//http://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
+		Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("status",status));
+    	return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> buscarAnunciosPublicados(EnumStatusAnuncio status) {
+		//http://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
+		Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("status",status));
+    	return criteria.list();
+	}	
+	
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> buscarAnunciosBloqueados(EnumStatusAnuncio status) {
+		//http://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
+		Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("status",status));
+    	return criteria.list();
+	}	
 	
 	@SuppressWarnings("unchecked")
 	public List<Anuncio> consultaPorUsuario(Long idUsuario) {
