@@ -1,7 +1,7 @@
 (function () {
     angular.module('sportsgo').controller('IndexController', IndexController);
 
-    function IndexController($scope, requisicoesService, growl) {
+    function IndexController($scope, requisicoesService, growl, usuarioService, routeService) {
 
 
         function init() {
@@ -41,6 +41,11 @@
             }
             console.log($scope.anuncios);
         }
+
+        $scope.carregarDetalheAnuncio = function(anuncio) {
+            usuarioService.set('anuncioEscolhido', anuncio);
+            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+        };
 
 
         $scope.categorias = [

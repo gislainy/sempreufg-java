@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <h2 class="text-center" ng-bind="anuncio.titulo"></h1>
+    </div>
+    <div>
+        <label>Descrição</label>
+        <div class="well" ng-bind="anuncio.descricao"></div>
+    </div>
+    <div>
+        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+            <div owl-carousel-item="" ng-repeat="foto in anuncio.arquivos" class="item slider-height">
+                <div class="margin-bottom-20">
+                    <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img class="img-responsive img-height" src="{{foto.enderecoArquivo}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </data-owl-carousel>
+    </div>
+    <div>
+        <h3>Preço: R${{anuncio.precoEvento}}</h3>
+    </div>
+    <div>
+        <label for="">Detathes do evento</label>
+        <hr>
+        <div>
+            <p>Local: {{anuncio.locais.local}}</p>
+        </div>
+        <div>
+            <p>Modalidade esportiva: {{anuncio.modalidade}}</p>
+        </div>
+    </div>
+</div>

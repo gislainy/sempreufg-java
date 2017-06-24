@@ -92,7 +92,7 @@
             }
         };
 
-        $scope.verificarCadastroUsuario = function () {
+      /*  $scope.verificarCadastroUsuario = function () {
             var id = usuarioService.get('id');
             requisicoesService.buscarUsuarioID(id)
                 .then(function(response) {
@@ -109,7 +109,7 @@
                 }, function(error) {
                     console.log('Falha na requisição' + error);
                 });
-        };
+        }; */
 
         
     }

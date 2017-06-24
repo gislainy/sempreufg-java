@@ -21,9 +21,13 @@ function configurar($routeProvider) {
             controller: 'UsuarioCadastroController'
         })
 
-        .when('/sportsgo/esportes/novo', {
+        .when('/sportsgo/anuncio/novo', {
             templateUrl: 'lib/views/anuncios/cadastro.html',
             controller: 'AnuncioController'
+        })
+        .when('/sportsgo/anuncio/detalhe', {
+            templateUrl: 'lib/views/anuncios/detalhes-anuncio.html',
+            controller: 'AnuncioDetalheController'
         })
         .when('/sportsgo/anuncio/futebol', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
@@ -64,7 +68,6 @@ function configurar($routeProvider) {
         ;
 
     $routeProvider.otherwise({ redirectTo: '/sportsgo' });
-
 }
 
 function interceptor($httpProvider) {
