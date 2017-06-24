@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +50,7 @@ public class Anuncio {
 		this.status = EnumStatusAnuncio.EM_ANALISE;
 	}
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name = "idUsuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Usuario usuario;
@@ -160,9 +161,11 @@ public class Anuncio {
 	}
 
 	public void setAlteracoes(List<AnuncioAlteracao> alteracoes) {
-		this.alteracoes = alteracoes;
-		for (AnuncioAlteracao alteracao : this.alteracoes) {
-			alteracao.setAnuncio(this.getCodAnuncio());
+		if(alteracoes != null && !alteracoes.isEmpty()){
+			this.alteracoes = alteracoes;
+			for (AnuncioAlteracao alteracao : this.alteracoes) {
+				alteracao.setAnuncio(this.codAnuncio);
+			}
 		}
 	}
 	
@@ -173,9 +176,11 @@ public class Anuncio {
 	}
 
 	public void setArquivos(List<AnuncioArquivo> arquivos) {
-		this.arquivos = arquivos;
-		for (AnuncioArquivo arquivo : this.arquivos) {
-			arquivo.setAnuncio(this.getCodAnuncio());
+		if(arquivos != null && !arquivos.isEmpty()){
+			this.arquivos = arquivos;
+			for (AnuncioArquivo arquivo : this.arquivos) {
+				arquivo.setAnuncio(this.codAnuncio);
+			}
 		}
 	}
 	
@@ -186,9 +191,11 @@ public class Anuncio {
 	}
 
 	public void setDatas(List<AnuncioDataEvento> datas) {
-		this.datas = datas;
-		for (AnuncioDataEvento data : this.datas) {
-			data.setAnuncio(this.getCodAnuncio());
+		if(datas != null && !datas.isEmpty()){
+			this.datas = datas;
+			for (AnuncioDataEvento data : this.datas) {
+				data.setAnuncio(this.getCodAnuncio());
+			}
 		}
 	}
 
@@ -199,9 +206,11 @@ public class Anuncio {
 	}
 
 	public void setLocais(List<AnuncioLocal> locais) {
-		this.locais = locais;
-		for (AnuncioLocal local : this.locais) {
-			local.setAnuncio(this.getCodAnuncio());
+		if(locais != null && !locais.isEmpty()){
+			this.locais = locais;
+			for (AnuncioLocal local : this.locais) {
+				local.setAnuncio(this.getCodAnuncio());
+			}
 		}
 	}
 
@@ -212,9 +221,11 @@ public class Anuncio {
 	}
 
 	public void setPendencias(List<AnuncioPendencia> pendencias) {
-		this.pendencias = pendencias;
-		for (AnuncioPendencia pendencia : this.pendencias) {
-			pendencia.setAnuncio(this.getCodAnuncio());
+		if(pendencias != null && !pendencias.isEmpty()){
+			this.pendencias = pendencias;
+			for (AnuncioPendencia pendencia : this.pendencias) {
+				pendencia.setAnuncio(this.getCodAnuncio());
+			}
 		}
 	}
 
@@ -225,9 +236,11 @@ public class Anuncio {
 	}
 
 	public void setDadosPremium(List<AnuncioPremium> dadosPremium) {
-		this.dadosPremium = dadosPremium;
-		for (AnuncioPremium premium : this.dadosPremium) {
-			premium.setAnuncio(this.getCodAnuncio());
+		if(dadosPremium != null && !dadosPremium.isEmpty()){
+			this.dadosPremium = dadosPremium;
+			for (AnuncioPremium premium : this.dadosPremium) {
+				premium.setAnuncio(this.getCodAnuncio());
+			}
 		}
 	}
 

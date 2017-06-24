@@ -66,9 +66,11 @@ public class Usuario extends Pessoa {
 	}
 
 	public void setEmails(List<Email> emails) {
-		this.emails = emails;
-		for (Email email : this.emails) {
-			email.setUsuario(this.idUsuario);
+		if(emails != null && !emails.isEmpty()){
+			this.emails = emails;
+			for (Email email : this.emails) {
+				email.setUsuario(this.idUsuario);
+			}
 		}
 	}
 
@@ -79,9 +81,11 @@ public class Usuario extends Pessoa {
 	}
 
 	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-		for (Endereco endereco : this.enderecos) {
-			endereco.setUsuario(this.idUsuario);
+		if(enderecos != null && !enderecos.isEmpty()){
+			this.enderecos = enderecos;
+			for (Endereco endereco : this.enderecos) {
+				endereco.setUsuario(this.idUsuario);
+			}
 		}
 	}
 
@@ -102,9 +106,11 @@ public class Usuario extends Pessoa {
 	}
 
 	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-		for (Telefone telefone : this.telefones) {
-			telefone.setUsuario(this.idUsuario);
+		if(telefones != null && !telefones.isEmpty()){
+			this.telefones = telefones;
+			for (Telefone telefone : this.telefones) {
+				telefone.setUsuario(this.idUsuario);
+			}
 		}
 
 	}
