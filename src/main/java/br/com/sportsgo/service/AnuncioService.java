@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -124,7 +125,15 @@ public class AnuncioService {
 	public ModelMap uploadFilesArquivos(@RequestParam("file") MultipartFile[] files, 
 									  @RequestBody Anuncio anuncio) {
 		ArrayList<MultipartFile> arquivos = new ArrayList<MultipartFile>(Arrays.asList(files));
-		AnuncioArquivo imagemDoAnuncio;
+		AnuncioArquivo imagemDoAnuncio;		
+		List<AnuncioArquivo> imagens;
+
+		if(anuncio.getArquivos() != null){
+			imagens = anuncio.getArquivos();
+		} else {
+			imagens = new ArrayList<AnuncioArquivo>();
+		}
+		
 		ModelMap retorno = new ModelMap();
 		for (MultipartFile file : arquivos) {
 			String name = file.getOriginalFilename();
@@ -147,7 +156,7 @@ public class AnuncioService {
 				String caminhobd = "uploaded" + File.separator + anuncio.getUsuario() + File.separator + anuncio.getCodAnuncio() + File.separator +  name;
 				imagemDoAnuncio = new AnuncioArquivo(anuncio, caminhobd);
 				arquivoDao.adiciona(imagemDoAnuncio);
-				anuncio.getArquivos().add(imagemDoAnuncio);
+				imagens.add(imagemDoAnuncio);
 				
 				retorno.addAttribute("retorno", true);
 				
@@ -155,9 +164,10 @@ public class AnuncioService {
 				retorno.addAttribute("retorno", false);
 				return retorno ;
 			}
+			
+			anuncio.setArquivos(imagens);
 		}
 		return retorno;
 	}
-	
 	
 }
