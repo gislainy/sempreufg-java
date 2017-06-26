@@ -10,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,12 +20,10 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.sportsgo.model.usuario.Usuario;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Anuncio {
 
@@ -47,10 +44,10 @@ public class Anuncio {
 	
 	public Anuncio(){
 		this.usuario = new Usuario();
-		this.status = EnumStatusAnuncio.EM_ANALISE;
+		this.status  = EnumStatusAnuncio.EM_ANALISE;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name = "idUsuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Usuario usuario;
@@ -66,7 +63,7 @@ public class Anuncio {
 	private List<AnuncioPremium> dadosPremium;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	public Long getCodAnuncio() {
 		return codAnuncio;
 	}
@@ -194,7 +191,7 @@ public class Anuncio {
 		if(datas != null && !datas.isEmpty()){
 			this.datas = datas;
 			for (AnuncioDataEvento data : this.datas) {
-				data.setAnuncio(this.getCodAnuncio());
+				data.setAnuncio(this.codAnuncio);
 			}
 		}
 	}
@@ -209,7 +206,7 @@ public class Anuncio {
 		if(locais != null && !locais.isEmpty()){
 			this.locais = locais;
 			for (AnuncioLocal local : this.locais) {
-				local.setAnuncio(this.getCodAnuncio());
+				local.setAnuncio(this.codAnuncio);
 			}
 		}
 	}
@@ -224,7 +221,7 @@ public class Anuncio {
 		if(pendencias != null && !pendencias.isEmpty()){
 			this.pendencias = pendencias;
 			for (AnuncioPendencia pendencia : this.pendencias) {
-				pendencia.setAnuncio(this.getCodAnuncio());
+				pendencia.setAnuncio(this.codAnuncio);
 			}
 		}
 	}
@@ -239,7 +236,7 @@ public class Anuncio {
 		if(dadosPremium != null && !dadosPremium.isEmpty()){
 			this.dadosPremium = dadosPremium;
 			for (AnuncioPremium premium : this.dadosPremium) {
-				premium.setAnuncio(this.getCodAnuncio());
+				premium.setAnuncio(this.codAnuncio);
 			}
 		}
 	}

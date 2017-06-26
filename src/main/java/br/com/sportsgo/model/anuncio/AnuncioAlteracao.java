@@ -16,7 +16,7 @@ public class AnuncioAlteracao {
 	private String observacao;
 	private Integer data;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 

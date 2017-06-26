@@ -21,7 +21,7 @@ public class AnuncioDataEvento {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataEvento;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "codAnuncio")
 	private Anuncio anuncio;
 
