@@ -1,9 +1,11 @@
 <div class="container">
     <div>
-        <h2 class="text-center" ng-bind="anuncio.titulo"></h1>
+        <h2 class="text-center" ng-bind="anuncio.titulo">
+            </h1>
     </div>
     <div>
         <label>Descrição</label>
+        <label class="pull-right">Cadastro por {{autor}} em: {{anuncio.dataInclusao | date: 'dd/MM/yyyy'}}</label>
         <div class="well" ng-bind="anuncio.descricao"></div>
     </div>
     <div>
@@ -22,16 +24,27 @@
         </data-owl-carousel>
     </div>
     <div>
-        <h3>Preço: R${{anuncio.precoEvento}}</h3>
+        <h3>Preço:{{anuncio.precoEvento | currency:'R$':2}}</h3>
+    </div>
+    <hr>
+    <div>
+        <div class="col-md-3" ng-repeat="local in anuncio.locais">
+            <label>Local</label>
+            <p>{{local.local}}</p>
+        </div>
+        <div class="col-md-3">
+            <label>Modalidade</label>
+            <p>{{anuncio.modalidade}}</p>
+        </div>
     </div>
     <div>
-        <label for="">Detathes do evento</label>
-        <hr>
-        <div>
-            <p>Local: {{anuncio.locais.local}}</p>
+        <div class="col-md-3" ng-repeat="data in anuncio.datas">
+            <label>Data de início</label>
+            <p>{{data.dataEvento | date: 'dd/MM/yyyy'}}</p>
         </div>
-        <div>
-            <p>Modalidade esportiva: {{anuncio.modalidade}}</p>
+        <div class="col-md-3">
+            <label>Data de término</label>
+            <p>{{anuncio.dataTermino | date: 'dd/MM/yyyy'}}</p>
         </div>
     </div>
 </div>

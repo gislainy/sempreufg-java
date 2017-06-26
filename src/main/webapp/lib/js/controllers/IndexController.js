@@ -21,7 +21,7 @@
 
 
         function carregarAnuncios() {
-            requisicoesService.carregarAnuncios()
+            requisicoesService.carregarAnunciosPublicados()
                 .then(function (response) {
                     if (response.data.length > 0) {
                         $scope.anuncios = response.data;

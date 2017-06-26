@@ -1,8 +1,13 @@
 (function () {
     angular.module('sportsgo').controller('UsuarioCadastroController', UsuarioCadastroController);
 
-    function UsuarioCadastroController($scope, growl, requisicoesService, routeService, clearMaskService) {
+    function UsuarioCadastroController($scope, growl,usuarioService, requisicoesService, routeService, clearMaskService) {
 
+        function init() {
+            $scope.usuario = usuarioService.get('usuarioCadastroCompleto');
+        }
+
+        init();
 
         $scope.cadastrarUsuario = function () {
             if (validarCpfCnpj()) {
@@ -12,7 +17,9 @@
                     requisicoesService.completarCadastroUsuario($scope.usuario)
                         .then(function (response) {
                             if(response.data.retorno) {
-                                growl.error('Cadastro completado com sucesso');
+                                growl.success('Cadastro completado com sucesso');
+                                delete $scope.usuario;
+                                usuarioService.set('usuarioCadastroCompleto', null);
                                 routeService.mudarRotaTimeout('/sportsgo');
                             }
                         }, function (error) {
@@ -107,9 +114,6 @@
             $scope.usuario.enderecos = arrayEndereco;
             $scope.usuario.redesSociais = arrayRedeSocial;
             $scope.usuario.telefones = arrayTelefones;
-            $scope.usuario.emails = [];
-            $scope.usuario.login = null;
-            $scope.usuario.senha = null;
         }
 
 

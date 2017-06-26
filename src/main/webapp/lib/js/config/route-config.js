@@ -65,6 +65,14 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/anuncios/anuncios-todos.html',
             controller: 'AnuncioTodosController'
         })
+        .when('/sportsgo/anuncios/pendentes', {
+            templateUrl: 'lib/views/anuncios/anuncios-em-analise.html',
+            controller: 'AnuncioPendenteController'
+        })
+        .when('/sportsgo/anuncios/bloqueados', {
+            templateUrl: 'lib/views/anuncios/anuncios-bloqueados.html',
+            controller: 'AnuncioBloqueadoController'
+        })
         ;
 
     $routeProvider.otherwise({ redirectTo: '/sportsgo' });

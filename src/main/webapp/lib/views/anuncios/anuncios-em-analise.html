@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Anúncios {{tipoAnuncio}}</h2>
-    <div class="panel-group col-md-3" ng-repeat="anuncio in anuncios">
+    <div class="panel-group col-md-3 sumir" ng-repeat="anuncio in anuncios">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3><a class="hover-effect" href="#">{{anuncio.titulo}}</a></h3>
@@ -11,11 +11,24 @@
                         <div class="overflow-hidden">
                             <img class="img-responsive img-height" src="{{anuncio.fotoCapa}}" alt="">
                         </div>
-                        <a class="btn-more hover-effect" href="">Saiba mais</a>
+                        <a class="btn-more hover-effect" href="" ng-click="carregarDetalhesAnuncio(anuncio)">Detalhes</a>
                     </div>
                     <div class="caption">
                         <p>{{anuncio.descricao}}</p>
                     </div>
+                    <div>
+                        <div >
+                            <a href="" ng-click="publicarAnuncio(anuncio, $index)">
+                                <i class="fa fa-check-circle-o fa-3x pull-left"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="" ng-click="bloquearAnuncio(anuncio, $index)">
+                                <i class="fa fa-ban fa-3x pull-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

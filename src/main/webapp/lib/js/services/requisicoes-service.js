@@ -16,7 +16,7 @@
         };
 
         var _buscarUsuarioID = function (id) {
-            return $http.get(urlConfig.baseUrl + '/usuario/buscaUsuario/'+id);
+            return $http.get(urlConfig.baseUrl + '/usuario/buscaUsuario/' + id);
         };
 
         var _enviarEmailUsuario = function (usuario) {
@@ -31,13 +31,42 @@
             return $http.post(urlConfig.baseUrl + '/anuncio/novo', anuncio, config);
         };
 
-         var _carregarAnuncios = function () {
+        var _carregarTodosAnuncios = function () {
             return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios');
         };
 
-        var _carregarAnunciosPorModalidade = function (modalidade) {
-            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-por-modalidade/'+modalidade);
+        var _carregarAnunciosPublicados = function () {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-publicados');
         };
+
+        var _carregarAnunciosEmAnalise = function () {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-em-analise');
+        };
+
+        var _carregarAnunciosBloqueados = function () {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-bloqueados');
+        };
+
+        var _carregarAnunciosPorModalidade = function (modalidade) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-por-modalidade/' + modalidade);
+        };
+
+        var _publicarAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/publicar', anuncio);
+        };
+
+        var _bloquearAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/bloquear', anuncio);
+        };
+
+        var _desbloquearAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/desbloquear', anuncio);
+        };
+
+        var _carregarAnunciosPorUsuario = function (id) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-por-usuario/' + id);
+        }
+
 
         return {
             novoUsuario: _novoUsuario,
@@ -46,9 +75,16 @@
             enviarEmailUsuario: _enviarEmailUsuario,
             validarCadastroUsuario: _validarCadastroUsuario,
             cadastrarAnuncio: _cadastrarAnuncio,
-            carregarAnuncios: _carregarAnuncios,
+            carregarAnunciosPublicados: _carregarAnunciosPublicados,
+            carregarAnunciosEmAnalise: _carregarAnunciosEmAnalise,
+            carregarAnunciosBloqueados: _carregarAnunciosBloqueados,
+            carregarTodosAnuncios: _carregarTodosAnuncios,
             carregarAnunciosPorModalidade: _carregarAnunciosPorModalidade,
-            buscarUsuarioID: _buscarUsuarioID
+            buscarUsuarioID: _buscarUsuarioID,
+            publicarAnuncio: _publicarAnuncio,
+            bloquearAnuncio: _bloquearAnuncio,
+            desbloquearAnuncio: _desbloquearAnuncio,
+            carregarAnunciosPorUsuario: _carregarAnunciosPorUsuario
         };
 
     }

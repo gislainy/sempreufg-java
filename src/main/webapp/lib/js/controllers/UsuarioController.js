@@ -26,12 +26,22 @@
                         growl.error('Usuário já cadastrado com os seguintes dados: '+ response.data.erros.toString());
                         $scope.usuario.emails = $scope.emailAntigo;
                     } else {
+                        verificarUsuarioAdmin();
                         novoUsuario();
                         delete $scope.usuario;
+                        delete $scope.confirmarSenha;
                     }
                 }, function (error) {
                     console.log('Falha na requisição '+ error);
                 });
+        }
+
+        function verificarUsuarioAdmin() {
+            if ($scope.usuario.login.toLowerCase().trim() === 'admin') {
+                $scope.usuario.admin = true;
+            } else {
+                $scope.usuario.admin = false;
+            }
         }
 
 

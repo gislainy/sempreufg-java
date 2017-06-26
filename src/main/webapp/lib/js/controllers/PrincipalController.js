@@ -6,9 +6,11 @@
         $scope.$on('usuarioLogado', function (event, args) {
             growl.success('Bem vindo ' + args.usuario + '!');
             usuarioService.set('logado', args.logado);
+            usuarioService.set('admin', args.admin);
             usuarioService.set('usuarioLogado', args.usuario);
             usuarioService.set('id', args.id);
             $scope.logado = args.logado;
+            $scope.admin = args.admin;
             if (args !== undefined && args !== null && args.logado) {
                 $scope.nomeUsuario = args.usuario;
             }
@@ -58,8 +60,37 @@
                 });
         };
 
-        $scope.carregarAnuncios = function () {
-            requisicoesService.carregarAnuncios()
+        $scope.carregarAnunciosEmAnalise = function () {
+            requisicoesService.carregarAnunciosEmAnalise()
+                .then(function (response) {
+                    if (response.data.length > 0) {
+                        usuarioService.set('anuncios', response.data);
+                        $location.path('/sportsgo/anuncios/pendentes');
+                    } else {
+                        growl.info('Nenhum anúncio em análise');
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+        $scope.carregarAnunciosBloqueados = function () {
+            requisicoesService.carregarAnunciosBloqueados()
+                .then(function (response) {
+                    if (response.data.length > 0) {
+                        usuarioService.set('anuncios', response.data);
+                        $location.path('/sportsgo/anuncios/bloqueados');
+                    } else {
+                        growl.info('Nenhum anúncio bloqueado');
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+
+        $scope.carregarAnunciosPublicados = function () {
+            requisicoesService.carregarAnunciosPublicados()
                 .then(function (response) {
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
@@ -70,6 +101,25 @@
                 }, function (error) {
                     console.log(error);
                 });
+        };
+
+        $scope.carregarAnunciosUsuario = function() {
+            var idusuario = usuarioService.get('id');
+            requisicoesService.carregarAnunciosPorUsuario(idusuario)
+                .then(function (response) {
+                    if (response.data.length > 0) {
+                        usuarioService.set('anuncios', response.data);
+                        $location.path("/sportsgo/anuncio/todos");
+                    } else {
+                        growl.info('Nenhum anúncio cadastrado!!');
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+        $scope.carregarAnunciosEmAnalisePorUsuario = function() {
+            alert('EM DESENVOLVIMENTO !!!');    
         };
 
 
@@ -92,25 +142,26 @@
             }
         };
 
-      /*  $scope.verificarCadastroUsuario = function () {
+        $scope.verificarCadastroUsuario = function () {
             var id = usuarioService.get('id');
             requisicoesService.buscarUsuarioID(id)
-                .then(function(response) {
+                .then(function (response) {
                     var usuario = response.data;
-                    if(usuario !== '' && usuario !== null) {
-                        var cadastroIncompleto = usuario.cpfcnpj === null && usuario.enderecos.length === 0 && usuario.redeSocias.length === 0 && usuario.telefones.length === 0;
-                        if(cadastroIncompleto) {
+                    if (usuario !== '' && usuario !== null) {
+                        var cadastroIncompleto = usuario.cpfcnpj === null && usuario.enderecos === null && usuario.redesSociais === null && usuario.telefones === null;
+                        if (cadastroIncompleto) {
+                            usuarioService.set('usuarioCadastroCompleto', usuario);
                             growl.info('Cadastro de usuário incompleto, será redirecionado para a tela de cadastro');
                             routeService.mudarRotaTimeout('/sportsgo/usuario/cadastro');
                         } else {
-                            routeService.mudarRota('sportsgo/esportes/novo');
+                            routeService.mudarRota('sportsgo/anuncio/novo');
                         }
-                 } 
-                }, function(error) {
+                    }
+                }, function (error) {
                     console.log('Falha na requisição' + error);
                 });
-        }; */
+        };
 
-        
+
     }
 })();

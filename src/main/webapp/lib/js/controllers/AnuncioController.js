@@ -56,7 +56,7 @@
 
 
         function formatarPreco() {
-            var preco = $scope.anuncio.precoEvento.replace(',', '').replace('R', '').replace('$', '');
+            var preco = $scope.anuncio.precoEvento.replace(',', '.').replace('R', '').replace('$', '');
             $scope.anuncio.precoEvento = parseFloat(preco);
         }
 
@@ -65,10 +65,24 @@
             return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
         }
 
+        function getDataFormatada(dataEvento) {
+            var dataFormatada = dataEvento.split('/');
+            var dia = parseInt(dataFormatada[0]) + 1;
+            dataFormatada[0] = dia.toString();
+            return dataFormatada[2] + '-' + dataFormatada[1] + '-' + dataFormatada[0];
+        }
+
         function formatarDatas() {
-            $scope.anuncio.dataTermino = new Date($scope.anuncio.dataTerminio);
-            $scope.anuncio.datas.dataEvento = new Date($scope.anuncio.dataEvento);
+            $scope.anuncio.dataTermino = new Date(getDataFormatada($scope.anuncio.dataTermino));
+            $scope.anuncio.datas.dataEvento = new Date(getDataFormatada($scope.anuncio.datas.dataEvento));
             $scope.anuncio.dataInclusao = new Date($scope.anuncio.dataInclusao);
+        }
+
+        function validarDatasInseridas(dataInicio,dataTermino) {
+            var dtinicio = dataInicio.split('-');
+            var dtfim = dataTermino.split('-');
+            //var dtatual = new Date();
+            
         }
 
         function inserirItensArray(anuncio) {

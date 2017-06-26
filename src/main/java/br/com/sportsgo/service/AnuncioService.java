@@ -83,6 +83,35 @@ public class AnuncioService {
 		return listaAnuncios;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/publicar", method = RequestMethod.POST)
+	public ModelMap publicarAnuncio(@RequestBody Anuncio anuncio) throws SQLException {
+		ModelMap retorno = new ModelMap();
+		anuncioDao.atualiza(anuncio);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/bloquear", method = RequestMethod.POST)
+	public ModelMap bloquearAnuncio(@RequestBody Anuncio anuncio) throws SQLException {
+		ModelMap retorno = new ModelMap();
+		anuncioDao.atualiza(anuncio);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/desbloquear", method = RequestMethod.POST)
+	public ModelMap desbloquearAnuncio(@RequestBody Anuncio anuncio) throws SQLException {
+		ModelMap retorno = new ModelMap();
+		anuncioDao.atualiza(anuncio);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	}
+	
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/listar-anuncios-em-analise", method = RequestMethod.GET)
@@ -116,6 +145,13 @@ public class AnuncioService {
 	@RequestMapping(value = "/listar-anuncios-por-modalidade/{modalidade}", method = RequestMethod.GET)
 	public ArrayList<Anuncio> listaAnunciosPorModalidade(@PathVariable("modalidade") String modalidade) throws SQLException {
 		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultaPorModalidade(modalidade);
+		return listaAnuncios;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/listar-anuncios-por-usuario/{idUsuario}", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosPorUsuario(Long idUsuario) throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultaPorUsuario(idUsuario);
 		return listaAnuncios;
 	}
 	

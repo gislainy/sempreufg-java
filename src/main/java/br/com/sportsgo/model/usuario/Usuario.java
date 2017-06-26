@@ -31,6 +31,7 @@ public class Usuario extends Pessoa {
 	private Long idUsuario;
 	private String login;
 	private String senha;
+	private boolean admin;
 	private List<Email> emails;
 	private List<Endereco> enderecos;
 	private List<RedeSocial> redesSociais;
@@ -122,5 +123,19 @@ public class Usuario extends Pessoa {
 			}
 		}
 
+	}
+
+	/**
+	 * @return the admin
+	 */
+	public boolean getAdmin() {
+		return admin;
+	}
+
+	/**
+	 * @param admin the admin to set
+	 */
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }

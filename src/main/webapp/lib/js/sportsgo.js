@@ -1,4 +1,4 @@
-angular.module('sportsgo', ['ngRoute', 'angular-growl'])
+angular.module('sportsgo', ['ngAnimate', 'ngRoute', 'angular-growl'])
     .config(['growlProvider', function (growlProvider) {
         growlProvider.globalTimeToLive(5000);
         growlProvider.globalPosition('top-right');

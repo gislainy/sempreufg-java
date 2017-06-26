@@ -144,6 +144,7 @@ public class UsuarioService {
 				retorno.addAttribute("id", usuarioLista.getIdUsuario());
 				retorno.addAttribute("usuario", usuarioLista.getLogin());
 				retorno.addAttribute("token", TokenResponse.gerarToken(usuarioLista.getSenha()));
+				retorno.addAttribute("admin", usuarioLista.getAdmin());
 				return retorno;
 			}
 		}
