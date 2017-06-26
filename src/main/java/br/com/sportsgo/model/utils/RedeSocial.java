@@ -9,9 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.sportsgo.model.usuario.Usuario;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class RedeSocial{
 	private Long idRedeSocial;
 	private String nomeRede;
@@ -20,6 +23,10 @@ public class RedeSocial{
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
+	
+	public RedeSocial(){
+		this.usuario = new Usuario();
+	}
 	
 	//Metodos Getters and Setters
 	@Id
@@ -34,8 +41,8 @@ public class RedeSocial{
 	public Long getUsuario() {
 		return usuario.getIdUsuario();
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(Long idUsuario) {
+		this.usuario.setIdUsuario(idUsuario);
 	}
 	public String getNomeRede() {
 		return nomeRede;
