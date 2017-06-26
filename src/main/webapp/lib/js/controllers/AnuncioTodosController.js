@@ -1,7 +1,7 @@
-(function(){
-    angular.module('sportsgo').controller('AnuncioTodosController',AnuncioTodosController);
+(function () {
+    angular.module('sportsgo').controller('AnuncioTodosController', AnuncioTodosController);
 
-    function AnuncioTodosController($scope, usuarioService) {
+    function AnuncioTodosController($scope, usuarioService, routeService) {
 
         function init() {
             $scope.anuncios = usuarioService.get('anuncios');
@@ -17,8 +17,9 @@
             }
         }
 
-         $scope.carregarDetalhesAnuncio = function(anuncio) {
+        $scope.carregarDetalhesAnuncio = function (anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
+            usuarioService.set('tipoAnuncio', 'publicados');
             routeService.mudarRota('/sportsgo/anuncio/detalhe');
         };
 

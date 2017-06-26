@@ -1,7 +1,7 @@
 (function(){
     angular.module('sportsgo').controller('AnuncioModalidadeController',AnuncioModalidadeController);
 
-    function AnuncioModalidadeController($scope, usuarioService) {
+    function AnuncioModalidadeController($scope, usuarioService, routeService) {
 
         function init() {
             $scope.anuncios = usuarioService.get('anuncios');
@@ -17,6 +17,11 @@
                 $scope.anuncios[indice].fotoCapa = $scope.anuncios[indice].arquivos[0].enderecoArquivo;
             }
         }
+
+        $scope.carregarDetalhesAnuncio = function(anuncio) {
+            usuarioService.set('anuncioEscolhido', anuncio);
+            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+        };
 
 
     }

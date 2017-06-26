@@ -2,7 +2,7 @@
 
     angular.module('sportsgo').controller('AnuncioBloqueadoController', AnuncioBloqueadoController);
 
-    function AnuncioBloqueadoController($scope, growl, usuarioService, requisicoesService) {
+    function AnuncioBloqueadoController($scope, growl,routeService, usuarioService, requisicoesService) {
 
         function init() {
             $scope.anuncios = usuarioService.get('anuncios');
