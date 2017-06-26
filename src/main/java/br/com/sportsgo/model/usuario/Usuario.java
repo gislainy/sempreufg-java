@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,6 +24,8 @@ import br.com.sportsgo.model.utils.Telefone;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@DynamicUpdate(value=true)
+@SelectBeforeUpdate(value=true)
 public class Usuario extends Pessoa {
 
 	private Long idUsuario;
@@ -91,12 +95,17 @@ public class Usuario extends Pessoa {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	public List<RedeSocial> getRedeSocias() {
+	public List<RedeSocial> getRedesSociais() {
 		return redesSociais;
 	}
 
-	public void setRedeSocias(List<RedeSocial> redesSociais) {
-		this.redesSociais = redesSociais;
+	public void setRedesSociais(List<RedeSocial> redesSociais) {
+		if(redesSociais != null && !redesSociais.isEmpty()){
+			this.redesSociais = redesSociais;
+			for (RedeSocial redeSocial : this.redesSociais) {
+				redeSocial.setUsuario(this.idUsuario);
+			}
+		}
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
