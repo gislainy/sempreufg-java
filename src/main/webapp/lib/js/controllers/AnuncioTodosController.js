@@ -17,6 +17,11 @@
             }
         }
 
+         $scope.carregarDetalhesAnuncio = function(anuncio) {
+            usuarioService.set('anuncioEscolhido', anuncio);
+            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+        };
+
 
     }
 

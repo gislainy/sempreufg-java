@@ -19,7 +19,7 @@
             requisicoesService.cadastrarAnuncio(formData, config)
                 .then(function(response) {
                     if (response.data.retorno === true) {
-                        growl.success('Anúncio cadastrado com sucesso');
+                        growl.success('Anúncio enviado para análise com sucesso');
                         $scope.anuncio = null;
                         $scope.myFile = null;
                     } else {

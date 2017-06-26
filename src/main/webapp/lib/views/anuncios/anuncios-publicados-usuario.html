@@ -17,17 +17,17 @@
                         <p>{{anuncio.descricao}}</p>
                     </div>
                 </div>
-            </div>
-            <div>
                 <div>
-                    <a href="" ng-click="publicarAnuncio(anuncio, $index)">
-                                <i class="fa fa-pencil-square-o fa-3x pull-left"></i>
-                            </a>
-                </div>
-                <div>
-                    <a href="" ng-click="bloquearAnuncio(anuncio, $index)">
-                                <i class="fa fa-times-circle-o fa-3x pull-right"></i>
-                            </a>
+                    <div>
+                        <a href="" ng-click="editarAnuncio(anuncio)">
+                            <i class="fa fa-pencil-square-o fa-3x pull-left"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="" ng-click="deletarAnuncio(anuncio, $index)">
+                            <i class="fa fa-times-circle-o fa-3x pull-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

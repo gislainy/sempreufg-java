@@ -81,6 +81,10 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/anuncios/anuncios-bloqueados.html',
             controller: 'AnuncioBloqueadoController'
         })
+         .when('/sportsgo/anuncio/editar', {
+            templateUrl: 'lib/views/anuncios/editar-anuncio.html',
+            controller: 'AnuncioEditarController'
+        })
         ;
 
     $routeProvider.otherwise({ redirectTo: '/sportsgo' });

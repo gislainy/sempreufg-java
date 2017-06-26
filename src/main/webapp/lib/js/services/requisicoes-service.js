@@ -65,11 +65,15 @@
 
         var _carregarAnunciosPublicadosPorUsuario = function (id) {
             return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-publicados-por-usuario/' + id);
-        }
+        };
 
         var _carregarAnunciosEmAnalisePorUsuario = function (id) {
             return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-pendentes-por-usuario/' + id);
-        }
+        };
+
+        var _deletarAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/deletar', anuncio);
+        };
 
 
         return {
@@ -89,7 +93,8 @@
             bloquearAnuncio: _bloquearAnuncio,
             desbloquearAnuncio: _desbloquearAnuncio,
             carregarAnunciosPublicadosPorUsuario: _carregarAnunciosPublicadosPorUsuario,
-            carregarAnunciosEmAnalisePorUsuario: _carregarAnunciosEmAnalisePorUsuario
+            carregarAnunciosEmAnalisePorUsuario: _carregarAnunciosEmAnalisePorUsuario,
+            deletarAnuncio: _deletarAnuncio
         };
 
     }

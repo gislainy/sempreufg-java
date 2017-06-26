@@ -161,6 +161,14 @@ public class AnuncioService {
 		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultarAnunciosEmAnalisePorUsuario(idUsuario);
 		return listaAnuncios;
 	}
+	@ResponseBody
+	@RequestMapping(value = "/deletar", method = RequestMethod.POST)
+	public ModelMap listarAnunciosEmAnalisePorUsuario(@RequestBody Anuncio anuncio) throws SQLException {
+		ModelMap retorno = new ModelMap();
+		anuncioDao.remove(anuncio);
+		retorno.addAttribute("retorno", true);
+		return retorno;	
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/anuncio-imagem", 
