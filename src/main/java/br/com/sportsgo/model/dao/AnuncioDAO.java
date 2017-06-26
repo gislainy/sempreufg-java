@@ -84,9 +84,16 @@ public class AnuncioDAO implements IAnuncioDAO{
 	}	
 	
 	@SuppressWarnings("unchecked")
-	public List<Anuncio> consultaPorUsuario(Long idUsuario) {
+	public List<Anuncio> consultarAnunciosPublicadosPorUsuario(Long idUsuario) {
     	Criteria criteria = dao.getCriteria();
-    	criteria.add(Restrictions.eq("idUsuario",idUsuario));
+    	criteria.add(Restrictions.eq("usuario",idUsuario)).add(Restrictions.eqOrIsNull("status", EnumStatusAnuncio.PUBLICADO)) ;
+    	return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Anuncio> consultarAnunciosEmAnalisePorUsuario(Long idUsuario) {
+    	Criteria criteria = dao.getCriteria();
+    	criteria.add(Restrictions.eq("usuario",idUsuario)).add(Restrictions.eqOrIsNull("status", EnumStatusAnuncio.EM_ANALISE)) ;
     	return criteria.list();
 	}
 }

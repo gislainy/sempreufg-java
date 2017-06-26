@@ -142,8 +142,8 @@ public class UsuarioService {
 			ModelMap retorno = new ModelMap();
 			for (Usuario usuarioLista : listaUsarios) {
 				retorno.addAttribute("id", usuarioLista.getIdUsuario());
-				retorno.addAttribute("usuario", usuarioLista.getLogin());
 				retorno.addAttribute("token", TokenResponse.gerarToken(usuarioLista.getSenha()));
+				retorno.addAttribute("nome", usuarioLista.getNome() + " " + usuarioLista.getSobrenome());
 				retorno.addAttribute("admin", usuarioLista.getAdmin());
 				return retorno;
 			}

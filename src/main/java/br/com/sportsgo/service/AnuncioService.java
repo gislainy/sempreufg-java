@@ -149,9 +149,16 @@ public class AnuncioService {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/listar-anuncios-por-usuario/{idUsuario}", method = RequestMethod.GET)
-	public ArrayList<Anuncio> listarAnunciosPorUsuario(Long idUsuario) throws SQLException {
-		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultaPorUsuario(idUsuario);
+	@RequestMapping(value = "/listar-anuncios-publicados-por-usuario/{idUsuario}", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosPublicadosPorUsuario(@PathVariable("idUsuario") Long idUsuario) throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultarAnunciosPublicadosPorUsuario(idUsuario);
+		return listaAnuncios;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/listar-anuncios-pendentes-por-usuario/{idUsuario}", method = RequestMethod.GET)
+	public ArrayList<Anuncio> listarAnunciosEmAnalisePorUsuario(@PathVariable("idUsuario") Long idUsuario) throws SQLException {
+		ArrayList<Anuncio> listaAnuncios = (ArrayList<Anuncio>) anuncioDao.consultarAnunciosEmAnalisePorUsuario(idUsuario);
 		return listaAnuncios;
 	}
 	

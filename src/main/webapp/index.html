@@ -68,6 +68,7 @@
 	<script src="lib/js/controllers/UsuarioCadastroController.js"></script>
 	<script src="lib/js/controllers/AnuncioPendenteController.js"></script>
 	<script src="lib/js/controllers/AnuncioBloqueadoController.js"></script>
+	<script src="lib/js/controllers/AnunciosUsuarioController.js"></script>
 
 	<!-- DIRECTIVES -->
 
@@ -175,10 +176,10 @@
 								<li ng-if="logado">
 									<a href="" ng-click="verificarCadastroUsuario()">Cadastrar</a>
 								</li>
-								<li ng-if="logado !== admin">
-									<a href="" ng-click="carregarAnunciosUsuario()">Meus anúncios</a>
+								<li ng-if="logado !== admin && logado == true">
+									<a href="" ng-click="carregarAnunciosPublicadosPorUsuario()">Meus anúncios</a>
 								</li>
-								<li ng-if="logado !== admin">
+								<li ng-if="logado !== admin && logado == true">
 									<a href="" ng-click="carregarAnunciosEmAnalisePorUsuario()">Meus pendentes</a>
 								</li>
 								<li ng-if="admin">
@@ -190,7 +191,7 @@
 								<li ng-if="admin">
 									<a href="" ng-click="carregarAnunciosBloqueados()">Bloqueados</a>
 								</li>
-								<li ng-if="logado !== admin">
+								<li ng-if="!admin">
 									<a href="" ng-click="carregarAnunciosPublicados()">Todos</a>
 								</li>
 

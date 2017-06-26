@@ -3,6 +3,12 @@
 
     function PrincipalController($scope, usuarioService, growl, $location, requisicoesService, logoutService, routeService) {
 
+        function init() {
+            $scope.admin = false;
+        }
+
+        init();
+
         $scope.$on('usuarioLogado', function (event, args) {
             growl.success('Bem vindo ' + args.usuario + '!');
             usuarioService.set('logado', args.logado);
@@ -80,6 +86,7 @@
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
                         $location.path('/sportsgo/anuncios/bloqueados');
+                        $scope.$emit('meusAnuncios', null);
                     } else {
                         growl.info('Nenhum anúncio bloqueado');
                     }
@@ -103,23 +110,36 @@
                 });
         };
 
-        $scope.carregarAnunciosUsuario = function() {
+        $scope.carregarAnunciosPublicadosPorUsuario = function () {
             var idusuario = usuarioService.get('id');
-            requisicoesService.carregarAnunciosPorUsuario(idusuario)
+            requisicoesService.carregarAnunciosPublicadosPorUsuario(idusuario)
                 .then(function (response) {
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
-                        $location.path("/sportsgo/anuncio/todos");
+                        usuarioService.set('tipoAnuncio', 'publicados');
+                        $location.path("/sportsgo/anuncios/publicados-usuario");
                     } else {
-                        growl.info('Nenhum anúncio cadastrado!!');
+                        growl.info('Nenhum anúncio publicado!!');
                     }
                 }, function (error) {
                     console.log(error);
                 });
         };
 
-        $scope.carregarAnunciosEmAnalisePorUsuario = function() {
-            alert('EM DESENVOLVIMENTO !!!');    
+        $scope.carregarAnunciosEmAnalisePorUsuario = function () {
+            var idusuario = usuarioService.get('id');
+            requisicoesService.carregarAnunciosEmAnalisePorUsuario(idusuario)
+                .then(function (response) {
+                    if (response.data.length > 0) {
+                        usuarioService.set('anuncios', response.data);
+                        usuarioService.set('tipoAnuncio', 'em análise');
+                        $location.path("/sportsgo/anuncios/pendentes-usuario");
+                    } else {
+                        growl.info('Nenhum anúncio pendente!!');
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
         };
 
 
@@ -137,8 +157,13 @@
             var sair = confirm('Deseja mesmo sair?');
             if (sair) {
                 logoutService.logout();
-                $scope.logado = null;
-                $scope.nomeUsuario = null;
+                delete $scope.logado;
+                delete $scope.nomeUsuario;
+                delete $scope.admin;
+                usuarioService.set('logado',null);
+                usuarioService.set('admin',null);
+                usuarioService.set('usuarioLogado',null);
+                usuarioService.set('id',null);
             }
         };
 

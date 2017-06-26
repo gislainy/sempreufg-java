@@ -63,8 +63,12 @@
             return $http.post(urlConfig.baseUrl + '/anuncio/desbloquear', anuncio);
         };
 
-        var _carregarAnunciosPorUsuario = function (id) {
-            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-por-usuario/' + id);
+        var _carregarAnunciosPublicadosPorUsuario = function (id) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-publicados-por-usuario/' + id);
+        }
+
+        var _carregarAnunciosEmAnalisePorUsuario = function (id) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/listar-anuncios-pendentes-por-usuario/' + id);
         }
 
 
@@ -84,7 +88,8 @@
             publicarAnuncio: _publicarAnuncio,
             bloquearAnuncio: _bloquearAnuncio,
             desbloquearAnuncio: _desbloquearAnuncio,
-            carregarAnunciosPorUsuario: _carregarAnunciosPorUsuario
+            carregarAnunciosPublicadosPorUsuario: _carregarAnunciosPublicadosPorUsuario,
+            carregarAnunciosEmAnalisePorUsuario: _carregarAnunciosEmAnalisePorUsuario
         };
 
     }

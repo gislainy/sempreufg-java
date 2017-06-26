@@ -69,6 +69,14 @@ function configurar($routeProvider) {
             templateUrl: 'lib/views/anuncios/anuncios-em-analise.html',
             controller: 'AnuncioPendenteController'
         })
+        .when('/sportsgo/anuncios/pendentes-usuario', {
+            templateUrl: 'lib/views/anuncios/anuncios-pendentes-usuario.html',
+            controller: 'AnunciosUsuarioController'
+        })
+        .when('/sportsgo/anuncios/publicados-usuario', {
+            templateUrl: 'lib/views/anuncios/anuncios-publicados-usuario.html',
+            controller: 'AnunciosUsuarioController'
+        })
         .when('/sportsgo/anuncios/bloqueados', {
             templateUrl: 'lib/views/anuncios/anuncios-bloqueados.html',
             controller: 'AnuncioBloqueadoController'
