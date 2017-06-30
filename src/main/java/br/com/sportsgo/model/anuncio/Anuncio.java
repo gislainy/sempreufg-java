@@ -57,6 +57,7 @@ public class Anuncio {
 
 	private List<AnuncioAlteracao> alteracoes;
 	private List<AnuncioArquivo> arquivos;
+	private List<AnuncioComentario> comentarios;
 	private List<AnuncioDataEvento> datas;
 	private List<AnuncioLocal> locais;
 	private List<AnuncioPendencia> pendencias;
@@ -177,6 +178,22 @@ public class Anuncio {
 			this.arquivos = arquivos;
 			for (AnuncioArquivo arquivo : this.arquivos) {
 				arquivo.setAnuncio(this.codAnuncio);
+			}
+		}
+	}
+	
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "anuncio")
+	public List<AnuncioComentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<AnuncioComentario> comentarios) {
+		if(comentarios != null && !comentarios.isEmpty()){
+			this.comentarios = comentarios;
+			for (AnuncioComentario comentario : this.comentarios) {
+				comentario.setAnuncio(this.codAnuncio);
 			}
 		}
 	}

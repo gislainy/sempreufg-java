@@ -75,6 +75,10 @@
             return $http.post(urlConfig.baseUrl + '/anuncio/deletar', anuncio);
         };
 
+        var _inserirComentarioAnuncio = function (anuncio) {
+            return $http.post(urlConfig.baseUrl + '/anuncio/inserir-comentario', anuncio);
+        };
+
 
         return {
             novoUsuario: _novoUsuario,
@@ -94,7 +98,8 @@
             desbloquearAnuncio: _desbloquearAnuncio,
             carregarAnunciosPublicadosPorUsuario: _carregarAnunciosPublicadosPorUsuario,
             carregarAnunciosEmAnalisePorUsuario: _carregarAnunciosEmAnalisePorUsuario,
-            deletarAnuncio: _deletarAnuncio
+            deletarAnuncio: _deletarAnuncio,
+            inserirComentarioAnuncio: _inserirComentarioAnuncio
         };
 
     }

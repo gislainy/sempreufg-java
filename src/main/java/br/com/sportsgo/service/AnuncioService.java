@@ -84,6 +84,15 @@ public class AnuncioService {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/inserir-comentario", method = RequestMethod.POST)
+	public ModelMap inserirComentario(@RequestBody Anuncio anuncio) throws SQLException {
+		ModelMap retorno = new ModelMap();
+		anuncioDao.atualiza(anuncio);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/publicar", method = RequestMethod.POST)
 	public ModelMap publicarAnuncio(@RequestBody Anuncio anuncio) throws SQLException {
 		ModelMap retorno = new ModelMap();
