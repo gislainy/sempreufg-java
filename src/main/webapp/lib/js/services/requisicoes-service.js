@@ -7,8 +7,8 @@
             return $http.post(urlConfig.baseUrl + '/usuario/novo', pessoa);
         };
 
-        var _completarCadastroUsuario = function (usuario) {
-            return $http.post(urlConfig.baseUrl + '/usuario/completar-cadastro', usuario);
+        var _completarCadastroUsuario = function (usuario, config) {
+            return $http.post(urlConfig.baseUrl + '/usuario/completar-cadastro', usuario, config);
         };
 
         var _autenticarUsuario = function (usuario) {
@@ -79,6 +79,11 @@
             return $http.post(urlConfig.baseUrl + '/anuncio/inserir-comentario', anuncio);
         };
 
+        var _buscarComentariosAnuncio = function (id) {
+            return $http.get(urlConfig.baseUrl + '/anuncio/buscar-comentarios-anuncio/' + id);
+        };
+
+
 
         return {
             novoUsuario: _novoUsuario,
@@ -99,7 +104,8 @@
             carregarAnunciosPublicadosPorUsuario: _carregarAnunciosPublicadosPorUsuario,
             carregarAnunciosEmAnalisePorUsuario: _carregarAnunciosEmAnalisePorUsuario,
             deletarAnuncio: _deletarAnuncio,
-            inserirComentarioAnuncio: _inserirComentarioAnuncio
+            inserirComentarioAnuncio: _inserirComentarioAnuncio,
+            buscarComentariosAnuncio: _buscarComentariosAnuncio
         };
 
     }

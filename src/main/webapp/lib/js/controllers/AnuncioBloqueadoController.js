@@ -28,7 +28,7 @@
             anuncio.status = 'EM_ANALISE';
             anuncio.usuario = {
                 "idUsuario": anuncio.usuario
-            }
+            };
             delete anuncio.fotoCapa;
             delete anuncio.arquivos;
             var bloquear = confirm('Deseja desbloquear o anúncio?');
@@ -38,6 +38,7 @@
                         if (response.data.retorno) {
                             growl.success('Anúncio desbloqueado com sucesso');
                             $scope.anuncios.splice(index, 1);
+                            verificarArrayAnuncios();
                         } else {
                             growl.error('Falha ao tentar desbloquear anúncio');
                         }
@@ -48,7 +49,12 @@
 
         };
 
+        function verificarArrayAnuncios() {
+            if($scope.anuncios.length === 0) {
+                routeService.mudarRota('/sportsgo');
+            }
+        }
 
-    };
+    }
 
 })();

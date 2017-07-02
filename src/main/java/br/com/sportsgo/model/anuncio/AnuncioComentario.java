@@ -1,5 +1,7 @@
 package br.com.sportsgo.model.anuncio;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class AnuncioComentario {
@@ -16,6 +21,12 @@ public class AnuncioComentario {
 	private String texto;
 	private String autor;
 	private Long idUsuario;
+	
+	@Lob
+	private byte[] imagem;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataInclusao;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -71,5 +82,21 @@ public class AnuncioComentario {
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+	
+	public void setDataInclusao(Calendar dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+	
+	public Calendar getDataInclusao() {
+		return dataInclusao;
+	}
+	
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	
+	public byte[] getImagem(){
+		return imagem;
 	}
 }

@@ -12,9 +12,9 @@
             return fileFormData;
         }
 
-        this.uploadFileToUrl = function (anuncio, file) {
+        this.uploadFileToUrl = function (tipoObj, anuncio, file) {
             var fileFormData = filesArray(file);
-            fileFormData.append('anuncio', JSON.stringify(anuncio));
+            fileFormData.append(tipoObj, JSON.stringify(anuncio));
             return fileFormData;
         };
     });

@@ -28,9 +28,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.sportsgo.model.anuncio.Anuncio;
 import br.com.sportsgo.model.anuncio.AnuncioArquivo;
+import br.com.sportsgo.model.anuncio.AnuncioComentario;
 import br.com.sportsgo.model.anuncio.EnumStatusAnuncio;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioArquivoDAO;
+import br.com.sportsgo.model.dao.interfaces.IAnuncioComentarioDAO;
 import br.com.sportsgo.model.dao.interfaces.IAnuncioDAO;
+import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
 
 
 
@@ -43,6 +46,13 @@ public class AnuncioService {
 	
 	@Autowired
 	private IAnuncioArquivoDAO arquivoDao;
+	
+	@Autowired
+	private IAnuncioComentarioDAO comentarioDao;
+	
+	@Autowired
+	private IUsuarioDAO usuarioDao;
+
 	
 	@Autowired
 	ServletContext context;
@@ -119,7 +129,15 @@ public class AnuncioService {
 		return retorno;
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/buscar-comentarios-anuncio/{codAnuncio}", method = RequestMethod.GET)
+	public List<AnuncioComentario> buscarComentariosAnuncio(@PathVariable("codAnuncio") Long codAnuncio) throws SQLException {
+		ArrayList<AnuncioComentario> comentarios = (ArrayList<AnuncioComentario>) comentarioDao.listarComentariosDesc(codAnuncio);
+		for(AnuncioComentario comentario : comentarios) {
+			comentario.setImagem(usuarioDao.busca(comentario.getIdUsuario()).getImagem());
+		}
+		return comentarios;
+	}
 	
 
 	@ResponseBody

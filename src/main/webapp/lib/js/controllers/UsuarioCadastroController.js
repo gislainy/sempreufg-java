@@ -1,7 +1,7 @@
 (function () {
     angular.module('sportsgo').controller('UsuarioCadastroController', UsuarioCadastroController);
 
-    function UsuarioCadastroController($scope, growl,usuarioService, requisicoesService, routeService, clearMaskService) {
+    function UsuarioCadastroController($scope,fileUploadService, growl, usuarioService, requisicoesService, routeService, clearMaskService) {
 
         function init() {
             $scope.usuario = usuarioService.get('usuarioCadastroCompleto');
@@ -14,10 +14,17 @@
                 if (validarTelefone()) {
                     limparMascaras();
                     inserirDadosArray($scope.usuario.enderecos, $scope.usuario.redesSociais, $scope.usuario.telefones);
-                    requisicoesService.completarCadastroUsuario($scope.usuario)
+                    var config = {
+                        transformRequest: angular.identity,
+                        headers: {
+                            'Content-Type': undefined
+                        }
+                    };
+                    var formData = fileUploadService.uploadFileToUrl('usuario',$scope.usuario, $scope.myFile);
+                    requisicoesService.completarCadastroUsuario(formData, config)
                         .then(function (response) {
-                            if(response.data.retorno) {
-                                growl.success('Cadastro completado com sucesso');
+                            if (response.data.retorno) {
+                                growl.success('Cadastro concluído com sucesso');
                                 delete $scope.usuario;
                                 usuarioService.set('usuarioCadastroCompleto', null);
                                 routeService.mudarRotaTimeout('/sportsgo');
@@ -100,7 +107,7 @@
 
         function separarDadosTelefone(telefone) {
             $scope.usuario.telefones = {};
-            $scope.usuario.telefones.dddNumero = telefone.slice(0,2);
+            $scope.usuario.telefones.dddNumero = telefone.slice(0, 2);
             $scope.usuario.telefones.numero = telefone.slice(2);
         }
 

@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -36,6 +37,9 @@ public class Usuario extends Pessoa {
 	private List<Endereco> enderecos;
 	private List<RedeSocial> redesSociais;
 	private List<Telefone> telefones;
+	
+	@Lob
+	private byte[] imagem;
 
 	@Id
 	@GeneratedValue
@@ -137,5 +141,13 @@ public class Usuario extends Pessoa {
 	 */
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
+	}
+
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 }

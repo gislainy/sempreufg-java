@@ -6,7 +6,7 @@ import br.com.sportsgo.model.anuncio.Anuncio;
 import br.com.sportsgo.model.anuncio.EnumStatusAnuncio;
 
 public interface IAnuncioDAO extends IDao<Anuncio, Long>{
-	public List<Anuncio> consultaPorModalidade(String modalidade);
+ 	public List<Anuncio> consultaPorModalidade(String modalidade);
 	public List<Anuncio> consultarAnunciosPublicadosPorUsuario(Long idUsuario);
 	public List<Anuncio> consultarAnunciosEmAnalisePorUsuario(Long idUsuario);
 	public List<Anuncio> buscarAnunciosPendentes(EnumStatusAnuncio emAnalise);

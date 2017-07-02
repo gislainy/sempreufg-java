@@ -42,7 +42,7 @@
             console.log($scope.anuncios);
         }
 
-        $scope.carregarDetalheAnuncio = function(anuncio) {
+        $scope.carregarDetalhesAnuncio = function(anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
             routeService.mudarRota('/sportsgo/anuncio/detalhe');
         };

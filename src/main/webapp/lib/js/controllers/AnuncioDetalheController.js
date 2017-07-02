@@ -1,22 +1,51 @@
 (function () {
     angular.module('sportsgo').controller('AnuncioDetalheController', AnuncioDetalheController);
 
-    function AnuncioDetalheController($scope, usuarioService, requisicoesService) {
+    function AnuncioDetalheController($scope, growl, usuarioService, requisicoesService) {
 
         function init() {
+            $scope.logado = usuarioService.get('logado');
             $scope.anuncio = usuarioService.get('anuncioEscolhido');
-            $scope.comentarios = $scope.anuncio.comentarios;
-            $scope.coment = {};
+            verificarComentariosNull();
+            carregarComentariosAnuncio($scope.anuncio.codAnuncio);
+            $scope.coment = {
+                "texto": "",
+                "autor": "",
+                "idUsuario": ""
+            };
             $scope.anuncio.usuario = {
                 "idUsuario": $scope.anuncio.usuario
-            }
+            };
             carregarAutor();
+            verificarStatusAnuncio();
         }
 
         init();
 
+        function verificarStatusAnuncio() {
+            switch($scope.anuncio.status) {
+                case 'EM_ANALISE': {
+                    $scope.statusPublicado = false;
+                    break;
+                }
+                case 'BLOQUEADO': {
+                    $scope.statusPublicado = false;
+                    break;
+                }
+                case 'PUBLICADO': {
+                    $scope.statusPublicado = true;
+                }
+            }
+        }
+
+        function verificarComentariosNull() {
+            if ($scope.anuncio.comentarios === null) {
+                $scope.anuncio.comentarios = [];
+            }
+        }
+
         function carregarAutor() {
-            requisicoesService.buscarUsuarioID($scope.anuncio.usuario)
+            requisicoesService.buscarUsuarioID(usuarioService.get('id'))
                 .then(function (response) {
                     if (response.data !== null && response.data !== '') {
                         $scope.autor = response.data.nome + ' ' + response.data.sobrenome;
@@ -29,15 +58,34 @@
                 });
         }
 
-        $scope.inserirComentario = function () {
-            configurarObjetoRequisicao();
-            requisicoesService.inserirComentarioAnuncio($scope.anuncio)
+
+        $scope.inserirComentario = function (textoComentario) {
+            $scope.textoComentario = textoComentario.$modelValue;
+            textoComentario.$modelValue = '';
+            if ($scope.textoComentario.length > 0) {   
+                configurarObjetoRequisicao();
+                requisicoesService.inserirComentarioAnuncio($scope.anuncio)
+                    .then(function (response) {
+                        if (response.data.retorno) {
+                            carregarComentariosAnuncio($scope.anuncio.codAnuncio);
+                            $scope.anuncio.comentarios.pop();
+                            $scope.textoComentario = null;
+                        } else {
+                            growl.error('Falha ao comentar anúncio');
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }   
+        };
+
+        function carregarComentariosAnuncio(id) {
+            requisicoesService.buscarComentariosAnuncio(id)
                 .then(function (response) {
-                    if (response.data.retorno) {
-                        $scope.comentarios.push($scope.coment);
-                        $scope.textoComentario = null;
+                    if (response.data.length > 0) {
+                        $scope.comentarios = response.data;
                     } else {
-                        growl.error('Falha ao comentar anúncio');
+                        console.log('Nenhum comentário encontrado');
                     }
                 }, function (error) {
                     console.log(error);
@@ -64,8 +112,8 @@
             }
             $scope.coment.autor = $scope.autor;
             $scope.coment.texto = $scope.textoComentario;
-            $scope.coment.idUsuario = $scope.anuncio.usuario;
-            $scope.anuncio.comentarios = [{}];
+            $scope.coment.idUsuario = usuarioService.get('id');
+            $scope.coment.dataInclusao = new Date();
             $scope.anuncio.comentarios.push($scope.coment);
         }
 

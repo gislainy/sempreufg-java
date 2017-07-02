@@ -8,6 +8,7 @@
             $scope.anuncios = usuarioService.get('anuncios');
             $scope.tipoAnuncio = 'em análise';
             definirFotoCapa();
+            configurarObjetoAnuncio();
         }
 
         init();
@@ -28,9 +29,7 @@
             anuncio.status = 'PUBLICADO';
             anuncio.usuario = {
                 "idUsuario": anuncio.usuario
-            }
-            delete anuncio.fotoCapa;
-            delete anuncio.arquivos;
+            };
             var publicar = confirm('Deseja publicar o anúncio?');
             if (publicar) {
                 requisicoesService.publicarAnuncio(anuncio)
@@ -38,6 +37,7 @@
                         if (response.data.retorno) {
                             growl.success('Anúncio publicado com sucesso');
                             $scope.anuncios.splice(index, 1);
+                            verificarArrayAnuncios();
                         } else {
                             growl.error('Falha ao tentar bloquear anúncio');
                         }
@@ -51,9 +51,7 @@
             anuncio.status = 'BLOQUEADO';
             anuncio.usuario = {
                 "idUsuario": anuncio.usuario
-            }
-            delete anuncio.fotoCapa;
-            delete anuncio.arquivos;
+            };
             var bloquear = confirm('Deseja bloquear o anúncio?');
             if (bloquear) {
                 requisicoesService.bloquearAnuncio(anuncio)
@@ -61,6 +59,7 @@
                         if (response.data.retorno) {
                             growl.success('Anúncio bloqueado com sucesso');
                             $scope.anuncios.splice(index, 1);
+                            verificarArrayAnuncios();
                         } else {
                             growl.error('Falha ao tentar bloquear anúncio');
                         }
@@ -68,8 +67,32 @@
                         console.log(error);
                     });
             }
-
         };
+
+        function verificarArrayAnuncios() {
+            if($scope.anuncios.length === 0) {
+                routeService.mudarRota('/sportsgo');
+            }
+        }
+
+        function configurarObjetoAnuncio() {
+            var i;
+            var j;
+            for (i in $scope.anuncios) {
+                for (j in $scope.anuncios[i].arquivos) {
+                    $scope.anuncios[i].arquivos[j].codAnuncio = $scope.anuncios[i].arquivos[j].anuncio;
+                    delete $scope.anuncios[i].arquivos[j].anuncio;
+                }
+                for (j in $scope.anuncios[i].datas) {
+                    $scope.anuncios[i].datas[j].codAnuncio = $scope.anuncios[i].datas[j].anuncio;
+                    delete $scope.anuncios[i].datas[j].anuncio;
+                }
+                for (j in $scope.anuncios[i].locais) {
+                    $scope.anuncios[i].locais[j].codAnuncio = $scope.anuncios[i].locais[j].anuncio;
+                    delete $scope.anuncios[i].locais[j].anuncio;
+                }
+            }
+        }
 
     }
 

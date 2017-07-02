@@ -96,4 +96,5 @@ public class AnuncioDAO implements IAnuncioDAO{
     	criteria.add(Restrictions.eq("usuario",idUsuario)).add(Restrictions.eqOrIsNull("status", EnumStatusAnuncio.EM_ANALISE)) ;
     	return criteria.list();
 	}
+
 }

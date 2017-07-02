@@ -47,12 +47,26 @@
             <p>{{anuncio.dataTermino | date: 'dd/MM/yyyy'}}</p>
         </div>
     </div>
+    <div>
+        <br><br>
+    </div>
     <hr>
-    <div class="row" ng-repeat="comentario in comentarios track by $index">
-        <div class="col-sm-5">
+    <div>
+        <h3>Comentários</h3>
+    </div>
+    <hr>
+
+    <div class="col-md-6" ng-repeat="comentario in comentarios track by $index">
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" ng-src="data:image/png;base64,{{comentario.imagem}}">
+            </div>
+        </div>
+        <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>{{comentario.autor}}</strong>
+                    <strong class="pull-right">{{comentario.dataInclusao | date: 'dd/MM/yyyy HH:mm:ss'}}</strong>
                 </div>
                 <div class="panel-body">
                     {{comentario.texto}}
@@ -60,16 +74,16 @@
             </div>
         </div>
     </div>
-    <div>
-        <h3>Comentários</h3>
-    </div>
-    <hr>
-    <div>
-        <div class="form-group">
-            <textarea class="form-control" name="" id="" cols="20" rows="5" ng-model="textoComentario"></textarea>
-        </div>
-        <div>
-            <button class="btn btn-space btn-primary pull-right" ng-click="inserirComentario()">Comentar</button>
-        </div>
+    <div ng-if="logado && statusPublicado">
+        <form name="formComentario" ng-submit="inserirComentario(formComentario.textoComentario)">
+            <div>
+                <div class="form-group">
+                    <textarea class="form-control" name="textoComentario" ng-model="textoComentario" id="" cols="20" rows="5"></textarea>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-space btn-primary pull-right" value="Comentar" ng-disabled="textoComentario.length === 0 || textoComentario.length === null || textoComentario.length === undefined">
+                </div>
+            </div>
+        </form>
     </div>
     <br><br>

@@ -16,7 +16,7 @@
                         'Content-Type': undefined
                     }
                 };
-                var formData = fileUploadService.uploadFileToUrl($scope.anuncio, $scope.myFile);
+                var formData = fileUploadService.uploadFileToUrl('anuncio', $scope.anuncio, $scope.myFile);
                 requisicoesService.cadastrarAnuncio(formData, config)
                     .then(function (response) {
                         if (response.data.retorno === true) {

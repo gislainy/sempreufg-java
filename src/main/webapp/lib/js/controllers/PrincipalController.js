@@ -15,6 +15,7 @@
             usuarioService.set('admin', args.admin);
             usuarioService.set('usuarioLogado', args.usuario);
             usuarioService.set('id', args.id);
+            usuarioService.set('imagemPerfil', args.imagem);
             $scope.logado = args.logado;
             $scope.admin = args.admin;
             if (args !== undefined && args !== null && args.logado) {

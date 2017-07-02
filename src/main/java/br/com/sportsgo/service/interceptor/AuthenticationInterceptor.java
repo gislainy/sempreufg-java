@@ -20,12 +20,14 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 		final String CAMINHO_ENVIAR_EMAIL_USUARIO = "/services/usuario/enviar-email";
 		final String CAMINHO_LISTAR_ANUNCIOS = "/services/anuncio/listar-anuncios-publicados";
 		final String CAMINHO_BUSCA_AUTOR_ANUNCIO = "/services/usuario/buscaUsuario";
+		final String CAMINHO_BUSCAR_COMENTARIO_ANUNCIO = "/services/anuncio/buscar-comentarios-anuncio";
 		boolean caminhoLogin = request.getRequestURI().equals(CAMINHO_LOGIN);
 		boolean caminhoNovoUsuario = request.getRequestURI().equals(CAMINHO_NOVO_USUARIO);
 		boolean caminhoValidarCadastroUsuario = request.getRequestURI().equals(CAMINHO_VALIDAR_CADASTRO_USUARIO);
 		boolean caminhoEnviarEmailUsuario = request.getRequestURI().equals(CAMINHO_ENVIAR_EMAIL_USUARIO);
 		boolean caminhoListarAnuncios = request.getRequestURI().equals(CAMINHO_LISTAR_ANUNCIOS);
 		boolean caminhoAutorAnuncio = request.getRequestURI().contains(CAMINHO_BUSCA_AUTOR_ANUNCIO);
+		boolean caminhoComentarioAnuncio = request.getRequestURI().contains(CAMINHO_BUSCAR_COMENTARIO_ANUNCIO);
 		String header = request.getHeader("Authorization");
 
 		if (header == null && header.startsWith("Bearer ")) {
@@ -39,7 +41,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		} else {
 			boolean caminhosLivres = !caminhoLogin && !caminhoNovoUsuario && !caminhoValidarCadastroUsuario
-					&& !caminhoEnviarEmailUsuario && !caminhoListarAnuncios && !caminhoAutorAnuncio;
+					&& !caminhoEnviarEmailUsuario && !caminhoListarAnuncios && !caminhoAutorAnuncio && !caminhoComentarioAnuncio;
 			if (caminhosLivres) {
 				response.sendError(response.SC_UNAUTHORIZED, "Usuário não autenticado");
 				return false;

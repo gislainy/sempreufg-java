@@ -1,8 +1,11 @@
 package br.com.sportsgo.service;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.sportsgo.model.dao.interfaces.IEmailDAO;
 import br.com.sportsgo.model.dao.interfaces.IUsuarioDAO;
@@ -38,10 +45,36 @@ public class UsuarioService {
 		return usuario;
 	}
 	
-	@ResponseBody
+/*	@ResponseBody
 	@RequestMapping(value = "/completar-cadastro", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ModelMap completarCadastroUsuario(@RequestBody Usuario usuario) throws SQLException, MalformedURLException {
 		ModelMap retorno = new ModelMap();
+		usuarioDao.atualiza(usuario);
+		retorno.addAttribute("retorno", true);
+		return retorno;
+	} */
+	
+	@ResponseBody
+	@RequestMapping(value = "/completar-cadastro", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelMap novoUsuario(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) throws SQLException, IOException {
+		
+		ModelMap model = new ModelMap();
+		ModelMap retorno = new ModelMap();
+		model.putAll(request.getParameterMap());
+		String usuarioJSON = ((String[]) model.get("usuario"))[0];
+		
+		ObjectMapper mapper = new ObjectMapper();
+		Usuario usuario = new Usuario();
+		usuario = mapper.readValue(usuarioJSON, Usuario.class);
+		
+		byte[] imagem = null;
+		try {
+			imagem = files[0].getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		usuario.setImagem(imagem);
+		
 		usuarioDao.atualiza(usuario);
 		retorno.addAttribute("retorno", true);
 		return retorno;
