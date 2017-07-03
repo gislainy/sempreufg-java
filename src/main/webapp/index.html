@@ -51,6 +51,7 @@
 	<script src="lib/js/angular/angular-growl.js"></script>
 	<script src="lib/js/angular/angular-animate.js"></script>
 
+
 	<!-- CONFIG MODULO -->
 	<script src="lib/js/sportsgo.js"></script>
 	<script src="lib/js/config/route-config.js"></script>
@@ -88,6 +89,7 @@
 	<script src="lib/js/services/fileUpload-service.js"></script>
 	<script src="lib/js/services/route-service.js"></script>
 	<script src="lib/js/services/logout-service.js"></script>
+	<script src="lib/js/services/socket.js"></script>
 
 </head>
 
@@ -200,15 +202,7 @@
 						</li>
 
 						<li class="pull-right">
-							<i class="search fa fa-search search-btn"></i>
-							<div class="search-open">
-								<div class="input-group animated fadeInDown">
-									<input type="text" class="form-control" placeholder="Search">
-									<span class="input-group-btn">
-										<button class="btn-u" type="button">Go</button>
-									</span>
-								</div>
-							</div>
+							<i class="fa fa-arrow-circle-o-left fa-2x" ng-click="routeBack()"></i>
 						</li>
 					</ul>
 				</div>

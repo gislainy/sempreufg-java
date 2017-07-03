@@ -23,6 +23,10 @@
             }
         });
 
+        $scope.routeBack = function () {
+            window.history.back();
+        }
+
         $scope.modalidades = [
             {
                 categoria: 'Futebol', viewUrl: '#/sportsgo/anuncio/futebol'
@@ -161,10 +165,10 @@
                 delete $scope.logado;
                 delete $scope.nomeUsuario;
                 delete $scope.admin;
-                usuarioService.set('logado',null);
-                usuarioService.set('admin',null);
-                usuarioService.set('usuarioLogado',null);
-                usuarioService.set('id',null);
+                usuarioService.set('logado', null);
+                usuarioService.set('admin', null);
+                usuarioService.set('usuarioLogado', null);
+                usuarioService.set('id', null);
             }
         };
 

@@ -1,7 +1,7 @@
 (function () {
     angular.module('sportsgo').controller('AnuncioDetalheController', AnuncioDetalheController);
 
-    function AnuncioDetalheController($scope, growl, usuarioService, requisicoesService) {
+    function AnuncioDetalheController($scope, growl, $window, socket, usuarioService, requisicoesService) {
 
         function init() {
             $scope.logado = usuarioService.get('logado');
@@ -18,12 +18,15 @@
             };
             carregarAutor();
             verificarStatusAnuncio();
+            $scope.message = 'Anuncio enviado';
+            $scope.interactions = [];
+
         }
 
         init();
 
         function verificarStatusAnuncio() {
-            switch($scope.anuncio.status) {
+            switch ($scope.anuncio.status) {
                 case 'EM_ANALISE': {
                     $scope.statusPublicado = false;
                     break;
@@ -45,7 +48,7 @@
         }
 
         function carregarAutor() {
-            requisicoesService.buscarUsuarioID(usuarioService.get('id'))
+            requisicoesService.buscarUsuarioID($scope.anuncio.usuario.idUsuario)
                 .then(function (response) {
                     if (response.data !== null && response.data !== '') {
                         $scope.autor = response.data.nome + ' ' + response.data.sobrenome;
@@ -62,12 +65,13 @@
         $scope.inserirComentario = function (textoComentario) {
             $scope.textoComentario = textoComentario.$modelValue;
             textoComentario.$modelValue = '';
-            if ($scope.textoComentario.length > 0) {   
+            if ($scope.textoComentario.length > 0) {
                 configurarObjetoRequisicao();
                 requisicoesService.inserirComentarioAnuncio($scope.anuncio)
                     .then(function (response) {
                         if (response.data.retorno) {
                             carregarComentariosAnuncio($scope.anuncio.codAnuncio);
+                            $scope.sendMessage();
                             $scope.anuncio.comentarios.pop();
                             $scope.textoComentario = null;
                         } else {
@@ -76,7 +80,7 @@
                     }, function (error) {
                         console.log(error);
                     });
-            }   
+            }
         };
 
         function carregarComentariosAnuncio(id) {
@@ -116,6 +120,42 @@
             $scope.coment.dataInclusao = new Date();
             $scope.anuncio.comentarios.push($scope.coment);
         }
+
+        // handle received messages
+        socket.onmessage = function (event) {
+            $scope.interactions.push({
+                direction: "RECEIVED",
+                message: event.data
+            });
+            carregarComentariosAnuncio($scope.anuncio.codAnuncio);
+            console.log('INSERIU ANUNCIO');
+            $scope.$apply();
+        };
+
+        // send a message
+        $scope.sendMessage = function () {
+            $scope.interactions.push({
+                direction: "SENT",
+                message: $scope.message
+            });
+            socket.send($scope.message);
+            $scope.message = "";
+        };
+
+
+        /*var ws = new WebSocket("ws://localhost:9090/clock");
+
+        ws.onmessage = function (event) {
+            alert(event.data);
+        };
+
+        ws.onerror = function (event) {
+            console.log("Error ", event)
+        } */
+
+
+
+
 
     }
 })();
