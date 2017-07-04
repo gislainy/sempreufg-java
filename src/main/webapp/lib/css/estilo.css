@@ -54,6 +54,14 @@
     transition:transform 0.8s;
 }
 
+.inserir.ng- {
+    -moz-transition:transform 0.8s;
+    -webkit-transition:transform 0.8s;
+    -ms-transition:transform 0.8s;
+    -o-transition:transform 0.8s;
+    transition:transform 0.8s;
+}
+
 .sumir.ng-leave-active {
   -moz-transform: scale(0.1);
   -webkit-transform: scale(0.1);
@@ -89,4 +97,14 @@
 .panel>.panel-heading:before{
 	border-right-color:#ddd;
 	border-width:8px;
+}
+
+
+.animate-enter {
+   -webkit-transition: 1s linear all; /* Chrome */
+   transition: 1s linear all;
+   opacity: 0;
+}
+.animate-enter.animate-enter-active {
+   opacity: 1;
 }

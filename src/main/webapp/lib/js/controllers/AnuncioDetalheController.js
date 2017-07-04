@@ -17,6 +17,7 @@
                 "idUsuario": $scope.anuncio.usuario
             };
             carregarAutor();
+            carregarAutorComentario(usuarioService.get('id'));
             verificarStatusAnuncio();
             $scope.message = 'Anuncio enviado';
             $scope.interactions = [];
@@ -61,18 +62,28 @@
                 });
         }
 
+        function carregarAutorComentario(id) {
+            requisicoesService.buscarUsuarioID(id)
+                .then(function (response) {
+                    if (response.data !== null && response.data !== '') {
+                         $scope.coment.autor = response.data.nome + ' ' + response.data.sobrenome;
+                    } else {
+                        growl.error('Falha ao buscar autor do anúncio');
+                    }
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+
 
         $scope.inserirComentario = function (textoComentario) {
             $scope.textoComentario = textoComentario.$modelValue;
-            textoComentario.$modelValue = '';
             if ($scope.textoComentario.length > 0) {
                 configurarObjetoRequisicao();
                 requisicoesService.inserirComentarioAnuncio($scope.anuncio)
                     .then(function (response) {
                         if (response.data.retorno) {
-                            carregarComentariosAnuncio($scope.anuncio.codAnuncio);
-                            $scope.sendMessage();
-                            $scope.anuncio.comentarios.pop();
+                            socket.send(null);
                             $scope.textoComentario = null;
                         } else {
                             growl.error('Falha ao comentar anúncio');
@@ -87,7 +98,7 @@
             requisicoesService.buscarComentariosAnuncio(id)
                 .then(function (response) {
                     if (response.data.length > 0) {
-                        $scope.comentarios = response.data;
+                        $scope.anuncio.comentarios = response.data;
                     } else {
                         console.log('Nenhum comentário encontrado');
                     }
@@ -114,7 +125,6 @@
                 $scope.anuncio.locais[index].codAnuncio = $scope.anuncio.locais[index].anuncio;
                 delete $scope.anuncio.locais[index].anuncio;
             }
-            $scope.coment.autor = $scope.autor;
             $scope.coment.texto = $scope.textoComentario;
             $scope.coment.idUsuario = usuarioService.get('id');
             $scope.coment.dataInclusao = new Date();
@@ -123,10 +133,6 @@
 
         // handle received messages
         socket.onmessage = function (event) {
-            $scope.interactions.push({
-                direction: "RECEIVED",
-                message: event.data
-            });
             carregarComentariosAnuncio($scope.anuncio.codAnuncio);
             console.log('INSERIU ANUNCIO');
             $scope.$apply();
