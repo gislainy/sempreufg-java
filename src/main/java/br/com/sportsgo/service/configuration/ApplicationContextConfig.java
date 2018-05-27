@@ -3,7 +3,6 @@ package br.com.sportsgo.service.configuration;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -23,15 +22,15 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @Configuration
 @ComponentScan(basePackages="br.com.sportsgo")
 @EnableTransactionManagement
-public class ApplicationContextConfig {
+public class ApplicationContextConfig {	
     
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
     	BasicDataSource dataSource = new BasicDataSource();
     	dataSource.setDriverClassName("org.postgresql.Driver");
     	dataSource.setUrl("jdbc:postgresql://localhost:5432/sportsgo");
-    	dataSource.setUsername("usuario");
-    	dataSource.setPassword("construcaosw");
+    	dataSource.setUsername("postgres");
+    	dataSource.setPassword("1234");
     	return dataSource;
     }
     

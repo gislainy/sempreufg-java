@@ -157,6 +157,7 @@ public class UsuarioService {
 		return EmailExiste;
 	}
 
+	@SuppressWarnings("unused")
 	private Boolean cpfCnpjJaCadastrado(Usuario usuario) {
 		Boolean cpfCnpjExiste = !usuarioDao.consultaPorCpfCnpj(usuario.getCpfcnpj()).isEmpty();
 		return cpfCnpjExiste;
