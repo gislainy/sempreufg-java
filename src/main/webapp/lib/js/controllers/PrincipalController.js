@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('PrincipalController', PrincipalController);
+    angular.module('sempreufg').controller('PrincipalController', PrincipalController);
 
     function PrincipalController($scope, usuarioService, growl, $location, requisicoesService, logoutService, routeService) {
 
@@ -29,7 +29,7 @@
 
         $scope.modalidades = [
             {
-                categoria: 'Futebol', viewUrl: '#/sportsgo/anuncio/futebol'
+                categoria: 'Futebol', viewUrl: '#/sempreufg/anuncio/futebol'
             },
             {
                 categoria: 'Voleibol', viewUrl: '#/home/anuncio/voleibol'
@@ -62,7 +62,7 @@
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
                         usuarioService.set('modalidade', mod);
-                        $location.path("/sportsgo/anuncio/" + mod);
+                        $location.path("/sempreufg/anuncio/" + mod);
                     } else {
                         growl.info('Não foi encontrado evento cadastrado para a modalidade selecionada');
                     }
@@ -76,7 +76,7 @@
                 .then(function (response) {
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
-                        $location.path('/sportsgo/anuncios/pendentes');
+                        $location.path('/sempreufg/anuncios/pendentes');
                     } else {
                         growl.info('Nenhum anúncio em análise');
                     }
@@ -90,7 +90,7 @@
                 .then(function (response) {
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
-                        $location.path('/sportsgo/anuncios/bloqueados');
+                        $location.path('/sempreufg/anuncios/bloqueados');
                         $scope.$emit('meusAnuncios', null);
                     } else {
                         growl.info('Nenhum anúncio bloqueado');
@@ -106,7 +106,7 @@
                 .then(function (response) {
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
-                        $location.path("/sportsgo/anuncio/todos");
+                        $location.path("/sempreufg/anuncio/todos");
                     } else {
                         growl.info('Nenhum anúncio cadastrado!!');
                     }
@@ -122,7 +122,7 @@
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
                         usuarioService.set('tipoAnuncio', 'publicados');
-                        $location.path("/sportsgo/anuncios/publicados-usuario");
+                        $location.path("/sempreufg/anuncios/publicados-usuario");
                     } else {
                         growl.info('Nenhum anúncio publicado!!');
                     }
@@ -138,7 +138,7 @@
                     if (response.data.length > 0) {
                         usuarioService.set('anuncios', response.data);
                         usuarioService.set('tipoAnuncio', 'em análise');
-                        $location.path("/sportsgo/anuncios/pendentes-usuario");
+                        $location.path("/sempreufg/anuncios/pendentes-usuario");
                     } else {
                         growl.info('Nenhum anúncio pendente!!');
                     }
@@ -182,9 +182,9 @@
                         if (cadastroIncompleto) {
                             usuarioService.set('usuarioCadastroCompleto', usuario);
                             growl.info('Cadastro de usuário incompleto, será redirecionado para a tela de cadastro');
-                            routeService.mudarRotaTimeout('/sportsgo/usuario/cadastro');
+                            routeService.mudarRotaTimeout('/sempreufg/usuario/cadastro');
                         } else {
-                            routeService.mudarRota('sportsgo/anuncio/novo');
+                            routeService.mudarRota('sempreufg/anuncio/novo');
                         }
                     }
                 }, function (error) {

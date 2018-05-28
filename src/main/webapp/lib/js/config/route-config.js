@@ -1,93 +1,93 @@
-angular.module('sportsgo')
+angular.module('sempreufg')
     .config(configurar)
     .config(interceptor);
 
 function configurar($routeProvider) {
     $routeProvider
-        .when('/sportsgo/login', {
+        .when('/sempreufg/login', {
             templateUrl: 'lib/views/login.html',
             controller: 'LoginController'
         })
-        .when('/sportsgo', {
+        .when('/sempreufg', {
             templateUrl: 'lib/views/principal.html',
             controller: 'IndexController'
         })
-        .when('/sportsgo/usuario/novo', {
+        .when('/sempreufg/usuario/novo', {
             templateUrl: 'lib/views/usuario/pre-cadastro.html',
             controller: 'UsuarioController'
         })
-        .when('/sportsgo/usuario/cadastro', {
+        .when('/sempreufg/usuario/cadastro', {
             templateUrl: 'lib/views/usuario/cadastro.html',
             controller: 'UsuarioCadastroController'
         })
 
-        .when('/sportsgo/anuncio/novo', {
+        .when('/sempreufg/anuncio/novo', {
             templateUrl: 'lib/views/anuncios/cadastro.html',
             controller: 'AnuncioController'
         })
-        .when('/sportsgo/anuncio/detalhe', {
+        .when('/sempreufg/anuncio/detalhe', {
             templateUrl: 'lib/views/anuncios/detalhes-anuncio.html',
             controller: 'AnuncioDetalheController'
         })
-        .when('/sportsgo/anuncio/futebol', {
+        .when('/sempreufg/anuncio/futebol', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/atletismo', {
+        .when('/sempreufg/anuncio/atletismo', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/voleibol', {
+        .when('/sempreufg/anuncio/voleibol', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/basquetebol', {
+        .when('/sempreufg/anuncio/basquetebol', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/tenis', {
+        .when('/sempreufg/anuncio/tenis', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/natacao', {
+        .when('/sempreufg/anuncio/natacao', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/airsoft', {
+        .when('/sempreufg/anuncio/airsoft', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/skate', {
+        .when('/sempreufg/anuncio/skate', {
             templateUrl: 'lib/views/anuncios/anuncios-por-modalidade.html',
             controller: 'AnuncioModalidadeController'
         })
-        .when('/sportsgo/anuncio/todos', {
+        .when('/sempreufg/anuncio/todos', {
             templateUrl: 'lib/views/anuncios/anuncios-todos.html',
             controller: 'AnuncioTodosController'
         })
-        .when('/sportsgo/anuncios/pendentes', {
+        .when('/sempreufg/anuncios/pendentes', {
             templateUrl: 'lib/views/anuncios/anuncios-em-analise.html',
             controller: 'AnuncioPendenteController'
         })
-        .when('/sportsgo/anuncios/pendentes-usuario', {
+        .when('/sempreufg/anuncios/pendentes-usuario', {
             templateUrl: 'lib/views/anuncios/anuncios-pendentes-usuario.html',
             controller: 'AnunciosUsuarioController'
         })
-        .when('/sportsgo/anuncios/publicados-usuario', {
+        .when('/sempreufg/anuncios/publicados-usuario', {
             templateUrl: 'lib/views/anuncios/anuncios-publicados-usuario.html',
             controller: 'AnunciosUsuarioController'
         })
-        .when('/sportsgo/anuncios/bloqueados', {
+        .when('/sempreufg/anuncios/bloqueados', {
             templateUrl: 'lib/views/anuncios/anuncios-bloqueados.html',
             controller: 'AnuncioBloqueadoController'
         })
-         .when('/sportsgo/anuncio/editar', {
+         .when('/sempreufg/anuncio/editar', {
             templateUrl: 'lib/views/anuncios/editar-anuncio.html',
             controller: 'AnuncioEditarController'
         })
         ;
 
-    $routeProvider.otherwise({ redirectTo: '/sportsgo' });
+    $routeProvider.otherwise({ redirectTo: '/sempreufg' });
 }
 
 function interceptor($httpProvider) {

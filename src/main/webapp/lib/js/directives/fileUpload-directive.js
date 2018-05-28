@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var myApp = angular.module('sportsgo');
+    var myApp = angular.module('sempreufg');
 
     /*
      A directive to enable two way binding of file field

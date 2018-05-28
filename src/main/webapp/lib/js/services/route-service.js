@@ -1,5 +1,5 @@
 (function(){
-    angular.module('sportsgo').service('routeService', routeService);
+    angular.module('sempreufg').service('routeService', routeService);
 
     function routeService($timeout, $location) {
         this.mudarRota = function(caminho) {

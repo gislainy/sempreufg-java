@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo')
+    angular.module('sempreufg')
         .directive("owlCarousel", function () {
             return {
                 restrict: 'E',

@@ -1,4 +1,4 @@
-angular.module('sportsgo').service('logoutService', logoutService);
+angular.module('sempreufg').service('logoutService', logoutService);
 
 function logoutService($location, usuarioService, growl, $timeout, $q) {
     this.logout = function () {
@@ -7,7 +7,7 @@ function logoutService($location, usuarioService, growl, $timeout, $q) {
         usuarioService.set('logado', false);
         usuarioService.set('usuarioLogado', null);
         usuarioService.set('id', null);
-        $location.path('/sportsgo/login');
+        $location.path('/sempreufg/login');
     };
 
     this.logoutTimeout = function () {
@@ -18,7 +18,7 @@ function logoutService($location, usuarioService, growl, $timeout, $q) {
             usuarioService.set('logado', false);
             usuarioService.set('usuarioLogado', null);
             usuarioService.set('id', null);
-            $location.path('/sportsgo/login');
+            $location.path('/sempreufg/login');
         }, 5000);
     };
 }

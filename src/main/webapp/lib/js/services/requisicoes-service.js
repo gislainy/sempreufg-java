@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').factory('requisicoesService', requisicoesService);
+    angular.module('sempreufg').factory('requisicoesService', requisicoesService);
 
     function requisicoesService($http, urlConfig, $q) {
 

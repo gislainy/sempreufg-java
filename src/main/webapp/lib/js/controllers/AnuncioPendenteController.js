@@ -1,6 +1,6 @@
 (function () {
 
-    angular.module('sportsgo').controller('AnuncioPendenteController', AnuncioPendenteController);
+    angular.module('sempreufg').controller('AnuncioPendenteController', AnuncioPendenteController);
 
     function AnuncioPendenteController($scope, growl, usuarioService, routeService, requisicoesService) {
 
@@ -22,7 +22,7 @@
 
         $scope.carregarDetalhesAnuncio = function (anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+            routeService.mudarRota('/sempreufg/anuncio/detalhe');
         };
 
         $scope.publicarAnuncio = function (anuncio, index) {
@@ -71,7 +71,7 @@
 
         function verificarArrayAnuncios() {
             if($scope.anuncios.length === 0) {
-                routeService.mudarRota('/sportsgo');
+                routeService.mudarRota('/sempreufg');
             }
         }
 

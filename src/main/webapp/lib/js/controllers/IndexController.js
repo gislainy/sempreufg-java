@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('IndexController', IndexController);
+    angular.module('sempreufg').controller('IndexController', IndexController);
 
     function IndexController($scope, requisicoesService, growl, usuarioService, routeService) {
 
@@ -44,34 +44,34 @@
 
         $scope.carregarDetalhesAnuncio = function(anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+            routeService.mudarRota('/sempreufg/anuncio/detalhe');
         };
 
 
         $scope.categorias = [
             {
-                categoria: 'Futebol', imageUrl: 'lib/img/bola.png', viewUrl: '#/sportsgo/Futebol'
+                categoria: 'Futebol', imageUrl: 'lib/img/bola.png', viewUrl: '#/sempreufg/Futebol'
             },
             {
-                categoria: 'Voleibol', imageUrl: 'lib/img/volei.png', viewUrl: '#/sportsgo/Voleibol'
+                categoria: 'Voleibol', imageUrl: 'lib/img/volei.png', viewUrl: '#/sempreufg/Voleibol'
             },
             {
-                categoria: 'Basquetebol', imageUrl: 'lib/img/basquete.png', viewUrl: '#/sportsgo/Basquetebol'
+                categoria: 'Basquetebol', imageUrl: 'lib/img/basquete.png', viewUrl: '#/sempreufg/Basquetebol'
             },
             {
-                categoria: 'Natação', imageUrl: 'lib/img/natacao.png', viewUrl: '#/sportsgo/Natação'
+                categoria: 'Natação', imageUrl: 'lib/img/natacao.png', viewUrl: '#/sempreufg/Natação'
             },
             {
-                categoria: 'Tênis', imageUrl: 'lib/img/tenis.png', viewUrl: '#/sportsgo/Tênis'
+                categoria: 'Tênis', imageUrl: 'lib/img/tenis.png', viewUrl: '#/sempreufg/Tênis'
             },
             {
-                categoria: 'Atletismo', imageUrl: 'lib/img/corrida.png', viewUrl: '#/sportsgo/Atletismo'
+                categoria: 'Atletismo', imageUrl: 'lib/img/corrida.png', viewUrl: '#/sempreufg/Atletismo'
             },
             {
-                categoria: 'Skate', imageUrl: 'lib/img/skate.png', viewUrl: '#/sportsgo/Skate'
+                categoria: 'Skate', imageUrl: 'lib/img/skate.png', viewUrl: '#/sempreufg/Skate'
             },
             {
-                categoria: 'Airsoft', imageUrl: 'lib/img/airsoft.png', viewUrl: '#/sportsgo/Airsoft'
+                categoria: 'Airsoft', imageUrl: 'lib/img/airsoft.png', viewUrl: '#/sempreufg/Airsoft'
             },
         ];
 

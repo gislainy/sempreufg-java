@@ -1,5 +1,5 @@
 (function(){
-    angular.module('sportsgo').service('clearMaskService', clearMaskService);
+    angular.module('sempreufg').service('clearMaskService', clearMaskService);
 
     function clearMaskService(){
         this.clearMaskCpf = function(cpf) {

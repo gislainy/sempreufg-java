@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('AnuncioDetalheController', AnuncioDetalheController);
+    angular.module('sempreufg').controller('AnuncioDetalheController', AnuncioDetalheController);
 
     function AnuncioDetalheController($scope, growl, $window, socket, usuarioService, requisicoesService) {
 

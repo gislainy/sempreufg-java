@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('sportsgo').service('fileUploadService', function () {
+    angular.module('sempreufg').service('fileUploadService', function () {
 
         function filesArray(files) {
             var fileFormData = new FormData();

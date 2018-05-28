@@ -1,6 +1,6 @@
 (function () {
 
-    angular.module('sportsgo').controller('AnuncioBloqueadoController', AnuncioBloqueadoController);
+    angular.module('sempreufg').controller('AnuncioBloqueadoController', AnuncioBloqueadoController);
 
     function AnuncioBloqueadoController($scope, growl,routeService, usuarioService, requisicoesService) {
 
@@ -21,7 +21,7 @@
 
         $scope.carregarDetalhesAnuncio = function (anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+            routeService.mudarRota('/sempreufg/anuncio/detalhe');
         };
 
          $scope.desbloquearAnuncio = function (anuncio, index) {
@@ -51,7 +51,7 @@
 
         function verificarArrayAnuncios() {
             if($scope.anuncios.length === 0) {
-                routeService.mudarRota('/sportsgo');
+                routeService.mudarRota('/sempreufg');
             }
         }
 

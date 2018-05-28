@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('AnuncioController', AnuncioController);
+    angular.module('sempreufg').controller('AnuncioController', AnuncioController);
 
     function AnuncioController($scope, requisicoesService, usuarioService, fileUploadService, growl) {
 

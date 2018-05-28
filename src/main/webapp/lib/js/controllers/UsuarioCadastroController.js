@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('UsuarioCadastroController', UsuarioCadastroController);
+    angular.module('sempreufg').controller('UsuarioCadastroController', UsuarioCadastroController);
 
     function UsuarioCadastroController($scope,fileUploadService, growl, usuarioService, requisicoesService, routeService, clearMaskService) {
 
@@ -27,7 +27,7 @@
                                 growl.success('Cadastro concluído com sucesso');
                                 delete $scope.usuario;
                                 usuarioService.set('usuarioCadastroCompleto', null);
-                                routeService.mudarRotaTimeout('/sportsgo');
+                                routeService.mudarRotaTimeout('/sempreufg');
                             }
                         }, function (error) {
                             console.log('Falha na requisição' + error);

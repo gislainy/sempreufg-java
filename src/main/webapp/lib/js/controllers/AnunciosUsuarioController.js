@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('AnunciosUsuarioController', AnunciosUsuarioController);
+    angular.module('sempreufg').controller('AnunciosUsuarioController', AnunciosUsuarioController);
 
     function AnunciosUsuarioController($scope, growl, usuarioService, requisicoesService, routeService) {
 
@@ -20,12 +20,12 @@
 
         $scope.carregarDetalhesAnuncio = function (anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+            routeService.mudarRota('/sempreufg/anuncio/detalhe');
         };
 
         $scope.editarAnuncio = function (anuncio) {
             usuarioService.set('anuncioEditar', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/editar');
+            routeService.mudarRota('/sempreufg/anuncio/editar');
         };
 
         $scope.deletarAnuncio = function (anuncio, index) {

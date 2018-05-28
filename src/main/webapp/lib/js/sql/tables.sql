@@ -4,13 +4,13 @@ SELECT pg_terminate_backend(pid)
   WHERE pid <> pg_backend_pid();
 
 -- Exclui o banco de dados se ja estiver criado
-DROP DATABASE sportsgo;
+DROP DATABASE sempreufg;
 
 -- excluir usuario se ja criado
 DROP USER usuario; 
 
 -- Cria o banco de dados
-CREATE DATABASE sportsgo
+CREATE DATABASE sempreufg
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -27,8 +27,8 @@ CREATE USER usuario WITH
 	CONNECTION LIMIT 1000
 	PASSWORD 'construcaosw';
 
--- conceder ao user usuario conexao ao BD sportsgo
-GRANT CONNECT ON DATABASE sportsgo TO usuario;
+-- conceder ao user usuario conexao ao BD sempreufg
+GRANT CONNECT ON DATABASE sempreufg TO usuario;
 
 -- concerder privilegios sobre o schema public ao user usuario
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO usuario;
@@ -37,7 +37,7 @@ GRANT UPDATE ON ALL TABLES IN SCHEMA public TO usuario;
 GRANT DELETE ON ALL TABLES IN SCHEMA public TO usuario;
 
 -- conecta ao banco de dados
--- \c sportsgo postgres
+-- \c sempreufg postgres
 
 -- cria  a tabela Usuario
 CREATE TABLE public.usuario

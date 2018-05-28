@@ -1,5 +1,5 @@
 angular
-  .module('sportsgo')
+  .module('sempreufg')
   .controller('LoadingController', ['$interval',
     function($interval) {
       var self = this;

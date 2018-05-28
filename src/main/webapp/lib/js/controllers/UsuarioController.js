@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').controller('UsuarioController', UsuarioController);
+    angular.module('sempreufg').controller('UsuarioController', UsuarioController);
 
     function UsuarioController($scope, $location, clearMaskService, $timeout, requisicoesService, growl) {
 
@@ -14,7 +14,7 @@
 
         function redirectLogin() {
             $timeout(function () {
-                $location.path('#/sportsgo/login');
+                $location.path('#/sempreufg/login');
             }, 5000);
         }
 

@@ -1,5 +1,5 @@
 (function(){
-    angular.module('sportsgo').controller('AnuncioModalidadeController',AnuncioModalidadeController);
+    angular.module('sempreufg').controller('AnuncioModalidadeController',AnuncioModalidadeController);
 
     function AnuncioModalidadeController($scope, usuarioService, routeService) {
 
@@ -20,7 +20,7 @@
 
         $scope.carregarDetalhesAnuncio = function(anuncio) {
             usuarioService.set('anuncioEscolhido', anuncio);
-            routeService.mudarRota('/sportsgo/anuncio/detalhe');
+            routeService.mudarRota('/sempreufg/anuncio/detalhe');
         };
 
 

@@ -1,6 +1,6 @@
 (function () {
 
-    angular.module('sportsgo').controller('AnuncioEditarController', AnuncioEditarController);
+    angular.module('sempreufg').controller('AnuncioEditarController', AnuncioEditarController);
 
     function AnuncioEditarController($scope, growl, usuarioService, requisicoesService) {
 

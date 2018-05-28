@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo').factory('usuarioService', usuarioService);
+    angular.module('sempreufg').factory('usuarioService', usuarioService);
 
     function usuarioService() {
 

@@ -1,5 +1,5 @@
 (function () {
-    angular.module('sportsgo')
+    angular.module('sempreufg')
         .factory('socket', function () {
             var loc = window.location;
             var wsUri;

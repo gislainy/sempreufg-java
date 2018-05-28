@@ -1,7 +1,7 @@
 (function() {
 
     angular
-    .module('sportsgo')
+    .module('sempreufg')
     .directive('ifLoading', ifLoading);
 
     ifLoading.$injector = ['$http'];

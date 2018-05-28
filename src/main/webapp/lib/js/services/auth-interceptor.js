@@ -1,4 +1,4 @@
-angular.module('sportsgo')
+angular.module('sempreufg')
   .factory('authInterceptor', authInterceptor);
 
 function authInterceptor($q, $location, $rootScope, growl, $timeout) {
@@ -12,7 +12,7 @@ function authInterceptor($q, $location, $rootScope, growl, $timeout) {
       if (response.status === 401 || response.status === 403) {
         growl.error('Usuário não autenticado, será redirecionado para a tela de login');
         $timeout(function () {
-          $location.path('/sportsgo/login');
+          $location.path('/sempreufg/login');
         }, 5000);
       }
       return $q.reject(response);

@@ -1,4 +1,4 @@
-angular.module('sportsgo').directive("limitTo", function() {
+angular.module('sempreufg').directive("limitTo", function() {
     return {
         restrict: "A",
         link: function(scope, elem, attrs) {
