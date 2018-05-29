@@ -1,363 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt-br" ng-app="sempreufg">
 
-<head>
-	<title>Sports GO</title>
-
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="shortcut icon" href="favicon.ico">
-
-	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
-
-	<!-- CSS -->
-	<link rel="stylesheet" href="lib/css/style.css">
-	<link rel="stylesheet" href="lib/css/header-default.css">
-	<link rel="stylesheet" href="lib/css/footer-v1.css">
-	<link rel="stylesheet" href="lib/css/default.css" id="style_color">
-	<link rel="stylesheet" href="lib/css/dark.css">
-	<link rel="stylesheet" href="lib/css/app.css">
-	<link rel="stylesheet" href="lib/css/default.css">
-	<link rel="stylesheet" href="lib/css/blocks.css">
-	<link rel="stylesheet" href="lib/css/custom.css">
-	<link rel="stylesheet" href="lib/css/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="lib/css/animate.css">
-	<link rel="stylesheet" href="lib/css/line-icons/line-icons.css">
-	<link rel="stylesheet" href="lib/css/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="lib/css/parallax-slider.css">
-	<link rel="stylesheet" href="lib/css/owl.carousel.css">
-	<link rel="stylesheet" href="lib/css/plugins/style-switcher.css">
-	<link rel="stylesheet" href="lib/css/estilo.css">
-
-	<!-- JAVASCRIPT -->
-	<script type="text/javascript" src="lib/js/diversos/jquery.min.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/back-to-top.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/smoothScroll.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/owl.carousel.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/custom.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/app.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/owlcarousel/owl-carousel.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/style-switcher.js"></script>
-	<script type="text/javascript" src="lib/js/diversos/mask-validation/mask-validation.js"></script>
-
-	<!-- ANGULAR -->
-	<script src="lib/js/angular/angular.js"></script>
-	<script src="lib/js/angular/angular-route.js"></script>
-	<script src="lib/js/angular/angular-animate.min.js"></script>
-	<script src="lib/js/angular/angular-growl.js"></script>
-	<script src="lib/js/angular/angular-animate.js"></script>
+	<!DOCTYPE html>
+	<html  lang="pt-br" ng-app="sempreufg">
+	<head>
+		<script data-ionic="inject">
+			(function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.2';i.angular='5.2.10';i.staticDir='build/';})(window);
+		</script>
+	<title>Sempre UFG</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+  
+	<link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#4e8ef7">
+  
+	<!-- add to homescreen for ios -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
 
 
-	<!-- CONFIG MODULO -->
-	<script src="lib/js/sempreufg.js"></script>
-	<script src="lib/js/config/route-config.js"></script>
-	<script src="lib/js/config/url-config.js"></script>
-
-	<!-- CONTROLLERS -->
-	<script src="lib/js/controllers/PrincipalController.js"></script>
-	<script src="lib/js/controllers/IndexController.js"></script>
-	<script src="lib/js/controllers/UsuarioController.js"></script>
-	<script src="lib/js/controllers/LoginController.js"></script>
-	<script src="lib/js/controllers/AnuncioController.js"></script>
-	<script src="lib/js/controllers/AnuncioModalidadeController.js"></script>
-	<script src="lib/js/controllers/AnuncioTodosController.js"></script>
-	<script src="lib/js/controllers/AnuncioDetalheController.js"></script>
-	<script src="lib/js/controllers/UsuarioCadastroController.js"></script>
-	<script src="lib/js/controllers/AnuncioPendenteController.js"></script>
-	<script src="lib/js/controllers/AnuncioBloqueadoController.js"></script>
-	<script src="lib/js/controllers/AnunciosUsuarioController.js"></script>
-	<script src="lib/js/controllers/AnuncioEditarController.js"></script>
-
-	<!-- DIRECTIVES -->
-
-	<script src="lib/js/directives/limitTo-directive.js"></script>
-	<script src="lib/js/directives/ifLoading-directive.js"></script>
-	<script src="lib/js/directives/fileUpload-directive.js"></script>
-	<script src="lib/js/directives/owlCarousel-directive.js"></script>
-	<script src="lib/js/directives/owlCarouselItem-directive.js"></script>
-
-
-	<!-- SERVICES -->
-	<script src="lib/js/services/usuario-service.js"></script>
-	<script src="lib/js/services/requisicoes-service.js"></script>
-	<script src="lib/js/services/auth-interceptor.js"></script>
-	<script src="lib/js/services/clear_mask-service.js"></script>
-	<script src="lib/js/services/fileUpload-service.js"></script>
-	<script src="lib/js/services/route-service.js"></script>
-	<script src="lib/js/services/logout-service.js"></script>
-	<script src="lib/js/services/socket.js"></script>
+	 <!-- un-comment this code to enable service worker
+	 <script>
+	   if ('serviceWorker' in navigator) {
+		 navigator.serviceWorker.register('service-worker.js')
+		   .then(() => console.log('service worker installed'))
+		   .catch(err => console.error('Error', err));
+	   }
+	 </script>-->
+   
+	 <link href="lib/css/main.css" rel="stylesheet">
+   
 
 </head>
 
 <body ng-controller="PrincipalController">
-	<div class="back wrapper">
-		<!--=== Header ===-->
-		<div class="header">
+	<ion-app></ion-app>
 
-			<div class="container">
-				<!-- Logo -->
-				<a class="logo" href="#home">
-					<img class="img-responsive" src="lib/img/logo.png" alt="Logo">
-				</a>
-				<!-- End Logo -->
+  <!-- The polyfills js is generated during the build process -->
+  <script src="lib/js/polyfills.js"></script>
 
-				<!-- Topbar -->
-				<div class="topbar">
-					<ul class="loginbar pull-right">
-						<li class="hoverSelector">
-							<i class="fa fa-globe"></i>
-							<a>Idioma</a>
-							<ul class="languages hoverSelectorBlock">
-								<li class="active">
-									<a href="#">English <i class="fa fa-check"></i></a>
-								</li>
-								<li><a href="#">Spanish</a></li>
-							</ul>
-						</li>
-						<li class="topbar-devider"></li>
-						<li><a href="page_faq.html">Ajuda</a></li>
-						<li class="topbar-devider"></li>
-						<li ng-if="!logado">
-							<a href="#/sempreufg/login">Logar</a>
-						</li>
-						<li ng-if="logado">
-							<i class="icon-user"></i>
-							<a ng-bind="nomeUsuario"></a>
-						</li>
-						<li ng-if="logado"><i class="icon-close" ng-click="logout()"></i></li>
-					</ul>
-				</div>
-				<!-- End Topbar -->
+  <!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules -->
+  <script src="lib/js/vendor.js"></script>
 
-				<!-- Toggle get grouped for better mobile display -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="fa fa-bars"></span>
-				</button>
-				<!-- End Toggle -->
-			</div>
+  <!-- The main bundle js is generated during the build process -->
+  <script src="lib/js/main.js"></script>
 
-			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
-				<div class="container">
-					<ul class="col-md-10 nav navbar-nav">
-
-						<!-- ESPORTES -->
-
-						<li class="dropdown active">
-
-							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Esportes</a>
-
-							<ul class="dropdown-menu">
-
-								<!-- FutebolPAG -->
-								<li>
-									<a href=""></a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="dropdown">
-							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Anúncios
-                            </a>
-							<ul class="dropdown-menu">
-
-								<li class="dropdown-submenu">
-									<a href="javascript:void(0);">Categorias</a>
-									<ul class="dropdown-menu">
-										<li ng-repeat="modalidade in modalidades">
-											<a href="" ng-click="carregarAnunciosPorCategoria(modalidade)">
-												{{modalidade.categoria}}
-											</a>
-										</li>
-									</ul>
-								</li>
-								<li ng-if="logado">
-									<a href="" ng-click="verificarCadastroUsuario()">Cadastrar</a>
-								</li>
-								<li ng-if="logado !== admin && logado == true">
-									<a href="" ng-click="carregarAnunciosPublicadosPorUsuario()">Meus anúncios</a>
-								</li>
-								<li ng-if="logado !== admin && logado == true">
-									<a href="" ng-click="carregarAnunciosEmAnalisePorUsuario()">Meus pendentes</a>
-								</li>
-								<li ng-if="admin">
-									<a href="" ng-click="carregarAnunciosPublicados()">Publicados</a>
-								</li>
-								<li ng-if="admin">
-									<a href="" ng-click="carregarAnunciosEmAnalise()">Em análise</a>
-								</li>
-								<li ng-if="admin">
-									<a href="" ng-click="carregarAnunciosBloqueados()">Bloqueados</a>
-								</li>
-								<li ng-if="!admin">
-									<a href="" ng-click="carregarAnunciosPublicados()">Todos</a>
-								</li>
-
-							</ul>
-						</li>
-
-						<li class="pull-right">
-							<i class="fa fa-arrow-circle-o-left fa-2x" ng-click="routeBack()"></i>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-
-
-		<div class="row col-md-12">
-			<br>
-			<p class="text-center text-muted" if-loading>
-				<span class="fa fa-spinner fa-spin fa-3x"></span>
-			</p>
-		</div>
-
-		<div growl class="col-md-4 col-md-offset-3 pull-right"></div>
-		<ng-view>
-		</ng-view>
-
-	</div>
-
-	<div class="footer-v1">
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 md-margin-bottom-40 newstler text-justify">
-						<div class="text-center">
-							<h2><strong>NEWSTLER</strong></h2>
-						</div>
-						<p>Prometemos não utilizar as suas informações para o envio de nenhum tipo de SPAM.</p>
-
-						<form>
-							<input class="form-control" type="text" name="nome" placeholder="NOME">
-							<br>
-							<input class="form-control" type="text" name="email" placeholder="EMAIL">
-							<br>
-							<input class="form-control" type="button" name="enviar" value="ENVIAR">
-						</form>
-					</div>
-
-					<div class="col-md-3 md-margin-bottom-40">
-						<div class="posts">
-							<div>
-								<h2><strong>ÚLTIMOS EVENTOS</strong></h2>
-							</div>
-							<ul class="list-unstyled latest-list">
-								<li>
-									<a href="#">Incredible content</a>
-									<small>May 8, 2014</small>
-								</li>
-								<li>
-									<a href="#">Best shoots</a>
-									<small>June 23, 2014</small>
-								</li>
-								<li>
-									<a href="#">New Terms and Conditions</a>
-									<small>September 15, 2014</small>
-								</li>
-								<li>
-									<a href="#">New Terms and Conditions</a>
-									<small>September 15, 2014</small>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="col-md-3 md-margin-bottom-40">
-						<div>
-							<h2><strong>LINKS ÚTEIS</strong></h2>
-						</div>
-						<ul class="list-unstyled link-list">
-							<li><a href="index.html">Home</a><i class="fa fa-angle-right"></i></li>
-							<li><a href="#">Quem somos</a><i class="fa fa-angle-right"></i></li>
-							<li><a href="#">Eventos anteriores</a><i class="fa fa-angle-right"></i></li>
-							<li><a href="#">Trabalhe conosco</a><i class="fa fa-angle-right"></i></li>
-							<li><a href="#">Comunidade</a><i class="fa fa-angle-right"></i></li>
-							<li><a href="#">Contato</a><i class="fa fa-angle-right"></i></li>
-						</ul>
-					</div>
-
-					<div class="col-md-3 map-img md-margin-bottom-40">
-						<div>
-							<h2>FALE CONOSCO</h2>
-						</div>
-						<address class="md-margin-bottom-40">
-							Alameda Palmeiras, s/n <br/> Câmpus Samambaia, Goiânia - GO <br/> CEP : 74690-900 <br/> Fone: (62) 6666-6666
-							<br/> Email: <a href="#" class="">sempreufg@inf.ufg.br</a>
-						</address>
-						<br><br><br><br>
-					</div>
-
-
-				</div>
-
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<p>
-							2016 &copy; Todos os direitos Reservados.
-							<a href="#">Politica de Privacidade</a> | <a href="#">Termos de Serviço</a>
-						</p>
-					</div>
-
-
-					<div class="col-md-6">
-						<ul class="footer-socials list-inline">
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-									<i class="fa fa-skype"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-									<i class="fa fa-linkedin"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-									<i class="fa fa-pinterest"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-									<i class="fa fa-dribbble"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
+ 
 
 
 </body>
