@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.sempreufg.model.dao.interfaces.IEmailDAO;
+import br.com.sempreufg.dao.interfaces.IEmailDAO;
 import br.com.sempreufg.model.usuario.Usuario;
 import br.com.sempreufg.model.utils.Email;
 

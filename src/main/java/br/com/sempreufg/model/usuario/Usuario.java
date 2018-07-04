@@ -17,7 +17,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.sempreufg.model.pessoa.Pessoa;
+import br.com.sempreufg.model.egresso.Pessoa;
 import br.com.sempreufg.model.utils.Email;
 import br.com.sempreufg.model.utils.Endereco;
 import br.com.sempreufg.model.utils.RedeSocial;

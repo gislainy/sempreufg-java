@@ -9,7 +9,7 @@ function configurar($routeProvider) {
             controller: 'LoginController'
         })
         .when('/sempreufg', {
-            templateUrl: 'lib/views/principal.html',
+            templateUrl: 'lib/views/index.html',
             controller: 'IndexController'
         })
         .when('/sempreufg/usuario/novo', {

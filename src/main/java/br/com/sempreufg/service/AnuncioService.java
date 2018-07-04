@@ -26,14 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.sempreufg.dao.interfaces.IAnuncioArquivoDAO;
+import br.com.sempreufg.dao.interfaces.IAnuncioComentarioDAO;
+import br.com.sempreufg.dao.interfaces.IAnuncioDAO;
+import br.com.sempreufg.dao.interfaces.IUsuarioDAO;
 import br.com.sempreufg.model.anuncio.Anuncio;
 import br.com.sempreufg.model.anuncio.AnuncioArquivo;
 import br.com.sempreufg.model.anuncio.AnuncioComentario;
 import br.com.sempreufg.model.anuncio.EnumStatusAnuncio;
-import br.com.sempreufg.model.dao.interfaces.IAnuncioArquivoDAO;
-import br.com.sempreufg.model.dao.interfaces.IAnuncioComentarioDAO;
-import br.com.sempreufg.model.dao.interfaces.IAnuncioDAO;
-import br.com.sempreufg.model.dao.interfaces.IUsuarioDAO;
 
 
 

@@ -21,8 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.sempreufg.model.dao.interfaces.IEmailDAO;
-import br.com.sempreufg.model.dao.interfaces.IUsuarioDAO;
+import br.com.sempreufg.dao.interfaces.IEmailDAO;
+import br.com.sempreufg.dao.interfaces.IUsuarioDAO;
 import br.com.sempreufg.model.usuario.SendHTMLEmail;
 import br.com.sempreufg.model.usuario.Usuario;
 import br.com.sempreufg.model.utils.Email;
